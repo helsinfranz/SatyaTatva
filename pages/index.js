@@ -39,15 +39,25 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+        <div className={`${styles.center} scrollable`}>
+          <div style={{ marginBottom: "100px" }}>
+            Checking this srandom thing
+          </div>
+          <div style={{ marginBottom: "100px" }}>
+            Checking this srandom thing
+          </div>
+          <div style={{ marginBottom: "100px" }}>
+            Checking this srandom thing
+          </div>
+          <div style={{ marginBottom: "100px" }}>
+            Checking this srandom thing
+          </div>
+          <div style={{ marginBottom: "100px" }}>
+            Checking this srandom thing
+          </div>
+          <div style={{ marginBottom: "100px" }}>
+            Checking this srandom thing
+          </div>
         </div>
 
         <div className={styles.grid}>

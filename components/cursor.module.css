@@ -1,0 +1,70 @@
+.cursor {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  /* background-color: white; */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.1s ease, width 0.15s ease, height 0.15s ease;
+  mix-blend-mode: difference;
+}
+
+.back,
+.front,
+.up,
+.down {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.up {
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.down {
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.back {
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.front {
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Expand on hover */
+.cursorHover {
+  width: 70px;
+  height: 70px;
+  border-color: white;
+}
+
+/* Change to arrows during scroll */
+.cursorScroll {
+  width: 55px;
+  height: 55px;
+  /* background-image: url("/path/to/arrow-icon.svg");
+  background-size: cover; */
+  border-color: white;
+}
+
+.vertical,
+.horizontal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
