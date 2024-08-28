@@ -45,7 +45,21 @@ export default function Cursor() {
       cursorRef.current.classList.remove(styles.cursorHover);
     };
 
+    const handleClick = (e) => {
+      const { clientX: x, clientY: y } = e;
+      const ripple = document.createElement("div");
+      ripple.className = styles.ripple;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      document.body.appendChild(ripple);
+
+      ripple.addEventListener("animationend", () => {
+        ripple.remove();
+      });
+    };
+
     document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("click", handleClick);
     document.querySelectorAll("a, button").forEach((element) => {
       element.addEventListener("mouseover", handleMouseOver);
       element.addEventListener("mouseout", handleMouseOut);
@@ -58,6 +72,7 @@ export default function Cursor() {
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("click", handleClick);
       document.querySelectorAll("a, button").forEach((element) => {
         element.removeEventListener("mouseover", handleMouseOver);
         element.removeEventListener("mouseout", handleMouseOut);
