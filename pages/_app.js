@@ -1,11 +1,10 @@
-import Cursor from "@/components/cursor";
+import Layout from "@/components/layout/layout";
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
-      <Cursor />
+    <Layout>
       <Component {...pageProps} />
-    </>
+    </Layout>
   );
 }

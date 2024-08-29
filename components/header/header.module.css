@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.copyright {
+  font-size: 1rem;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
