@@ -60,7 +60,7 @@ export default function Cursor() {
 
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("click", handleClick);
-    document.querySelectorAll("a, button").forEach((element) => {
+    document.querySelectorAll("a, button, .hover").forEach((element) => {
       element.addEventListener("mouseover", handleMouseOver);
       element.addEventListener("mouseout", handleMouseOut);
     });
@@ -73,7 +73,7 @@ export default function Cursor() {
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("click", handleClick);
-      document.querySelectorAll("a, button").forEach((element) => {
+      document.querySelectorAll("a, button, .hover").forEach((element) => {
         element.removeEventListener("mouseover", handleMouseOver);
         element.removeEventListener("mouseout", handleMouseOut);
       });

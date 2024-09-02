@@ -8,6 +8,7 @@
   pointer-events: none;
   transition: transform 0.1s ease, width 0.15s ease, height 0.15s ease;
   mix-blend-mode: difference;
+  z-index: 99999999;
 }
 
 .ripple {

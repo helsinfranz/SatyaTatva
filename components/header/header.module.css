@@ -1,18 +1,160 @@
-.footer {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4rem;
+  padding: 2rem;
   overflow: hidden;
   width: 100vw;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.copyright {
-  font-size: 1rem;
-}
-
-.socials {
+.search,
+.options {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
+
+.search:hover,
+.options:hover {
+  color: white;
+}
+
+.search > svg,
+.options > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search Main */
+
+.searchMain {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  /* transition: all 0.5s ease-in-out; */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+}
+
+.searchOpen {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.searhBar {
+  width: 75vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: text;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.searhBar > input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+}
+
+.searhBar > input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.searhBar > svg {
+  position: absolute;
+  right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.searchClose {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.searchClose > svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.searchOpen .searchClose,
+.searchOpen .searhBar {
+  animation: fadein 1s;
+  animation-fill-mode: forwards;
+}
+
+/* Search Main End */
+
+/* Options Main */
+
+.headerOptions {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.optionsOpened {
+  transition: all 0.5s ease-in-out;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: brightness(0.9);
+  pointer-events: all;
+}
+
+.optionsMain {
+  position: fixed;
+  width: 25vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  background: #222;
+  transition: all 0.5s;
+  z-index: 999;
+}
+
+.optionsOpened .optionsMain {
+  transform: translateX(0%);
+  transition: all 0.5s;
+  right: -12.5vw;
+}
+
+/* Options Main End */

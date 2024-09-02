@@ -99,6 +99,15 @@ a {
   text-decoration: none;
 }
 
+main {
+  transition: transform 0.5s;
+}
+
+.shift-left {
+  transform: translateX(-12.5vw);
+  transition: transform 0.5s;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
