@@ -90,7 +90,10 @@ body {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-size: 62.5%;
-  background-color: black;
+  /* background-color: #2e2f3000; */
+  background: radial-gradient(circle, #85868919 0%, #2e2f3000 75%) no-repeat
+    bottom center;
+  background-size: 100% 200%;
   /* position: relative; */
 }
 

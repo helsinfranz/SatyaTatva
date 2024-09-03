@@ -20,6 +20,7 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   animation: ripple-effect 0.5s linear;
+  z-index: 99999999;
 }
 
 @keyframes ripple-effect {

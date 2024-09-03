@@ -5,7 +5,11 @@
   padding: 2rem;
   overflow: hidden;
   width: 100vw;
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  background-color: #85868919;
+  /* background: radial-gradient(circle, #85868919 0%, #2e2f3000 75%) no-repeat
+    bottom center; */
+  /* background-size: 100% 200%; */
 }
 
 .search,
@@ -143,8 +147,11 @@
   right: 0;
   transform: translateX(100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
+  gap: 5rem;
   opacity: 1;
   background: #222;
   transition: all 0.5s;
@@ -158,3 +165,107 @@
 }
 
 /* Options Main End */
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.optionImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.optionDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.optionName {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.optionDescription {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.option2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.optionMainTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.optionMainLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionMainLinks > div {
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.optionMainLinks > div:last-child {
+  border-bottom: none;
+}
+
+.optionMainLinks > div:hover {
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  border-color: transparent;
+  border-radius: 0.8rem;
+}
+
+/* Extra Bar */
+
+.extra {
+  position: absolute;
+  top: 5rem;
+  left: -5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  transform: rotate(-90deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.extra > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.extraOpen {
+  opacity: 1;
+  pointer-events: all;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Extra Bar End */
