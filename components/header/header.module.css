@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100vw;
   /* background-color: rgba(255, 255, 255, 0.1); */
   background-color: #85868919;
@@ -269,3 +269,191 @@
 }
 
 /* Extra Bar End */
+
+.mainHeader {
+  position: relative;
+  height: 100%;
+}
+
+.logo {
+  margin: 0rem 3rem;
+}
+
+.logo img {
+  max-width: 150px;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: calc(100% + 4rem);
+}
+
+.container > ul {
+  width: 30vw;
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  height: 100%;
+}
+
+.container > ul:first-child {
+  justify-content: flex-end;
+}
+
+.container > ul:last-child {
+  justify-content: flex-start;
+}
+
+.container > ul > li {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container > ul > li > a {
+  color: rgb(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  font-size: 0.9rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0rem 1.5rem;
+  position: relative;
+}
+
+.container > ul > li > a:hover {
+  color: rgb(255, 255, 255);
+  transition: all 0.3s ease-in-out;
+}
+
+.selectedLink {
+  color: rgb(255, 255, 255) !important;
+}
+
+.selectedLink::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 1rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+}
+
+.hover_container {
+  position: absolute;
+  top: 5rem;
+  /* top: 1rem; */
+  left: 0;
+  /* right: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+.container > ul > li > a:hover + .hover_container,
+.hover_container:hover {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.optionMainLinks > div:hover {
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  border-color: transparent;
+  border-radius: 0.8rem;
+}
+
+.hover_links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #000;
+  border: 1px solid #222;
+}
+
+.hover_links > div > a {
+  display: flex;
+  width: 12rem;
+  max-width: 80vw;
+  padding: 1rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: padding 0.3s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  border-bottom: 1px solid #333;
+}
+
+.hover_links > div:last-child > a {
+  border-bottom: none;
+}
+
+.hover_links > div > a:hover {
+  border-bottom: none;
+  background-color: #333;
+  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.5rem;
+  transition: padding 0.3s ease-in-out;
+}
+
+/* Hamburger Menu */
+
+.burger_drawer,
+.burger_main {
+  display: none;
+}
+
+.hamburger {
+  cursor: pointer;
+}
+
+.hamburger input {
+  display: none;
+}
+
+.hamburger svg {
+  /* The size of the SVG defines the overall size */
+  height: 3em;
+  /* Define the transition for transforming the SVG */
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  /* Define the transition for transforming the Stroke */
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lineTopBottom {
+  stroke-dasharray: 12 63;
+}

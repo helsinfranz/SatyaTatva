@@ -4,10 +4,14 @@ import { HiMiniEllipsisHorizontal } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [optionsOpen, setoptionsOpen] = useState(false);
+  const pathname = usePathname();
+
   useEffect(() => {
     if (searchOpen) {
       document.getElementById("search").focus();
@@ -30,7 +34,128 @@ export default function Header() {
         >
           <IoSearch />
         </div>
-        <div className={classes.mainHeader}></div>
+        <div className={classes.mainHeader}>
+          <nav className={classes.container}>
+            <ul className={classes.navLinks}>
+              <li>
+                <Link
+                  href="/"
+                  className={pathname === "/" ? classes.selectedLink : ""}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className={
+                    pathname === "/services" ? classes.selectedLink : ""
+                  }
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing"
+                  className={
+                    pathname === "/pricing" ? classes.selectedLink : ""
+                  }
+                >
+                  Pricing
+                </Link>
+              </li>
+            </ul>
+            <div className={classes.logo}>
+              <Link href="#">
+                <Image
+                  src="/images/decex_black.png"
+                  alt="Logo"
+                  width={150}
+                  height={30}
+                  priority={true}
+                />
+              </Link>
+            </div>
+            <div className={classes.burger_drawer}>
+              <label className={classes.hamburger}>
+                <input type="checkbox" id="drawer" />
+                <svg viewBox="0 0 32 32">
+                  <path
+                    className={`${classes.line} ${classes.lineTopBottom}`}
+                    d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+                  ></path>
+                  <path className={classes.line} d="M7 16 27 16"></path>
+                </svg>
+              </label>
+            </div>
+            <ul className={classes.navLinks}>
+              <li>
+                <Link
+                  href="/about"
+                  className={pathname === "/about" ? classes.selectedLink : ""}
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className={
+                    pathname.includes("/forms") ? classes.selectedLink : ""
+                  }
+                >
+                  Forms
+                </Link>
+                <div className={classes.hover_container}>
+                  <div className={classes.hover_links}>
+                    <div>
+                      <Link href="/forms/status_ad">Ad Status</Link>
+                    </div>
+                    <div>
+                      <Link href="/forms/create_ad">Publish Ad</Link>
+                    </div>
+                    <div>
+                      <Link href="/forms/new_name">Buy Custom Name</Link>
+                    </div>
+                    <div>
+                      <Link href="/forms/buyavax">Buy AVAX</Link>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className={
+                    pathname.includes("/docs") ? classes.selectedLink : ""
+                  }
+                >
+                  Docs
+                </Link>
+                <div className={classes.hover_container}>
+                  <div className={classes.hover_links}>
+                    <div>
+                      <Link href="/docs/terms">Terms of Service</Link>
+                    </div>
+                    <div>
+                      <Link href="/docs/privacy">Privacy Policy</Link>
+                    </div>
+                    <div>
+                      <Link href="/docs/cookie">Cookie Policy</Link>
+                    </div>
+                    <div>
+                      <Link href="/docs/ads">Ads info</Link>
+                    </div>
+                    <div>
+                      <Link href="/docs/decencrypt">Decencrypt</Link>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
         <div
           className={`${classes.options} hover`}
           onClick={() => setoptionsOpen(!optionsOpen)}
