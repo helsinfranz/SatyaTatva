@@ -9,6 +9,7 @@
   background: radial-gradient(circle, #85868919 0%, #2e2f3000 75%) no-repeat
     bottom center;
   background-size: 100% 200%;
+  color: rgba(255, 255, 255, 0.8);
   /* background: #19222c; */
   box-shadow: 0 4px 32px #2c2c2c40;
 }
@@ -39,4 +40,18 @@
 .socialLinks > svg {
   width: 1.2rem;
   height: 1.2rem;
+}
+
+@media (max-width: 75em) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .footer {
+    padding: 1.5rem 0.8rem;
+    flex-direction: column-reverse;
+    gap: 1.2rem;
+  }
 }
