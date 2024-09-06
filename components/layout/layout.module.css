@@ -5,3 +5,10 @@
   align-items: center;
   height: 100vh;
 }
+
+@media (max-width: 48em) {
+  .main {
+    min-height: 100vh;
+    height: auto;
+  }
+}

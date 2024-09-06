@@ -7,6 +7,7 @@
   width: 100vw;
   /* background-color: rgba(255, 255, 255, 0.1); */
   background-color: #85868919;
+  z-index: 999;
   /* background: radial-gradient(circle, #85868919 0%, #2e2f3000 75%) no-repeat
     bottom center; */
   /* background-size: 100% 200%; */
@@ -136,6 +137,7 @@
   height: 100vh;
   transition: all 0.5s ease-in-out;
   pointer-events: none;
+  z-index: 9999999;
 }
 
 .optionsOpened {
@@ -544,6 +546,34 @@
 }
 
 @media (max-width: 75em) {
+  .optionsMain {
+    width: 50vw;
+    gap: 4rem;
+  }
+  .optionsOpened .optionsMain {
+    right: -25vw;
+  }
+  .option {
+    gap: 1rem;
+  }
+  .optionDetails {
+    gap: 0.2rem;
+  }
+  .optionName {
+    font-size: 1.3rem;
+  }
+  .optionDescription {
+    font-size: 0.85rem;
+  }
+  .option2 {
+    gap: 1rem;
+  }
+  .optionMainTitle {
+    font-size: 1.3rem;
+  }
+  .optionMainLinks > div {
+    font-size: 0.8rem;
+  }
   .header {
     padding: 1.5rem 1rem;
   }
@@ -566,6 +596,10 @@
 }
 
 @media (max-width: 48em) {
+  .optionsMain {
+    width: calc(100vw - 3.4rem);
+    padding: 1.5rem;
+  }
   .header {
     padding: 1.5rem 0.8rem;
   }
