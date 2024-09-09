@@ -11,6 +11,8 @@
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+  transition: all 0.3s ease;
+  /* scroll-behavior: smooth; */
 }
 
 .topHero {
@@ -24,13 +26,14 @@
 }
 
 .quote {
-  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 1rem;
   border-radius: 0.7rem;
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 0.8rem;
+  background-color: #111;
+  border: 1px solid rgb(255, 255, 255, 0.1);
 }
 
 .quoteTitle {
@@ -52,11 +55,32 @@
 }
 
 .quoteSmall {
-  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 1rem;
   border-radius: 2rem;
   width: 100%;
   height: 100%;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.quoteSmall:hover {
+  opacity: 1;
+}
+
+.quoteOther:hover .quoteSmall:not(:hover) {
+  opacity: 0.7;
+}
+
+/* When not hovering any child, all children have opacity 1 */
+.quoteOther:not(:hover) .quoteSmall {
+  opacity: 1;
+}
+
+.quoteImage > img,
+.cubeImage > img {
+  transition: all 0.3s ease-in-out;
 }
 
 .mostVisited {
@@ -67,9 +91,59 @@
 }
 
 .mostVisitedSingle {
-  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1rem;
   border-radius: 2rem;
   width: 20rem;
   height: 100%;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.mostVisitedSingle:hover {
+  opacity: 1;
+}
+
+.mostVisited:hover .mostVisitedSingle:not(:hover) {
+  opacity: 0.7;
+}
+
+/* When not hovering any child, all children have opacity 1 */
+.mostVisited:not(:hover) .mostVisitedSingle {
+  opacity: 1;
+}
+
+.smallDetails {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+  backdrop-filter: blur(10px) brightness(0.6);
+  border-top-right-radius: 2rem;
+}
+
+.smallTitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.smallDetail {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.65;
+}
+
+.quoteSmall,
+.mostVisitedSingle {
+  cursor: pointer;
+}
+
+.quoteSmall:hover .quoteImage > img,
+.mostVisitedSingle:hover .cubeImage > img {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
 }
