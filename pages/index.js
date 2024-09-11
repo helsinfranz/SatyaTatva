@@ -11,13 +11,13 @@ export default function Home() {
   const [mostRecent, setMostRecent] = useState([
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
@@ -25,83 +25,84 @@ export default function Home() {
   const [mostVisited, setMostVisited] = useState([
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
     {
       name: "Skhand Padhbb",
-      link: "/padhbb/skandh",
+      link: "/padhbb",
       detail: "This is a skhand padhbb.",
       img: "/testing.jpg",
     },
   ]);
-
+  const [enable, setEnable] = useState(true);
   const containerRef = useRef(null);
 
   function scollAround(e) {
     e.preventDefault();
     e.stopPropagation();
-
+    setEnable(true);
     const container = containerRef.current;
     const startX = e.pageX;
     const scrollLeft = container.scrollLeft;
 
     const handleScrollMouseMove = (e) => {
+      setEnable(false);
       const deltaX = e.pageX - startX;
       container.scrollLeft = scrollLeft - deltaX;
     };
@@ -163,6 +164,11 @@ export default function Home() {
               className={`${classes.mostVisitedSingle} hover`}
               key={idx}
               href={item.link}
+              onClick={(e) => {
+                if (!enable) {
+                  e.preventDefault();
+                }
+              }}
             >
               <div className={classes.cubeImage}>
                 <Image

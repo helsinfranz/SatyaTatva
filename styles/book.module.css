@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  position: relative;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  transition: all 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+.topHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.heroImage {
+  position: relative;
+  width: 80%;
+  height: 90%;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 4px 32px #2c2c2c40;
+  filter: blur(0.5px) brightness(0.8);
+}
+
+.heroImage > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroText {
+  position: absolute;
+  top: 50%;
+  left: 6.5rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.heroText > h1 {
+  font-size: 6rem;
+  font-weight: 600;
+}
+
+.heroText > p {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
