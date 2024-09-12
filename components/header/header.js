@@ -105,7 +105,7 @@ export default function Header() {
                 <Link
                   href="#"
                   className={
-                    pathname.includes("/forms") ? classes.selectedLink : ""
+                    pathname?.includes("/forms") ? classes.selectedLink : ""
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -134,7 +134,7 @@ export default function Header() {
                 <Link
                   href="#"
                   className={
-                    pathname.includes("/docs") ? classes.selectedLink : ""
+                    pathname?.includes("/docs") ? classes.selectedLink : ""
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -315,7 +315,7 @@ export default function Header() {
             </Link>
             <Link
               className={`${classes.burger_option} ${
-                pathname.includes("/forms") ? classes.option_selected : ""
+                pathname?.includes("/forms") ? classes.option_selected : ""
               }`}
               href="#"
               onClick={(e) => {
@@ -338,7 +338,7 @@ export default function Header() {
             </Link>
             <Link
               className={`${classes.burger_option} ${
-                pathname.includes("/docs") ? classes.option_selected : ""
+                pathname?.includes("/docs") ? classes.option_selected : ""
               }`}
               href="#"
               onClick={(e) => {
