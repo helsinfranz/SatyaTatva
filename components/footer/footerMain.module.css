@@ -1,0 +1,124 @@
+.footerSite {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding: 5rem 8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 32px #2c2c2c40;
+  margin-top: 6rem;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  margin-bottom: -2rem;
+}
+
+.footerSiteDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.footerSiteDetailsText {
+  opacity: 0.8;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+}
+
+.footerSiteLinks,
+.footerSiteSocials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footerSiteLinksTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.footerSiteLinksMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerSiteLinksMain > div {
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerSiteLinksMain > div:last-child {
+  border-bottom: none;
+}
+
+.footerSiteLinksMain > div:hover {
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  border-color: transparent;
+  border-radius: 0.8rem;
+}
+
+.footerSiteSocialMain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.footerSiteSocialSingle {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  padding: 0.5rem 0rem;
+}
+
+.footerSiteSocialSvg {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerSiteSocialSingle > .footerSiteSocialSvg > svg {
+  width: 1rem;
+  height: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footerSiteSocialSingle > .socials {
+  gap: 1.2rem;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.socialLinks:hover {
+  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.socialLinks > svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}

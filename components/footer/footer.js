@@ -4,27 +4,28 @@ import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <div className={classes.footer}>
       <div className={classes.copyright}>Copyright © 2022</div>
       <div className={classes.socials}>
-        <a className={classes.socialLinks} href="/">
+        <Link className={classes.socialLinks} href="/">
           <FaFacebookF />
-        </a>
-        <a className={classes.socialLinks}>
+        </Link>
+        <Link className={classes.socialLinks} href="/">
           <FaTwitter />
-        </a>
-        <a className={classes.socialLinks}>
+        </Link>
+        <Link className={classes.socialLinks} href="/">
           <FaLinkedinIn />
-        </a>
-        <a className={classes.socialLinks}>
+        </Link>
+        <Link className={classes.socialLinks} href="/">
           <FaYoutube />
-        </a>
-        <a className={classes.socialLinks}>
+        </Link>
+        <Link className={classes.socialLinks} href="/">
           <AiFillInstagram />
-        </a>
+        </Link>
       </div>
     </div>
   );

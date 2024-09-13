@@ -82,7 +82,7 @@ export default function Header() {
               </li>
             </ul>
             <div className={classes.logo}>
-              <Link href="#">
+              <Link href="/">
                 <Image
                   src="/images/decex_black.png"
                   alt="Logo"

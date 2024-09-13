@@ -1,3 +1,4 @@
+import FooterMain from "@/components/footer/footerMain";
 import classes from "@/styles/book.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -55,7 +56,7 @@ export default function Book() {
       <div className={classes.main}>
         {contentDetails.map((content, idx) => (
           <div className={classes.contentMain} key={idx}>
-            <div className={classes.contentMainImg}>
+            <div className={`${classes.contentMainImg} hover`}>
               <Image
                 width={600}
                 height={400}
@@ -65,7 +66,9 @@ export default function Book() {
             </div>
             <div className={classes.contentMainDetails}>
               <div className={classes.contentTitleDetails}>
-                <div className={classes.contentTitle}>{content.title}</div>
+                <div className={`${classes.contentTitle} hover`}>
+                  {content.title}
+                </div>
                 <div className={classes.contentSubTitle}>
                   {content.subTitle}
                   <span></span>
@@ -125,6 +128,7 @@ export default function Book() {
           <div className={classes.dashBigPagination}></div>
         </div>
       </div>
+      <FooterMain />
     </div>
   );
 }

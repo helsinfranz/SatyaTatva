@@ -36,6 +36,10 @@ main {
   transition: transform 0.5s;
 }
 
+.hover {
+  cursor: pointer;
+}
+
 @media (max-width: 75em) {
   .shift-left {
     transform: translateX(-25vw);
