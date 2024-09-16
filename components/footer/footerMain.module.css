@@ -122,3 +122,16 @@
   width: 1.2rem;
   height: 1.2rem;
 }
+
+@media (max-width: 75em) {
+  .footerSite {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 48em) {
+  .footerSite {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+}

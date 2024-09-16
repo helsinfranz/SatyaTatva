@@ -147,3 +147,34 @@
   transform: scale(1.1);
   transition: all 0.3s ease-in-out;
 }
+
+@media (max-width: 75em) {
+  .topHero {
+    gap: 1rem;
+    min-width: 75vw;
+  }
+  .quoteOther {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .topHero {
+    min-width: calc(100vw - 4rem);
+  }
+  .quoteOther .smallDetails {
+    padding: 1.5rem;
+  }
+  .quoteOther .smallTitle {
+    font-size: 1rem;
+  }
+  .quoteOther .smallDetail {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 24em) {
+  .quoteOther > a:last-child {
+    display: none;
+  }
+}

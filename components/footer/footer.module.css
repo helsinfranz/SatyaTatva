@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100vw;
   /* background-color: rgba(255, 255, 255, 0.1); */
   background: radial-gradient(circle, #85868919 0%, #2e2f3000 75%) no-repeat

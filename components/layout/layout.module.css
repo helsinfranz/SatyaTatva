@@ -9,6 +9,6 @@
 @media (max-width: 48em) {
   .main {
     min-height: 100vh;
-    height: auto;
+    /* height: auto; */
   }
 }
