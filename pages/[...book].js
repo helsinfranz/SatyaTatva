@@ -81,7 +81,7 @@ export default function Book() {
                 </div>
                 <Link
                   className={`${classes.contentMore} hover`}
-                  href={`/document/${content.slug}`}
+                  href={`/shlok/${content.slug}`}
                 >
                   Continue Reading
                   <MdKeyboardArrowRight />
