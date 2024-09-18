@@ -48,6 +48,9 @@
   backdrop-filter: blur(10px);
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .shlokSliderMain > svg {
@@ -65,4 +68,27 @@
 .shlokSliderMain:hover > svg {
   opacity: 1;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 48em) {
+  .shlokMain {
+    bottom: 3.25rem;
+    left: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .shlokSlider {
+    gap: 0.5rem;
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .shlokSliderMain {
+    padding: 0.75rem;
+  }
+
+  .shlokSliderMain > svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
 }
