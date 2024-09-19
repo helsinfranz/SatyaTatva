@@ -22,7 +22,7 @@ export default function Cursor() {
     };
 
     const handleScrollMouseOver = (e) => {
-      cursorRef.current.classList.add(styles.cursorScroll);
+      cursorRef.current?.classList?.add(styles.cursorScroll);
       const { target } = e;
       if (target.scrollWidth > target.clientWidth) {
         setScrollDirection("vertical");
@@ -33,16 +33,16 @@ export default function Cursor() {
       }
     };
     const handleMouseOver = () => {
-      cursorRef.current.classList.add(styles.cursorHover);
+      cursorRef.current?.classList?.add(styles.cursorHover);
     };
 
     const handleScrollMouseOut = () => {
-      cursorRef.current.classList.remove(styles.cursorScroll);
+      cursorRef.current?.classList?.remove(styles.cursorScroll);
       setScrollDirection("");
     };
 
     const handleMouseOut = () => {
-      cursorRef.current.classList.remove(styles.cursorHover);
+      cursorRef.current?.classList?.remove(styles.cursorHover);
     };
 
     const handleClick = (e) => {

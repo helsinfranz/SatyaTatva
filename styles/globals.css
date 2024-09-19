@@ -41,9 +41,146 @@ main {
   cursor: pointer;
 }
 
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: max-content;
+}
+
+.title-404 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.subheading-404 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.buttons-404 {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.goback-404 {
+  border: 2px solid white;
+  padding: 1rem 2rem;
+  border-radius: 1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.goback-404:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.gohome-404 {
+  border: 2px solid white;
+  background-color: white;
+  color: black;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.gohome-404:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.buttons-404 svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 @media (max-width: 75em) {
   .shift-left {
     transform: translateX(-25vw);
+  }
+  .title-404 {
+    font-size: 2.75rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .not-found {
+    max-width: 95%;
+    gap: 1.5rem;
+  }
+  
+  .title-404 {
+    font-size: 2rem;
+  }
+
+  .subheading-404 {
+    font-size: 0.9rem;
+  }
+
+  .buttons-404 {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .goback-404 {
+    border: 2px solid white;
+    padding: 1rem 2rem;
+    border-radius: 1rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .goback-404:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+
+  .gohome-404 {
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .gohome-404:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+
+  .buttons-404 svg {
+    width: 1rem;
+    height: 1rem;
   }
 }
 
