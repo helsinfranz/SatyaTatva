@@ -1,6 +1,6 @@
 //100vh page - almost done.
 //cursor problem if put at the end and smalling the screen it overflows
-//password protected page.
+//password protected page - done.
 //404 page - done.
 //news page.
 

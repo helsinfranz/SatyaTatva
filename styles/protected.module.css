@@ -1,0 +1,185 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.bigImage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: -1;
+}
+
+.bigImage > img {
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+}
+
+.protected {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 32px #2c2c2c40;
+  padding: 4rem;
+  border-radius: 2rem;
+  max-height: calc(100% - 8.8rem - 3rem);
+  z-index: 9;
+}
+
+.protectedImage {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.protectedImage > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.protectedImage > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 3rem;
+  z-index: 99;
+}
+
+.protectedImage::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: saturate(0.5) brightness(0.8);
+  mix-blend-mode: overlay;
+}
+
+.protectedTitle {
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.protectedSubTitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.6;
+  text-align: center;
+  margin-top: -1rem;
+}
+
+.protectedInput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.protectedInputText {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.protectedInputField {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.protectedInputField > input {
+  color: rgba(255, 255, 255);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.protectedInputField:has(input:focus) {
+  border: 2px solid rgba(255, 255, 255);
+  transition: all 0.3s ease;
+}
+
+.protectedSubmit {
+  margin-top: -0.75rem;
+  width: 100%;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.protectedSubmit:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.protectedInputField > svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 75em) {
+  .protected {
+    padding: 3rem;
+  }
+  .protectedImage {
+    display: none;
+  }
+  .protectedTitle {
+    font-size: 1.75rem;
+    width: max-content;
+  }
+  .protectedSubTitle {
+    font-size: 1rem;
+    margin-top: -1.5rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .protected {
+    padding: 2rem;
+    width: 98%;
+  }
+  .protectedTitle {
+    font-size: 1.35rem;
+    width: auto;
+  }
+  .protectedSubTitle {
+    font-size: 0.9rem;
+  }
+}
