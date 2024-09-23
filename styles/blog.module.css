@@ -1,0 +1,393 @@
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width: 100%;
+  height: 100%;
+  padding: 8rem;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.contentMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.contentMainImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentMainImg > img {
+  border-radius: 50%;
+}
+
+.contentMainDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.contentTitleDetails {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 0.5rem;
+}
+
+.contentTitle {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.contentSubTitleDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contentSubTitle {
+  font-size: 0.8rem;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.contentSubTitle > span {
+  position: relative;
+  margin: 0 8px;
+}
+
+.contentSubTitle > span::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.contentDescriptionDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contentDescription {
+  opacity: 0.8;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.contentMore {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 300;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.contentMore:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.paginations {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.pagination,
+.paginationNext {
+  padding: 0.8rem 1rem;
+  border: 1px solid rgb(255, 255, 255, 0.6);
+  border-radius: 0.8rem;
+  cursor: pointer;
+  color: rgb(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.pagination:hover,
+.paginationNext:hover {
+  box-shadow: 0 0 8px #edeff240;
+  transition: all 0.3s ease;
+}
+
+.paginationNext {
+  position: relative;
+  /* width: 100%; */
+  height: 100%;
+  padding: 0rem 1.2rem;
+}
+
+.paginationNext > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.selectedPagination {
+  border-color: rgb(255, 255, 255);
+  border-width: 2px;
+  color: rgb(255, 255, 255);
+}
+
+.disabledPagination {
+  cursor: default;
+}
+
+.selectedPagination:hover,
+.disabledPagination:hover {
+  box-shadow: none;
+}
+
+.dashBigPagination {
+  width: 2rem;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dashPagination {
+  width: 1.2rem;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.side {
+  padding-left: 2rem;
+}
+
+.searhBar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: text;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.searhBar > input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+}
+
+.searhBar > input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.searhBar > svg {
+  position: absolute;
+  right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.side > div {
+  margin-top: 4rem;
+}
+
+.recentHeading {
+  font-size: 1.7rem;
+}
+
+.recentHoverPosts {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recentHoverPost {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recentHoverPostHead {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.recentHoverPostDate {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.recentHoverPost {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  cursor: pointer;
+}
+
+.recentHoverPost:last-of-type {
+  border-bottom: none;
+}
+
+.optionMainLinks {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.optionMainLinks > div {
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.optionMainLinks > div:last-child {
+  border-bottom: none;
+}
+
+.optionMainLinks > div:hover {
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  border-color: transparent;
+  border-radius: 0.8rem;
+}
+
+.optionMainLinks > div:hover {
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  border-color: transparent;
+  border-radius: 0.8rem;
+}
+
+.recentHoverTag {
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
+  border: 2px solid rgb(255, 255, 255);
+  width: fit-content;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recentHoverTag::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+}
+
+.recentHoverTag:hover {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.recentHoverTags {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 75em) {
+  .contentMainImg > img {
+    object-fit: cover;
+    object-position: center;
+    /* width: 30rem;
+    height: 20rem; */
+  }
+  .contentMainDetails {
+    gap: 1.5rem;
+  }
+  .contentTitle {
+    font-size: 1.8rem;
+  }
+  .contentDescriptionDetails {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 61.25em) {
+  .contentMainImg > img {
+    /* width: 25rem;
+    height: 15rem; */
+  }
+}
+
+@media (max-width: 48em) {
+  .contentMain {
+    flex-direction: column;
+    width: 25rem;
+  }
+  .contentMainImg > img {
+    /* width: 25rem;
+    height: 15rem; */
+  }
+  .contentTitle {
+    font-size: 1.4rem;
+  }
+  .contentDescription {
+    font-size: 1rem;
+  }
+  .contentMore {
+    align-self: flex-start;
+  }
+  .dashBigPagination,
+  .dashPagination {
+    display: none;
+  }
+}
+
+@media (max-width: 27em) {
+  .contentMainImg > img {
+    width: 100%;
+    height: 100%;
+    /* aspect-ratio: 3 / 2; */
+    border-radius: 0.75rem;
+  }
+  .contentMain {
+    width: 100%;
+  }
+}

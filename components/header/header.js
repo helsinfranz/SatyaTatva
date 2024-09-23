@@ -95,10 +95,10 @@ export default function Header() {
             <ul className={classes.navLinks}>
               <li>
                 <Link
-                  href="/about"
-                  className={pathname === "/about" ? classes.selectedLink : ""}
+                  href="/blog"
+                  className={pathname === "/blog" ? classes.selectedLink : ""}
                 >
-                  About
+                  Blogs
                 </Link>
               </li>
               <li>
@@ -306,12 +306,12 @@ export default function Header() {
             </Link>
             <Link
               className={`${classes.burger_option} ${
-                pathname === "/about" ? classes.option_selected : ""
+                pathname === "/blog" ? classes.option_selected : ""
               }`}
-              href="/about"
+              href="/blog"
               onClick={routeSelect}
             >
-              About
+              Blogs
             </Link>
             <Link
               className={`${classes.burger_option} ${
