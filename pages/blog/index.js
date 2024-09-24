@@ -34,6 +34,33 @@ const contentDetails = [
       "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
     slug: "skhand-concept",
   },
+  {
+    title: "Skhand Concept",
+    subTitle: "Concept, Design",
+    image: "/testingHero.jpg",
+    likes: 0,
+    description:
+      "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
+    slug: "skhand-concept",
+  },
+  {
+    title: "Skhand Concept",
+    subTitle: "Concept, Design",
+    image: "/testingHero.jpg",
+    likes: 0,
+    description:
+      "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
+    slug: "skhand-concept",
+  },
+  {
+    title: "Skhand Concept",
+    subTitle: "Concept, Design",
+    image: "/testingHero.jpg",
+    likes: 0,
+    description:
+      "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
+    slug: "skhand-concept",
+  },
 ];
 
 const recentPosts = [
@@ -81,7 +108,7 @@ const tags = [
 export default function Blog() {
   const pathname = usePathname();
   return (
-    <>
+    <div className={classes.blogMain}>
       <div className={classes.container}>
         <div className={classes.main}>
           {contentDetails.map((content, idx) => (
@@ -146,7 +173,7 @@ export default function Blog() {
             <div className={classes.dashPagination}></div>
             <Link
               className={classes.pagination}
-              href={pathname + "?page=3" ? pathname + "?page=3" : "/"}
+              href={pathname + "?page=4" ? pathname + "?page=4" : "/"}
             >
               4
             </Link>
@@ -205,6 +232,6 @@ export default function Blog() {
         </div>
       </div>
       <FooterMain />
-    </>
+    </div>
   );
 }

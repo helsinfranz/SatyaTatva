@@ -132,6 +132,5 @@
 @media (max-width: 48em) {
   .footerSite {
     grid-template-columns: 1fr;
-    padding: 2rem;
   }
 }
