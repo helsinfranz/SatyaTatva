@@ -17,6 +17,12 @@
   padding: 8rem;
 }
 
+.container2 {
+  display: flex;
+  align-items: center;
+  padding: 4rem 8rem;
+}
+
 .main {
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
@@ -359,6 +365,9 @@
     padding: 3rem;
     grid-template-columns: 4fr 2fr;
   }
+  .container2 {
+    padding: 3rem;
+  }
 }
 
 /* @media (max-width: 61.25em) {
@@ -371,6 +380,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .smallScreen {
+    gap: 2rem !important;
   }
   .main {
     border-right: none;
@@ -409,5 +421,8 @@
     width: 100%;
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  .container2 {
+    padding: 2rem 0rem;
   }
 }

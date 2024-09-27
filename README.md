@@ -2,7 +2,9 @@
 //cursor problem if put at the end and smalling the screen it overflows
 //password protected page - done.
 //404 page - done.
-//news page - processing.
+//news page - done.
+//single blog page - done.
+//tag's addition in already done - processing.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

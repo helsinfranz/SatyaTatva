@@ -140,7 +140,7 @@ export default function Blog() {
                   </div>
                   <Link
                     className={`${classes.contentMore} hover`}
-                    href={`/shlok/${content.slug}`}
+                    href={`/blog/${content.slug}`}
                   >
                     Continue Reading
                     <MdKeyboardArrowRight />
