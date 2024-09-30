@@ -4,7 +4,8 @@
 //404 page - done.
 //news page - done.
 //single blog page - done.
-//tag's addition in already done - processing.
+//tag's addition in already done - done.
+//start fixing the header and content - processing.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

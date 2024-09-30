@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const contentDetails = [
   {
@@ -106,11 +108,23 @@ const tags = [
 ];
 
 export default function Blog() {
+  const [tag, setTag] = useState(null);
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.tag) {
+      setTag(router.query.tag);
+    } else {
+      setTag(null);
+    }
+  }, [router]);
+
   return (
     <div className={classes.blogMain}>
       <div className={classes.container}>
         <div className={classes.main}>
+          {tag && <div className={classes.tagName}>{tag}</div>}
           {contentDetails.map((content, idx) => (
             <div className={classes.contentMain} key={idx}>
               <div className={classes.contentMainDetails}>
@@ -223,9 +237,13 @@ export default function Blog() {
             <div className={classes.recentHeading}>Tag Cloud</div>
             <div className={classes.recentHoverTags}>
               {tags.map((tag, idx) => (
-                <div className={`${classes.recentHoverTag} hover`} key={idx}>
+                <Link
+                  className={`${classes.recentHoverTag} hover`}
+                  key={idx}
+                  href={`/blog?tag=${tag}`}
+                >
                   {tag}
-                </div>
+                </Link>
               ))}
             </div>
           </div>

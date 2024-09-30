@@ -32,6 +32,14 @@
   gap: 5rem;
 }
 
+.tagName {
+  font-size: 5.8rem;
+  font-weight: 700;
+  align-self: flex-start;
+  color: #edeff2;
+  padding-bottom: 4rem;
+}
+
 .contentMain {
   display: flex;
   align-items: center;
@@ -59,6 +67,7 @@
 
 .contentTitleDetails {
   display: flex;
+  align-items: center;
   /* flex-direction: column; */
   gap: 0.5rem;
 }
@@ -358,6 +367,11 @@
   .contentDescriptionDetails {
     gap: 1.5rem;
   }
+  .tagName {
+    font-size: 4.5rem;
+    font-weight: 600;
+    padding-bottom: 0rem;
+  }
 }
 
 @media (max-width: 62.5em) {
@@ -412,6 +426,9 @@
   .dashBigPagination,
   .dashPagination {
     display: none;
+  }
+  .tagName {
+    font-size: 2rem;
   }
 }
 

@@ -1,6 +1,9 @@
 import FooterMain from "@/components/footer/footerMain";
 import classes from "@/styles/blog.module.css";
 import Image from "next/image";
+import Link from "next/link";
+
+const tags = ["info", "news", "work"];
 
 export default function BlogMain() {
   return (
@@ -70,9 +73,14 @@ export default function BlogMain() {
                 </div>
               </div>
               <div className={classes.recentHoverTags}>
-                <div className={`${classes.recentHoverTag} hover`}>info</div>
-                <div className={`${classes.recentHoverTag} hover`}>news</div>
-                <div className={`${classes.recentHoverTag} hover`}>work</div>
+                {tags.map((tag) => (
+                  <Link
+                    className={`${classes.recentHoverTag} hover`}
+                    href={`/blog?tag=${tag}`}
+                  >
+                    {tag}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
