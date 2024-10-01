@@ -40,6 +40,11 @@ export default function Header() {
     setShowDrawer(false);
     document.getElementById("drawer").click();
   }
+
+  function routeSelectSmall() {
+    setShowSecDrawer(0);
+    routeSelect();
+  }
   return (
     <>
       <div className={classes.header}>
@@ -62,23 +67,40 @@ export default function Header() {
               </li>
               <li>
                 <Link
-                  href="/services"
-                  className={
-                    pathname === "/services" ? classes.selectedLink : ""
-                  }
+                  href="/blog"
+                  className={pathname === "/blog" ? classes.selectedLink : ""}
                 >
-                  Services
+                  Blogs
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pricing"
+                  href="#"
                   className={
-                    pathname === "/pricing" ? classes.selectedLink : ""
+                    pathname?.includes("/veda") ? classes.selectedLink : ""
                   }
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
                 >
-                  Pricing
+                  Veda
                 </Link>
+                <div className={classes.hover_container}>
+                  <div className={classes.hover_links}>
+                    <div>
+                      <Link href="/veda/rig">Rig Veda</Link>
+                    </div>
+                    <div>
+                      <Link href="/veda/yajur">Yajur Veda</Link>
+                    </div>
+                    <div>
+                      <Link href="/veda/sam">Sam Veda</Link>
+                    </div>
+                    <div>
+                      <Link href="/veda/atharv">Atharv Veda</Link>
+                    </div>
+                  </div>
+                </div>
               </li>
             </ul>
             <div className={classes.logo}>
@@ -95,37 +117,18 @@ export default function Header() {
             <ul className={classes.navLinks}>
               <li>
                 <Link
-                  href="/blog"
-                  className={pathname === "/blog" ? classes.selectedLink : ""}
+                  href="/purana"
+                  className={pathname === "/purana" ? classes.selectedLink : ""}
                 >
-                  Blogs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className={
-                    pathname?.includes("/forms") ? classes.selectedLink : ""
-                  }
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  Forms
+                  Purana
                 </Link>
                 <div className={classes.hover_container}>
                   <div className={classes.hover_links}>
                     <div>
-                      <Link href="/forms/status_ad">Ad Status</Link>
+                      <Link href="/purana/hindi">Purana in Hindi</Link>
                     </div>
                     <div>
-                      <Link href="/forms/create_ad">Publish Ad</Link>
-                    </div>
-                    <div>
-                      <Link href="/forms/new_name">Buy Custom Name</Link>
-                    </div>
-                    <div>
-                      <Link href="/forms/buyavax">Buy AVAX</Link>
+                      <Link href="/purana/english">Purana in English</Link>
                     </div>
                   </div>
                 </div>
@@ -134,30 +137,46 @@ export default function Header() {
                 <Link
                   href="#"
                   className={
-                    pathname?.includes("/docs") ? classes.selectedLink : ""
+                    pathname?.includes("/upanishad") ? classes.selectedLink : ""
                   }
                   onClick={(e) => {
                     e.preventDefault();
                   }}
                 >
-                  Docs
+                  Upanishad
                 </Link>
                 <div className={classes.hover_container}>
                   <div className={classes.hover_links}>
                     <div>
-                      <Link href="/docs/terms">Terms of Service</Link>
+                      <Link href="/upanishad/hindi">Upanishad in Hindi</Link>
                     </div>
                     <div>
-                      <Link href="/docs/privacy">Privacy Policy</Link>
+                      <Link href="/upanishad/english">
+                        Upanishad in English
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className={
+                    pathname?.includes("/others") ? classes.selectedLink : ""
+                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  Others
+                </Link>
+                <div className={classes.hover_container}>
+                  <div className={classes.hover_links}>
+                    <div>
+                      <Link href="/others/shloks">Shloks</Link>
                     </div>
                     <div>
-                      <Link href="/docs/cookie">Cookie Policy</Link>
-                    </div>
-                    <div>
-                      <Link href="/docs/ads">Ads info</Link>
-                    </div>
-                    <div>
-                      <Link href="/docs/decencrypt">Decencrypt</Link>
+                      <Link href="/others/books">Books</Link>
                     </div>
                   </div>
                 </div>
@@ -242,21 +261,33 @@ export default function Header() {
           <div className={classes.option2}>
             <h1 className={classes.optionMainTitle}>Useful Links</h1>
             <div className={classes.optionMainLinks}>
-              <div className={`${classes.optionMainLink} hover`}>
+              <Link className={`${classes.optionMainLink} hover`} href={"/"}>
                 About Eternal
-              </div>
-              <div className={`${classes.optionMainLink} hover`}>
+              </Link>
+              <Link
+                className={`${classes.optionMainLink} hover`}
+                href={"/services"}
+              >
                 Our Services
-              </div>
-              <div className={`${classes.optionMainLink} hover`}>
-                Testimonials
-              </div>
-              <div className={`${classes.optionMainLink} hover`}>
-                News &amp; Stories
-              </div>
-              <div className={`${classes.optionMainLink} hover`}>
+              </Link>
+              <Link
+                className={`${classes.optionMainLink} hover`}
+                href={"/support"}
+              >
+                Support
+              </Link>
+              <Link
+                className={`${classes.optionMainLink} hover`}
+                href={"/blog"}
+              >
+                Blogs &amp; Stories
+              </Link>
+              <Link
+                className={`${classes.optionMainLink} hover`}
+                href={"/contact"}
+              >
                 Get in Touch
-              </div>
+              </Link>
             </div>
           </div>
           <div
@@ -288,24 +319,6 @@ export default function Header() {
             </Link>
             <Link
               className={`${classes.burger_option} ${
-                pathname === "/services" ? classes.option_selected : ""
-              }`}
-              href="/services"
-              onClick={routeSelect}
-            >
-              Services
-            </Link>
-            <Link
-              className={`${classes.burger_option} ${
-                pathname === "/pricing" ? classes.option_selected : ""
-              }`}
-              href="/pricing"
-              onClick={routeSelect}
-            >
-              Pricing
-            </Link>
-            <Link
-              className={`${classes.burger_option} ${
                 pathname === "/blog" ? classes.option_selected : ""
               }`}
               href="/blog"
@@ -315,7 +328,7 @@ export default function Header() {
             </Link>
             <Link
               className={`${classes.burger_option} ${
-                pathname?.includes("/forms") ? classes.option_selected : ""
+                pathname?.includes("/veda") ? classes.option_selected : ""
               }`}
               href="#"
               onClick={(e) => {
@@ -323,7 +336,7 @@ export default function Header() {
                 setShowSecDrawer(1);
               }}
             >
-              Forms
+              Veda
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -338,7 +351,7 @@ export default function Header() {
             </Link>
             <Link
               className={`${classes.burger_option} ${
-                pathname?.includes("/docs") ? classes.option_selected : ""
+                pathname?.includes("/purana") ? classes.option_selected : ""
               }`}
               href="#"
               onClick={(e) => {
@@ -346,7 +359,53 @@ export default function Header() {
                 setShowSecDrawer(2);
               }}
             >
-              Docs
+              Purana
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 512 512"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path>
+              </svg>
+            </Link>
+            <Link
+              className={`${classes.burger_option} ${
+                pathname?.includes("/upanishad") ? classes.option_selected : ""
+              }`}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowSecDrawer(3);
+              }}
+            >
+              Upanishad
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 512 512"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path>
+              </svg>
+            </Link>
+            <Link
+              className={`${classes.burger_option} ${
+                pathname?.includes("/others") ? classes.option_selected : ""
+              }`}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowSecDrawer(4);
+              }}
+            >
+              Others
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -384,47 +443,43 @@ export default function Header() {
               >
                 <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
               </svg>
-              Forms
+              Veda
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
-                pathname === "/forms/status_ad"
-                  ? classes.option_selected_small
-                  : ""
+                pathname === "/veda/rig" ? classes.option_selected_small : ""
               }`}
-              href="/forms/status_ad"
+              href="/veda/rig"
+              onClick={routeSelectSmall}
             >
-              Ad Status
+              Rig Veda
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
-                pathname === "/forms/create_ad"
-                  ? classes.option_selected_small
-                  : ""
+                pathname === "/veda/yajur" ? classes.option_selected_small : ""
               }`}
-              href="/forms/create_ad"
+              href="/veda/yajur"
+              onClick={routeSelectSmall}
             >
-              Publish Ad
+              Yajur Veda
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
-                pathname === "/forms/new_name"
-                  ? classes.option_selected_small
-                  : ""
+                pathname === "/veda/sam" ? classes.option_selected_small : ""
               }`}
-              href="/forms/new_name"
+              href="/veda/sam"
+              onClick={routeSelectSmall}
             >
-              Buy Custom Name
+              Sam Veda
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
-                pathname === "/forms/buyavax"
-                  ? classes.option_selected_small
-                  : ""
+                pathname === "/veda/atharv" ? classes.option_selected_small : ""
               }`}
-              href="/forms/buyavax"
+              href="/veda/atharv"
+              onClick={routeSelectSmall}
             >
-              Buy AVAX
+              Atharv Veda
             </Link>
           </div>
           <div
@@ -451,51 +506,127 @@ export default function Header() {
               >
                 <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
               </svg>
-              Docs
+              Purana
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
-                pathname === "/docs/terms" ? classes.option_selected_small : ""
-              }`}
-              href="/docs/terms"
-            >
-              Terms of Service
-            </Link>
-            <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/docs/privacy"
+                pathname === "/purana/hindi"
                   ? classes.option_selected_small
                   : ""
               }`}
-              href="/docs/privacy"
+              href="/purana/hindi"
+              onClick={routeSelectSmall}
             >
-              Privacy Policy
+              Purana in Hindi
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
-                pathname === "/docs/cookie" ? classes.option_selected_small : ""
-              }`}
-              href="/docs/cookie"
-            >
-              Cookie Policy
-            </Link>
-            <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/docs/ads" ? classes.option_selected_small : ""
-              }`}
-              href="/docs/ads"
-            >
-              Ads info
-            </Link>
-            <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/docs/decencrypt"
+                pathname === "/purana/english"
                   ? classes.option_selected_small
                   : ""
               }`}
-              href="/docs/decencrypt"
+              href="/purana/english"
+              onClick={routeSelectSmall}
             >
-              Decencrypt
+              Purana in English
+            </Link>
+          </div>
+          <div
+            className={`${classes.burger_main} ${
+              showSecDrawer === 3 ? classes.comeout_animation1 : ""
+            }`}
+          >
+            <Link
+              className={classes.burger_option_back}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowSecDrawer(0);
+              }}
+            >
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 512 512"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+              </svg>
+              Upanishad
+            </Link>
+            <Link
+              className={`${classes.burger_option_small} ${
+                pathname === "/upanishad/hindi"
+                  ? classes.option_selected_small
+                  : ""
+              }`}
+              href="/upanishad/hindi"
+              onClick={routeSelectSmall}
+            >
+              Upanishad in Hindi
+            </Link>
+            <Link
+              className={`${classes.burger_option_small} ${
+                pathname === "/upanishad/english"
+                  ? classes.option_selected_small
+                  : ""
+              }`}
+              href="/upanishad/english"
+              onClick={routeSelectSmall}
+            >
+              Upanishad in English
+            </Link>
+          </div>
+          <div
+            className={`${classes.burger_main} ${
+              showSecDrawer === 4 ? classes.comeout_animation1 : ""
+            }`}
+          >
+            <Link
+              className={classes.burger_option_back}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowSecDrawer(0);
+              }}
+            >
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 512 512"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
+              </svg>
+              Others
+            </Link>
+            <Link
+              className={`${classes.burger_option_small} ${
+                pathname === "/others/shloks"
+                  ? classes.option_selected_small
+                  : ""
+              }`}
+              href="/others/shloks"
+              onClick={routeSelectSmall}
+            >
+              Shloks
+            </Link>
+            <Link
+              className={`${classes.burger_option_small} ${
+                pathname === "/others/books"
+                  ? classes.option_selected_small
+                  : ""
+              }`}
+              href="/others/books"
+              onClick={routeSelectSmall}
+            >
+              Books
             </Link>
           </div>
         </>

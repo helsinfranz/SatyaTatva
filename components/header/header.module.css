@@ -226,7 +226,7 @@
   flex-direction: column;
 }
 
-.optionMainLinks > div {
+.optionMainLinks > a {
   padding: 1rem 0.5rem;
   cursor: pointer;
   font-size: 0.9rem;
@@ -235,11 +235,11 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.optionMainLinks > div:last-child {
+.optionMainLinks > a:last-child {
   border-bottom: none;
 }
 
-.optionMainLinks > div:hover {
+.optionMainLinks > a:hover {
   padding: 1rem 1.5rem;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
@@ -384,7 +384,7 @@
   pointer-events: all;
 }
 
-.optionMainLinks > div:hover {
+.optionMainLinks > a:hover {
   padding: 1rem 1.5rem;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
@@ -571,7 +571,7 @@
   .optionMainTitle {
     font-size: 1.3rem;
   }
-  .optionMainLinks > div {
+  .optionMainLinks > a {
     font-size: 0.8rem;
   }
   .header {
