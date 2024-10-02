@@ -1,42 +1,35 @@
 import FooterMain from "@/components/footer/footerMain";
-import classes from "@/styles/book.module.css";
+import { getCategoriesArray } from "@/lib/storage";
+import classes from "@/styles/sub.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-const contentDetails = [
-  {
-    title: "Skhand Concept",
-    subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
-    likes: 0,
-    description:
-      "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
-    slug: "skhand-concept",
-  },
-  {
-    title: "Skhand Concept",
-    subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
-    likes: 0,
-    description:
-      "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
-    slug: "skhand-concept",
-  },
-  {
-    title: "Skhand Concept",
-    subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
-    likes: 0,
-    description:
-      "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
-    slug: "skhand-concept",
-  },
-];
-
-export default function Book() {
+export default function Sub() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [category, setCategory] = useState(null);
+  const [sub, setSub] = useState(null);
+  const [contentDetails, setContentDetails] = useState([]);
+
+  useEffect(() => {
+    if (router.query.category && router.query.sub) {
+      setSub(router.query.category);
+      setCategory(router.query.sub + " " + router.query.category);
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    if (category && sub) {
+      setContentDetails(
+        getCategoriesArray(router.query.category, router.query.sub)
+      );
+    }
+  }, [category, sub]);
+
   return (
     <div className={classes.container}>
       <div className={classes.topHero}>
@@ -49,8 +42,13 @@ export default function Book() {
           />
         </div>
         <div className={classes.heroText}>
-          <h1>Skhand Padhbb</h1>
-          <p>Basic Understanding</p>
+          <h1>
+            {category?.charAt(0)?.toUpperCase() + category?.slice(1) ||
+              "Category"}
+          </h1>
+          <p>
+            {sub?.charAt(0)?.toUpperCase() + sub?.slice(1) || "Sub Category"}
+          </p>
         </div>
       </div>
       <div className={classes.main}>
@@ -81,7 +79,7 @@ export default function Book() {
                 </div>
                 <Link
                   className={`${classes.contentMore} hover`}
-                  href={`/shlok/${content.slug}`}
+                  href={`/book/${content.slug}`}
                 >
                   Continue Reading
                   <MdKeyboardArrowRight />

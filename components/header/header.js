@@ -117,8 +117,13 @@ export default function Header() {
             <ul className={classes.navLinks}>
               <li>
                 <Link
-                  href="/purana"
-                  className={pathname === "/purana" ? classes.selectedLink : ""}
+                  href="#"
+                  className={
+                    pathname?.includes("/upanishad") ? classes.selectedLink : ""
+                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
                 >
                   Purana
                 </Link>
