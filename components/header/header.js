@@ -119,7 +119,7 @@ export default function Header() {
                 <Link
                   href="#"
                   className={
-                    pathname?.includes("/upanishad") ? classes.selectedLink : ""
+                    pathname?.includes("/purana") ? classes.selectedLink : ""
                   }
                   onClick={(e) => {
                     e.preventDefault();

@@ -1,34 +1,13 @@
 import FooterMain from "@/components/footer/footerMain";
-import { getCategoriesArray } from "@/lib/storage";
+import { getCategories, getCategoriesArray } from "@/lib/storage";
 import classes from "@/styles/sub.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-export default function Sub() {
+export default function Sub({ categoryProp, subProp, contentArray }) {
   const pathname = usePathname();
-  const router = useRouter();
-  const [category, setCategory] = useState(null);
-  const [sub, setSub] = useState(null);
-  const [contentDetails, setContentDetails] = useState([]);
-
-  useEffect(() => {
-    if (router.query.category && router.query.sub) {
-      setSub(router.query.category);
-      setCategory(router.query.sub + " " + router.query.category);
-    }
-  }, [router.query]);
-
-  useEffect(() => {
-    if (category && sub) {
-      setContentDetails(
-        getCategoriesArray(router.query.category, router.query.sub)
-      );
-    }
-  }, [category, sub]);
 
   return (
     <div className={classes.container}>
@@ -43,16 +22,17 @@ export default function Sub() {
         </div>
         <div className={classes.heroText}>
           <h1>
-            {category?.charAt(0)?.toUpperCase() + category?.slice(1) ||
+            {categoryProp?.charAt(0)?.toUpperCase() + categoryProp?.slice(1) ||
               "Category"}
           </h1>
           <p>
-            {sub?.charAt(0)?.toUpperCase() + sub?.slice(1) || "Sub Category"}
+            {(subProp + " " + categoryProp)?.charAt(0)?.toUpperCase() +
+              (subProp + " " + categoryProp)?.slice(1) || "Sub Category"}
           </p>
         </div>
       </div>
       <div className={classes.main}>
-        {contentDetails.map((content, idx) => (
+        {contentArray.map((content, idx) => (
           <div className={classes.contentMain} key={idx}>
             <div className={`${classes.contentMainImg} hover`}>
               <Image
@@ -129,4 +109,31 @@ export default function Sub() {
       <FooterMain />
     </div>
   );
+}
+
+export async function getStaticPaths() {
+  const categoryArray = getCategories();
+  return {
+    paths: categoryArray,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const { category, sub } = params;
+  try {
+    const contentArray = getCategoriesArray(category, sub);
+    return {
+      props: {
+        categoryProp: category,
+        subProp: sub,
+        contentArray: contentArray,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+  }
+  return {
+    props: { categoryProp: category, subProp: sub, contentArray: [] },
+  };
 }
