@@ -4,10 +4,33 @@ import classes from "@/styles/sub.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MdKeyboardArrowRight } from "react-icons/md";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 export default function Sub({ categoryProp, subProp, contentArray }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { sub, page } = router.query;
+  const [content, setContent] = useState([]);
+  const [pages, setPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    if (contentArray.length > 0) {
+      setPages(Math.ceil(contentArray.length / 4));
+      setContent(
+        contentArray.slice((currentPage - 1) * 4, (currentPage - 1) * 4 + 4)
+      );
+    }
+  }, [currentPage, contentArray]);
+
+  useEffect(() => {
+    if (page) {
+      setCurrentPage(parseInt(page));
+    } else {
+      setCurrentPage(1);
+    }
+  }, [page]);
 
   return (
     <div className={classes.container}>
@@ -32,7 +55,7 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
         </div>
       </div>
       <div className={classes.main}>
-        {contentArray.map((content, idx) => (
+        {content.map((content, idx) => (
           <div className={classes.contentMain} key={idx}>
             <div className={`${classes.contentMainImg} hover`}>
               <Image
@@ -59,7 +82,11 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                 </div>
                 <Link
                   className={`${classes.contentMore} hover`}
-                  href={`/book/${content.slug}`}
+                  href={
+                    sub === "shloks"
+                      ? `/shlok/${content.slug}`
+                      : `/book/${content.slug}`
+                  }
                 >
                   Continue Reading
                   <MdKeyboardArrowRight />
@@ -70,36 +97,93 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
         ))}
         <div className={classes.paginations}>
           <div className={classes.dashBigPagination}></div>
-          <Link
-            className={`${classes.pagination} ${classes.selectedPagination}`}
-            href={pathname ? pathname : "/"}
-          >
-            1
-          </Link>
-          <div className={classes.dashPagination}></div>
-          <Link
-            className={classes.pagination}
-            href={pathname + "?page=2" ? pathname + "?page=2" : "/"}
-          >
-            2
-          </Link>
-          <div className={classes.dashPagination}></div>
-          <div
-            className={`${classes.pagination} ${classes.disabledPagination}`}
-          >
-            ...
-          </div>
-          <div className={classes.dashPagination}></div>
-          <Link
-            className={classes.pagination}
-            href={pathname + "?page=3" ? pathname + "?page=3" : "/"}
-          >
-            4
-          </Link>
-          <div className={classes.dashPagination}></div>
+          {currentPage > 1 && (
+            <>
+              <Link
+                className={classes.paginationNext}
+                href={
+                  pathname + `?page=${currentPage - 1}` && currentPage > 1
+                    ? pathname + `?page=${currentPage - 1}`
+                    : "/"
+                }
+              >
+                <MdKeyboardArrowLeft />
+              </Link>
+              <div className={classes.dashPagination}></div>
+            </>
+          )}
+          {[...Array(pages)].map((_, index) => {
+            const page = index + 1;
+            const isLastPage = page === pages;
+            const isFirstPage = page === 1;
+            const isSecondPage = page === 2;
+
+            // Define conditions for showing each page based on `currentPage`
+            const showFirstTwoPages =
+              currentPage < 3 && (isFirstPage || isSecondPage);
+            const showCurrentAndNext =
+              (currentPage >= 3 && page === currentPage) ||
+              page === currentPage + 1;
+            const showLastPage = isLastPage;
+
+            return (
+              <>
+                {/* Show first two pages only when on the first or second page */}
+                {(showFirstTwoPages || showCurrentAndNext || showLastPage) && (
+                  <>
+                    <Link
+                      className={
+                        page === currentPage
+                          ? `${classes.pagination} ${classes.selectedPagination}`
+                          : classes.pagination
+                      }
+                      href={{ pathname, query: { page } }}
+                      key={page}
+                    >
+                      {page}
+                    </Link>
+                    <div className={classes.dashPagination}></div>
+                  </>
+                )}
+
+                {/* Ellipsis logic */}
+                {page === 2 && currentPage > 2 && !showLastPage && (
+                  <>
+                    <div
+                      className={`${classes.pagination} ${classes.disabledPagination}`}
+                      key="ellipsis-1"
+                    >
+                      ...
+                    </div>
+                    <div className={classes.dashPagination}></div>
+                  </>
+                )}
+
+                {/* Second ellipsis before the last page if there’s a gap */}
+                {page === pages - 1 && currentPage < pages - 2 && (
+                  <>
+                    <div
+                      className={`${classes.pagination} ${classes.disabledPagination}`}
+                      key="ellipsis-2"
+                    >
+                      ...
+                    </div>
+                    <div className={classes.dashPagination}></div>
+                  </>
+                )}
+              </>
+            );
+          })}
           <Link
             className={classes.paginationNext}
-            href={pathname + "?page=2" ? pathname + "?page=2" : "/"}
+            href={
+              pathname + `?page=${currentPage + 1}` && currentPage < pages
+                ? pathname + `?page=${currentPage + 1}`
+                : "/"
+            }
+            onClick={(e) => {
+              if (currentPage >= pages) e.preventDefault();
+            }}
           >
             <MdKeyboardArrowRight />
           </Link>

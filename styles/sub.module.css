@@ -341,4 +341,22 @@
   .contentMain {
     width: 100%;
   }
+  .paginations {
+    gap: 0.5rem;
+  }
+
+  .pagination,
+  .paginationNext {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .paginationNext {
+    padding: 0rem 1.05rem;
+  }
+
+  .paginationNext > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
