@@ -72,6 +72,136 @@
   transition: all 0.3s ease;
 }
 
+.recordMain {
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.shlokRecord {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shlokRecord > svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.shlokSettings {
+  top: 2rem;
+  bottom: unset;
+  left: unset;
+  right: 2rem;
+}
+
+.shlokSettingsMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+.shlokSettingsOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.shlokSettingsOption > div:first-child {
+  font-size: 1rem;
+}
+
+.shlokSettingsOption > div:last-child {
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgb(20, 20, 20);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shlokSettingsOption > div:last-child:hover {
+  background: rgb(40, 40, 40);
+  transition: all 0.3s ease;
+}
+
+.shlokSettingsClose {
+  display: flex;
+  justify-content: center;
+  font-size: 0.8rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: rgb(20, 20, 20);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shlokSettingsClose:hover {
+  background: rgb(30, 30, 30);
+  transition: all 0.3s ease;
+}
+
+.shlokPlaying {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shlokPlayingLabel {
+  font-size: 1rem;
+  font-weight: 500;
+  max-width: 10rem;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide the text that overflows */
+  position: relative; /* For the shadow effect */
+}
+
+.shlokPlayingLabelInside {
+  display: inline-block;
+  animation: scrollText 5s linear infinite; /* Animation for the scrolling effect */
+}
+
+.shlokPlayingLabelInside::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem; /* Shadow width */
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.2),
+    rgba(255, 255, 255, 0)
+  ); /* Shadow effect */
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%); /* Start off-screen to the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to off-screen to the left */
+  }
+}
+
+.shlokPlayingClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shlokPlayingClose > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 @media (max-width: 48em) {
   .shlokMain {
     bottom: 3.25rem;
