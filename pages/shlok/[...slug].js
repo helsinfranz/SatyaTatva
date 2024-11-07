@@ -3,25 +3,76 @@ import classes from "@/styles/shlok.module.css";
 import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getShlokas } from "@/Books_PDFs/Shlok/others-shloks.js";
 import { BsRecord2 } from "react-icons/bs";
 import { FaRegPlayCircle, FaRegStopCircle } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { getShlokasMovements } from "@/Books_PDFs/Shlok/pre-recorded";
 
 export default function Shlok() {
   const router = useRouter();
   const slug = router.query.slug;
   const [shlok, setShlok] = useState(null);
   const [shlokNo, setShlokNo] = useState(0);
-  const [shlokSettings, setShlokSettings] = useState(4);
+  const [shlokSettings, setShlokSettings] = useState(0);
+  const [shlokMovement, setShlokMovement] = useState([]);
+  const [shlokCustomMovement, setShlokCustomMovement] = useState([]);
+  const isMovementStoppedRef = useRef(false); // Use a ref instead of state
+  const [selectedTitle, setSelectedTitle] = useState(
+    "Shlok-Movement-Pre-recorded"
+  );
 
   useEffect(() => {
     if (slug) {
       setShlok(getShlokas(slug));
+      setShlokMovement(getShlokasMovements(slug));
       setShlokNo(1);
+      // get the data from localstorage with the name slug.
+      const data = localStorage.getItem(slug);
+      if (data) {
+        const parsedData = JSON.parse(data);
+        setShlokCustomMovement(parsedData.customMovements);
+      }
     }
   }, [slug]);
+
+  async function startMovement(title, record) {
+    if (shlokMovement.length > 0) {
+      setShlokNo(0);
+      setShlokSettings(4);
+      setSelectedTitle(title);
+      isMovementStoppedRef.current = false;
+      if (record) {
+        for (const [index, time] of record.entries()) {
+          if (isMovementStoppedRef.current) break;
+
+          await new Promise((resolve) => setTimeout(resolve, time * 1000));
+          if (!isMovementStoppedRef.current) {
+            setShlokNo(index + 1);
+          }
+        }
+      }
+    }
+  }
+
+  function stopMovement() {
+    isMovementStoppedRef.current = true; // Set the ref to stop
+    setShlokNo(1);
+    setShlokSettings(0);
+  }
+
+  function deleteCustomMovement(title) {
+    const updatedMovements = shlokCustomMovement.filter(
+      (movement) => movement.title !== title
+    );
+    setShlokCustomMovement(updatedMovements);
+    localStorage.setItem(
+      slug,
+      JSON.stringify({ customMovements: updatedMovements })
+    );
+  }
+
   return (
     <div className={classes.container}>
       <Image
@@ -70,6 +121,7 @@ export default function Shlok() {
         className={`${classes.shlokSettings} ${classes.shlokMain} ${
           shlokSettings === 0 ? classes.recordMain + " hover" : ""
         }`}
+        style={shlokSettings === 4 ? { padding: "0.5rem 0.8rem" } : {}}
         onClick={() => {
           if (shlokSettings === 0) setShlokSettings(1);
         }}
@@ -127,36 +179,41 @@ export default function Shlok() {
               Pre-Recorded
             </div>
             <div className={classes.shlokSettingsMain}>
-              <div className={classes.shlokPlaying} style={{ gap: "2rem" }}>
-                <div className={classes.shlokPlayingLabel}>
-                  <div className={classes.shlokPlayingLabelInside}>
-                    Spotify-Shiv-Strotam-Female-Voice
+              {shlokMovement.map((movement, index) => (
+                <>
+                  <div
+                    className={classes.shlokPlaying}
+                    style={{ gap: "2rem" }}
+                    key={index}
+                  >
+                    <div className={classes.shlokPlayingLabel}>
+                      <div className={classes.shlokPlayingLabelInside}>
+                        {movement.title}
+                      </div>
+                    </div>
+                    <div
+                      className={classes.shlokPlayingClose}
+                      onClick={async () => {
+                        await startMovement(movement.title, movement.record);
+                      }}
+                    >
+                      <FaRegPlayCircle />
+                    </div>
                   </div>
-                </div>
+                </>
+              ))}
+              {shlokMovement.length === 0 && (
                 <div
-                  className={classes.shlokPlayingClose}
-                  onClick={() => {
-                    setShlokSettings(4);
+                  className={classes.smallDetail}
+                  style={{
+                    paddingBottom: "1rem",
+                    fontSize: "1rem",
+                    opacity: 0.8,
                   }}
                 >
-                  <FaRegPlayCircle />
+                  No Pre-recorded movements added
                 </div>
-              </div>
-              <div className={classes.shlokPlaying} style={{ gap: "2rem" }}>
-                <div className={classes.shlokPlayingLabel}>
-                  <div className={classes.shlokPlayingLabelInside}>
-                    Spotify-Shiv-Strotam-Female-Voice
-                  </div>
-                </div>
-                <div
-                  className={classes.shlokPlayingClose}
-                  onClick={() => {
-                    setShlokSettings(4);
-                  }}
-                >
-                  <FaRegPlayCircle />
-                </div>
-              </div>
+              )}
               <div
                 className={classes.shlokSettingsClose}
                 onClick={() => {
@@ -174,48 +231,50 @@ export default function Shlok() {
               Custom
             </div>
             <div className={classes.shlokSettingsMain}>
-              <div className={classes.shlokPlaying} style={{ gap: "2rem" }}>
-                <div className={classes.shlokPlayingLabel}>
-                  <div className={classes.shlokPlayingLabelInside}>
-                    Spotify-Shiv-Strotam-Female-Voice
+              {shlokCustomMovement.map((movement, index) => (
+                <>
+                  <div
+                    className={classes.shlokPlaying}
+                    style={{ gap: "2rem" }}
+                    key={index}
+                  >
+                    <div className={classes.shlokPlayingLabel}>
+                      <div className={classes.shlokPlayingLabelInside}>
+                        {movement.title}
+                      </div>
+                    </div>
+                    <div
+                      className={classes.shlokPlayingClose}
+                      onClick={async () => {
+                        await startMovement(movement.title, movement.record);
+                      }}
+                    >
+                      <FaRegPlayCircle />
+                    </div>
+                    <div
+                      className={classes.shlokPlayingClose}
+                      style={{ marginLeft: "-1.5rem" }}
+                      onClick={() => {
+                        deleteCustomMovement(movement.title);
+                      }}
+                    >
+                      <MdDelete />
+                    </div>
                   </div>
-                </div>
+                </>
+              ))}
+              {shlokCustomMovement.length === 0 && (
                 <div
-                  className={classes.shlokPlayingClose}
-                  onClick={() => {
-                    setShlokSettings(4);
+                  className={classes.smallDetail}
+                  style={{
+                    paddingBottom: "1rem",
+                    fontSize: "1rem",
+                    opacity: 0.8,
                   }}
                 >
-                  <FaRegPlayCircle />
+                  No custom movements added
                 </div>
-                <div
-                  className={classes.shlokPlayingClose}
-                  style={{ marginLeft: "-1.5rem" }}
-                >
-                  <MdDelete />
-                </div>
-              </div>
-              <div className={classes.shlokPlaying} style={{ gap: "2rem" }}>
-                <div className={classes.shlokPlayingLabel}>
-                  <div className={classes.shlokPlayingLabelInside}>
-                    Spotify-Shiv-Strotam-Female-Voice
-                  </div>
-                </div>
-                <div
-                  className={classes.shlokPlayingClose}
-                  onClick={() => {
-                    setShlokSettings(4);
-                  }}
-                >
-                  <FaRegPlayCircle />
-                </div>
-                <div
-                  className={classes.shlokPlayingClose}
-                  style={{ marginLeft: "-1.5rem" }}
-                >
-                  <MdDelete />
-                </div>
-              </div>
+              )}
               <div
                 className={classes.shlokSettingsClose}
                 style={{ marginBottom: "-0.5rem" }}
@@ -234,16 +293,18 @@ export default function Shlok() {
           </>
         )}
         {shlokSettings === 4 && (
-          <div className={classes.shlokPlaying}>
+          <div
+            className={`${classes.shlokPlaying} ${classes.smallShlokPlaying}`}
+          >
             <div className={classes.shlokPlayingLabel}>
               <div className={classes.shlokPlayingLabelInside}>
-                Spotify-Shiv-Strotam-Female-Voice
+                {selectedTitle}
               </div>
             </div>
             <div
               className={classes.shlokPlayingClose}
               onClick={() => {
-                setShlokSettings(1);
+                stopMovement();
               }}
             >
               <FaRegStopCircle />
