@@ -71,7 +71,7 @@ export default function Home() {
                     alt={item.name}
                     fill={true}
                     priority={true}
-                    quality={1}
+                    sizes="100vw"
                     style={{
                       objectFit: "cover",
                       objectPosition: "center",
@@ -104,7 +104,7 @@ export default function Home() {
                   alt={item.name}
                   fill={true}
                   priority={true}
-                  quality={1}
+                  sizes="100vw"
                   style={{
                     objectFit: "cover",
                     objectPosition: "center",

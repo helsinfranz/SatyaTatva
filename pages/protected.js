@@ -14,11 +14,11 @@ export default function Protected() {
           alt="protected background"
           fill={true}
           priority={true}
+          sizes="100vw"
           style={{
             objectFit: "cover",
             objectPosition: "center",
           }}
-          quality={1}
         />
       </div>
       <div className={classes.protected}>

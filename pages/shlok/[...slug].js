@@ -172,6 +172,7 @@ export default function Shlok() {
         alt="Picture of the author"
         fill={true}
         priority={true}
+        sizes="100vw"
         style={{
           objectFit: "cover",
           objectPosition: "center",
