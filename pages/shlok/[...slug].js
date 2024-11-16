@@ -9,6 +9,7 @@ import { BsRecord2 } from "react-icons/bs";
 import { FaRegPlayCircle, FaRegStopCircle } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { getShlokasMovements } from "@/Books_PDFs/Shlok/pre-recorded";
+import { getSingleShlokData } from "@/lib/storage";
 
 export default function Shlok() {
   const router = useRouter();
@@ -37,6 +38,28 @@ export default function Shlok() {
       if (data) {
         const parsedData = JSON.parse(data);
         setShlokCustomMovement(parsedData.customMovements);
+      }
+
+      const localStorageData = localStorage.getItem("mostRecent");
+      const shlokData = getSingleShlokData(slug[0]);
+      const addingData = [
+        {
+          name: shlokData.title,
+          link: "/shlok/" + slug,
+          detail: shlokData.subTitle,
+          img: shlokData.image,
+        },
+      ];
+      if (localStorageData) {
+        const parsedData = JSON.parse(localStorageData);
+        if (parsedData.some((item) => item.name === shlokData.title)) return;
+        const updatedData = [...addingData, parsedData[0]];
+        localStorage.setItem("mostRecent", JSON.stringify(updatedData));
+      } else {
+        localStorage.setItem(
+          "mostRecent",
+          JSON.stringify([...addingData, ...addingData])
+        );
       }
     }
   }, [slug]);

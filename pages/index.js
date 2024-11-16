@@ -1,95 +1,13 @@
 import Head from "next/head";
 import classes from "@/styles/Home.module.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const [quote, setQuote] = useState(
-    "Do this as it the main thing. Do this as it the main thing. Do this as it the main thing. Do this as it the main thing"
-  );
-  const [mostRecent, setMostRecent] = useState([
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-  ]);
-  const [mostVisited, setMostVisited] = useState([
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-    {
-      name: "Skhand Padhbb",
-      link: "/padhbb",
-      detail: "This is a skhand padhbb.",
-      img: "/testing.jpg",
-    },
-  ]);
+  const [quote, setQuote] = useState("");
+  const [mostRecent, setMostRecent] = useState([]);
+  const [mostVisited, setMostVisited] = useState([]);
   const [enable, setEnable] = useState(true);
   const containerRef = useRef(null);
 
@@ -115,6 +33,16 @@ export default function Home() {
     window.addEventListener("mousemove", handleScrollMouseMove);
     window.addEventListener("mouseup", handleScrollMouseUp);
   }
+
+  useEffect(() => {
+    const mostRecent = JSON.parse(localStorage.getItem("mostRecent")) || [];
+    const mostVisited = JSON.parse(localStorage.getItem("mostVisited")) || [];
+    setQuote(
+      "Do this as it the main thing. Do this as it the main thing. Do this as it the main thing. Do this as it the main thing"
+    );
+    setMostRecent(mostRecent);
+    setMostVisited(mostVisited);
+  }, []);
 
   return (
     <>
