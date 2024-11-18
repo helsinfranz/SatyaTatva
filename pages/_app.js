@@ -11,13 +11,13 @@ export default function App({ Component, pageProps }) {
           {
             name: "श्री हनुमान चालीसा",
             detail: "Shri Hanuman Chalisa",
-            img: "/testingHero.jpg",
+            img: "/banners/hanuman_chalisa.webp",
             link: "/shlok/others-hanuman-chalisa",
           },
           {
             name: "शिव तांडव स्तोत्र",
             detail: "Shiv Tandav Stotram",
-            img: "/testingHero.jpg",
+            img: "/banners/shiv_tandav_strotam.jpg",
             link: "/shlok/others-shiv-tandav-stotram",
           },
         ])
@@ -30,37 +30,37 @@ export default function App({ Component, pageProps }) {
           {
             name: "Mahabharata",
             detail: "Mahabharata in English",
-            img: "/testingHero.jpg",
+            img: "/banners/mahabharat.png",
             link: "/book/others-mahabharata-english",
           },
           {
             name: "Ramayan",
             detail: "Ramayan in English",
-            img: "/testingHero.jpg",
+            img: "/banners/ramayana.jpg",
             link: "/book/others-ramayan-english",
           },
           {
             name: "श्री हनुमान चालीसा",
             detail: "Shri Hanuman Chalisa",
-            img: "/testingHero.jpg",
+            img: "/banners/hanuman_chalisa.webp",
             link: "/book/others-hanuman-chalisa",
           },
           {
             name: "शिव तांडव स्तोत्र",
             detail: "Shiv Tandav Stotram",
-            img: "/testingHero.jpg",
+            img: "/banners/shiv_tandav_strotam.jpg",
             link: "/book/others-shiv-tandav-stotram",
           },
           {
             name: "Shri Ramcharitmanas",
             detail: "Shri Ramcharitmanas in English",
-            img: "/testingHero.jpg",
+            img: "/banners/ramcharitmanas.jpg",
             link: "/book/others-shri-ramcharitmanas-english",
           },
           {
             name: "Shrimad Bhagwat Geeta",
             detail: "Shrimad Bhagwat Geeta in English",
-            img: "/testingHero.jpg",
+            img: "/banners/bhagavad_gita.jpg",
             link: "/book/others-bhagavad-gita-english",
           },
         ])
