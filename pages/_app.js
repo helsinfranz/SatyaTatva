@@ -43,13 +43,13 @@ export default function App({ Component, pageProps }) {
             name: "श्री हनुमान चालीसा",
             detail: "Shri Hanuman Chalisa",
             img: "/banners/hanuman_chalisa.webp",
-            link: "/book/others-hanuman-chalisa",
+            link: "/shlok/others-hanuman-chalisa",
           },
           {
             name: "शिव तांडव स्तोत्र",
             detail: "Shiv Tandav Stotram",
             img: "/banners/shiv_tandav_strotam.jpg",
-            link: "/book/others-shiv-tandav-stotram",
+            link: "/shlok/others-shiv-tandav-stotram",
           },
           {
             name: "Shri Ramcharitmanas",

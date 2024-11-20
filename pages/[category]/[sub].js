@@ -63,6 +63,12 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                 height={400}
                 src={content.image}
                 alt={content.title}
+                // fill={true}
+                // sizes="100vw"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
               />
             </div>
             <div className={classes.contentMainDetails}>

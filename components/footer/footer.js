@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <div className={classes.footer}>
-      <div className={classes.copyright}>Copyright © 2022</div>
+      <div className={classes.copyright}>Copyright © 2025</div>
       <div className={classes.socials}>
         <Link className={classes.socialLinks} href="/">
           <FaFacebookF />

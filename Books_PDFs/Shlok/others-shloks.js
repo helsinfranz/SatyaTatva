@@ -213,10 +213,134 @@ Jo yahpadhaeHanumanChalisa HoyesiddhisaakhiGaureesa|| 39 ||
 Tulsidassadaharichera KeejaiNathHridayemaheindera|| 40 ||`,
 };
 
+const krishnaKiChetavani = {
+  shlok1: `वर्षों तक वन में घूम-घूम, बाधा-विघ्नों को चूम-चूम,
+सह धूप-घाम, पानी-पत्थर, पांडव आये कुछ और निखर।
+सौभाग्य न सब दिन सोता है, देखें, आगे क्या होता है।
+
+Varshon Tak Van Mein Ghoom-Ghoom Baadha-Vighnon Ko Choom-Choom
+Sah Dhoop-Ghaam, Paanee-Patthar Paandav Aaye Kuchh Aur Nikhar
+Saubhaagy Na Sab Din Sota Hai Dekhen, Aage Kya Hota Hai`,
+  shlok2: `मैत्री की राह बताने को, सबको सुमार्ग पर लाने को,
+दुर्योधन को समझाने को, भीषण विध्वंस बचाने को,
+भगवान् हस्तिनापुर आये, पांडव का संदेशा लाये।
+
+Maitree Kee Raah Bataane Ko Sabako Sumaarg Par Laane Ko
+Duryodhan Ko Samajhaane Ko Bheeshan Vidhvans Bachaane Ko
+Bhagavaan Hastinaapur Aaye Paandav Ka Sandesha Laaye`,
+  shlok3: `‘दो न्याय अगर तो आधा दो, पर, इसमें भी यदि बाधा हो,
+तो दे दो केवल पाँच ग्राम, रक्खो अपनी धरती तमाम।
+हम वहीं खुशी से खायेंगे, परिजन पर असि न उठायेंगे!
+
+‘Do Nyaay Agar To Aadha Do Par, Isamen Bhee Yadi Baadha Ho
+To De Do Keval Paanch Graam Rakkho Apanee Dharatee Tamaam
+Ham Vaheen Khushee Se Khaayenge Parijan Par Asi Na Uthaayenge!`,
+  shlok4: `दुर्योधन वह भी दे ना सका, आशीष समाज की ले न सका,
+उलटे, हरि को बाँधने चला, जो था असाध्य, साधने चला।
+जब नाश मनुज पर छाता है, पहले विवेक मर जाता है।
+
+Duryodhan Vah Bhee De Na Saka Aasheesh Samaaj Kee Le Na Saka, Ulate
+Hari Ko Baandhane Chala Jo Tha Asaadhy, Saadhane Chala
+Jab Naash Manuj Par Chhaata Hai Pahale Vivek Mar Jaata Ha`,
+  shlok5: `हरि ने भीषण हुंकार किया, अपना स्वरूप-विस्तार किया,
+डगमग-डगमग दिग्गज डोले, भगवान् कुपित होकर बोले-
+‘जंजीर बढ़ा कर साध मुझे, हाँ, हाँ दुर्योधन! बाँध मुझे।
+
+Hari Ne Bheeshan Hunkaar Kiya Apana Svaroop-Vistaar Kiya
+Dag-mag dag-mag digmaaj dole Bhagavaan Kupit Hokar Bole-
+'Zanjeer Badha Kar Saadh Mujhe, Haan, Haan Duryodhan! Baandh Mujhe'`,
+  shlok6: `यह देख, गगन मुझमें लय है, यह देख, पवन मुझमें लय है,
+मुझमें विलीन झंकार सकल, मुझमें लय है संसार सकल।
+अमरत्व फूलता है मुझमें, संहार झूलता है मुझमें।
+
+Yah Dekh, Gagan Mujhamen Lay Hai Yah Dekh, Pavan Mujhamen Lay Hai
+Mujhamen Vileen Jhankaar Sakal Mujhamen Lay Hai Sansaar Sakal
+Amaratv Phoolata Hai Mujhamen Sanhaar Jhoolata Hai Mujhamen`,
+  shlok7: `‘उदयाचल मेरा दीप्त भाल, भूमंडल वक्षस्थल विशाल,
+भुज परिधि-बन्ध को घेरे हैं, मैनाक-मेरु पग मेरे हैं।
+दिपते जो ग्रह नक्षत्र निकर, सब हैं मेरे मुख के अन्दर।
+
+‘Udayaachal Mera Deept Bhaal Bhoomandal Vakshasthal Vishaal
+Bhuj Paridhi-Bandh Ko Ghere Hain Mainaak-Meru Pag Mere Hain
+Dipate Jo Grah Nakshatr Nikar Sab Hain Mere Mukh Ke Andar`,
+  shlok8: `‘दृग हों तो दृश्य अकाण्ड देख, मुझमें सारा ब्रह्माण्ड देख,
+चर-अचर जीव, जग, क्षर-अक्षर, नश्वर मनुष्य सुरजाति अमर।
+शत कोटि सूर्य, शत कोटि चन्द्र, शत कोटि सरित, सर, सिन्धु मन्द्र।
+
+‘Drag Hon To Drshy Akaand Dekh Mujhamen Saara Brahmaand Dekh
+Char-Achar Jeev, Jag, Kshar-Akshar Nashvar Manushy Surajaati Amar
+Shat Koti Soory Shat Koti Chandr Shat Koti Sarit Sar, Sindhu Mandr`,
+  shlok9: `‘शत कोटि विष्णु, ब्रह्मा, महेश, शत कोटि विष्णु जलपति, धनेश,
+शत कोटि रुद्र, शत कोटि काल, शत कोटि दण्डधर लोकपाल।
+जञ्जीर बढ़ाकर साध इन्हें, हाँ-हाँ दुर्योधन! बाँध इन्हें।
+
+Shat Koti Vishnu, Brahma, Mahesh Shat Koti Jishnu, Jalapati, Dhanesh
+Shat Koti Rudr Shat Koti Kaal Shat Koti Dandadhar Lokapaal
+Zanjeer Badhaakar Saadh Inhen Haan-Haan Duryodhan! Baandh Inhen`,
+  shlok10: `‘भूलोक, अतल, पाताल देख, गत और अनागत काल देख,
+यह देख जगत का आदि-सृजन, यह देख, महाभारत का रण,
+मृतकों से पटी हुई भू है, पहचान, इसमें कहाँ तू है।
+
+Bhulok atal patal dekh Gat Aur Anaagat Kaal Dekh
+Yah Dekh Jagat Ka Aadi-Srjan Yah Dekh, Mahaabhaarat Ka Ran
+Mrtakon Se Patee Huee Bhoo Hai Pahachaan, Isamen Kahaan Too Hai`,
+  shlok11: `‘अम्बर में कुन्तल-जाल देख, पद के नीचे पाताल देख,
+मुट्ठी में तीनों काल देख, मेरा स्वरूप विकराल देख।
+सब जन्म मुझी से पाते हैं, फिर लौट मुझी में आते हैं।
+
+‘Ambar Mein Kuntal-Jaal Dekh Pad Ke Neeche Paataal Dekh
+Mutthee Mein Teenon Kaal Dekh Mera Svaroop Vikaraal Dekh
+Sab Janm Mujhee Se Paate Hain Phir Laut Mujhee Mein Aate Hain`,
+  shlok12: `‘जिह्वा से कढ़ती ज्वाल सघन, साँसों में पाता जन्म पवन,
+पड़ जाती मेरी दृष्टि जिधर, हँसने लगती है सृष्टि उधर!
+मैं जभी मूँदता हूँ लोचन, छा जाता चारों ओर मरण।
+
+‘Jihva Se Kadhatee Jvaal Saghan Saanson Mein Paata Janm Pavan
+Pad Jaatee Meree Drshti Jidhar, Hansane Lagatee Hai Srshti Udhar!
+Main Jabhee Moondata Hoon Lochan Chha Jaata Chaaron Or Maran`,
+  shlok13: `‘बाँधने मुझे तो आया है, जंजीर बड़ी क्या लाया है?
+यदि मुझे बाँधना चाहे मन, पहले तो बाँध अनन्त गगन।
+सूने को साध न सकता है, वह मुझे बाँध कब सकता है?
+
+‘Baandhane Mujhe To Aaya Hai Zanjeer Badee Kya Laaya Hai?
+Yadi Mujhe Baandhana Chaahe Man Pahale To Baandh Anant Gagan
+Soone Ko Saadh Na Sakata Hai Vah Mujhe Baandh Kab Sakata Hai?`,
+  shlok14: `‘हित-वचन नहीं तूने माना, मैत्री का मूल्य न पहचाना,
+तो ले, मैं भी अब जाता हूँ, अन्तिम संकल्प सुनाता हूँ।
+याचना नहीं, अब रण होगा, जीवन-जय या कि मरण होगा।
+
+‘Hit-Vachan Nahin Toone Maana Maitree Ka Mooly Na Pahachaana
+To Le, Main Bhee Ab Jaata Hoon Antim Sankalp Sunaata Hoon
+Yaachana Nahin, Ab Ran Hoga Jeevan-Jay Ya Ki Maran Hoga`,
+  shlok15: `‘टकरायेंगे नक्षत्र-निकर, बरसेगी भू पर वह्नि प्रखर,
+फण शेषनाग का डोलेगा, विकराल काल मुँह खोलेगा।
+दुर्योधन! रण ऐसा होगा। फिर कभी नहीं जैसा होगा।
+
+‘Takaraayenge Nakshatr-Nikar Barasegee Bhoo Par Vahni Prakhar
+Phan Sheshanaag Ka Dolega Vikaraal Kaal Munh Kholega
+Duryodhan! Ran Aisa Hoga Phir Kabhee Nahin Jaisa Hoga`,
+  shlok16: `‘भाई पर भाई टूटेंगे, विष-बाण बूँद-से छूटेंगे,
+वायस-श्रृगाल सुख लूटेंगे, सौभाग्य मनुज के फूटेंगे।
+आखिर तू भूशायी होगा, हिंसा का पर, दायी होगा।’
+
+‘Bhaee Par Bhaee Tootenge Vish-Baan Boond-Se Chhootenge
+Vaayas-Shrrgaal Sukh Lootenge Saubhaagy Manuj Ke Phootenge
+Aakhir Too Bhooshaayee Hoga Hinsa Ka Par, Daayee Hoga`,
+  shlok17: `कृष्ण की चेतावनी थी सभा सन्न, सब लोग डरे,
+चुप थे या थे बेहोश पड़े। केवल दो नर ना अघाते थे,
+धृतराष्ट्र-विदुर सुख पाते थे। कर जोड़ खड़े प्रमुदित,
+निर्भय, दोनों पुकारते थे ‘जय-जय’!
+
+‘Thee Sabha Sann, Sab Log Dare Chup The Ya The Behosh Pade
+Keval Do Nar Na Aghaate The Dhrtaraashtr-Vidur Sukh Paate The
+Kar Jod Khade Pramudit Nirbhay, Donon Pukaarate The ‘Jay-Jay’!`,
+};
+
 export function getShlokas(slug) {
   const slugMatcher = {
     "others-shiv-tandav-stotram": shivTandavStotram,
     "others-hanuman-chalisa": hanumanChalisa,
+    "others-krishna-ki-chetavani": krishnaKiChetavani,
   };
 
   return slugMatcher[slug] || {};
