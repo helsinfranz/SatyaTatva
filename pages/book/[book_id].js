@@ -13,7 +13,7 @@ export default function BookMain() {
 
   useEffect(() => {
     async function fetchData(path) {
-      const res = await fetch("/api/readBook", {
+      const res = await fetch("/api/test", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,10 +21,21 @@ export default function BookMain() {
         body: JSON.stringify({ page: 1, filePath: path }),
       });
       const data = await res.json();
-      const { totalPages, pagesText } = data;
-      setTotalPages(totalPages);
-      setPageData(pagesText || "");
-      setPageNo(1);
+      if (data.images) {
+        data.images.forEach((base64Image, index) => {
+          const img = document.createElement("img");
+          img.src = `data:image/jpeg;base64,${base64Image}`;
+          img.alt = `Page ${1 + index}`;
+          const container = document.getElementById("images");
+          container.appendChild(img);
+        });
+      } else {
+        console.error("Failed to fetch images:", data.error);
+      }
+      // const { totalPages, pagesText } = data;
+      // setTotalPages(totalPages);
+      // setPageData(pagesText || "");
+      // setPageNo(1);
     }
 
     const path = bookMap[book_id];
@@ -49,6 +60,7 @@ export default function BookMain() {
             justifyContent: "center",
           }}
         >
+          <div id="images"></div>
           {pageNo}
           <br />
           {totalPages}
