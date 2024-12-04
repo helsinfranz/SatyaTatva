@@ -1,15 +1,147 @@
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  overflow-y: auto;
+  gap: 2rem;
+  height: 100%;
+  background: rgb(23, 23, 23, 0.7);
+  width: 100%;
+}
+
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  /* opacity: 0.7; */
+  /* Make this box-shadow react the entire page */
+  /* box-shadow: 140px 20px #fff, 425px 20px #fff, 70px 120px #fff, 20px 130px #fff,
+    110px 80px #fff, 280px 80px #fff, 250px 350px #fff, 280px 230px #fff,
+    220px 190px #fff, 450px 100px #fff, 380px 80px #fff, 520px 50px #fff; */
+  box-shadow: 14vw 15vh #fff, 42.5vw 20vh #fff, 79vw 20vh #fff, 85vw 80vh #fff,
+    11vw 20vh #fff, 95vw 15vh #fff, 50vw 40vh #fff, 70vw 50vh #fff,
+    22vw 30vh #fff, 90vw 40vh #fff, 80vw 60vh #fff, 90vw 25vh #fff,
+    60vw 55vh #fff, 30vw 60vh #fff, 50vw 70vh #fff, 95vw 75vh #fff;
+  z-index: -1;
+  transition: 1.5s ease;
+  animation: 1s glowing-stars linear alternate infinite;
+  animation-delay: 0.4s;
+}
+.main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  /* opacity: 0.7; */
+  /* box-shadow: 490px 330px #fff, 420px 300px #fff, 320px 280px #fff,
+    380px 350px #fff, 546px 170px #fff, 420px 180px #fff, 370px 150px #fff,
+    200px 250px #fff, 80px 20px #fff, 190px 50px #fff, 270px 20px #fff,
+    120px 230px #fff, 350px -1px #fff, 150px 369px #fff; */
+  box-shadow: 49vw 20vh #fff, 42vw 25vh #fff, 32vw 30vh #fff, 38vw 40vh #fff,
+    16vw 80vh #fff, 42vw 35vh #fff, 65vw 20vh #fff, 20vw 50vh #fff,
+    8vw 30vh #fff, 9vw 75vh #fff, 27vw 40vh #fff, 12vw 45vh #fff, 35vw 50vh #fff,
+    50vw 60vh #fff, 60vw 70vh #fff, 85vw 50vh #fff, 90vw 60vh #fff,
+    85vw 15vh #fff;
+  z-index: -1;
+  transition: 2s ease;
+  animation: 1s glowing-stars linear alternate infinite;
+  animation-delay: 0.8s;
+}
+
+.shootingStar1 {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 105%;
+  rotate: -45deg;
+  width: 5em;
+  height: 1px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+  animation: 14s shootingStar ease-in-out infinite;
+  transition: 1s ease;
+  animation-delay: 1s;
+}
+
+.shootingStar2 {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 55%;
+  rotate: -45deg;
+  width: 5em;
+  height: 1px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+  animation: 11s shootingStar ease-in-out infinite;
+  transition: 1s ease;
+  animation-delay: 1s;
+}
+
+.shootingStar3 {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  rotate: -45deg;
+  width: 5em;
+  height: 1px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+  animation: 15s shootingStar ease-in-out infinite;
+  transition: 1s ease;
+  animation-delay: 1s;
+}
+
+.bookContent:hover .main::before,
+.bookContent:hover .main::after {
+  filter: blur(3px);
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-55em) translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-70em) translateY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes glowing-stars {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .title {
   font-size: 2rem;
-  margin-bottom: 1rem;
-  height: 100%;
+  margin-top: 2rem;
 }
 
 .bookContent {
@@ -21,4 +153,137 @@
   border-radius: 5px;
   white-space: pre-wrap;
   font-size: 2rem;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.loaderHolder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.imagesAll {
+  position: relative;
+}
+
+.imagesAll > img {
+  height: 40rem;
+}
+
+.bookPages {
+  width: 64rem;
+}
+
+.images {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* Adding perspective to create depth for the flip effect */
+  /* gap: ; */
+  /* padding: 2rem; */
+}
+
+.images > img,
+.flip img,
+.flipL img {
+  height: 37rem;
+  cursor: pointer; /* Change cursor to pointer when hovering over image */
+}
+
+.flip,
+.flipL {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* transition: all 0s; */
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.flipContainer {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Optional: Ensures the image doesn't overflow */
+  border-radius: 5px;
+}
+
+/* .flip {
+  right: 0;
+  left: 50%;
+}
+
+.flip > img:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg) scaleX(-1);
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+.flip > img:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(108.5deg);
+  z-index: 999;
+}
+
+.flippedRight {
+  transform: rotateY(-180deg);
+  left: 0;
+  right: 50%;
+  transition: all 0.6s ease;
+}
+
+.flippedRight > img:first-child {
+  transform: rotateY(108.5deg);
+  transition: all 0.6s ease;
+}
+
+.flippedRight > img:last-child {
+  transform: rotateY(180deg);
+  transition: all 0.6s ease;
+} */
+
+.flipL {
+  left: 0;
+  right: 50%;
+  background-image: url("/book/page_temp.png"); /* Replace with your background image */
+}
+
+.flippedLeft {
+  transform: rotateY(180deg); /* Flip the image 180 degrees */
+  /* right: 0; */
+  left: 50%;
+  transition: all 0.6s ease; /* Smooth transition for flip */
+}
+
+.flip {
+  right: 0;
+  left: 50%;
+  background-image: url("/book/page_temp_2.png"); /* Replace with your background image */
+}
+
+.flippedRight {
+  transform: rotateY(-180deg);
+  /* left: 0; */
+  right: 50%;
+  transition: all 0.6s ease;
 }

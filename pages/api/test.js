@@ -1,6 +1,6 @@
 import fs from "fs";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
-import { Canvas } from "canvas";
+import { Canvas, ImageData } from "canvas";
 
 export default async function handler(req, res) {
   try {
@@ -16,7 +16,10 @@ export default async function handler(req, res) {
     const pdfBuffer = fs.readFileSync(`./public/book/${filePath}`);
 
     // Convert the PDF to images for the specified range
-    const imageBuffers = await convertPdfToImages(pdfBuffer, page);
+    const { imageBuffers, totalPages } = await convertPdfToImages(
+      pdfBuffer,
+      page === 1 ? 2 : page
+    );
 
     // Encode the image buffers to Base64
     const encodedImages = imageBuffers.map((buffer) =>
@@ -24,10 +27,12 @@ export default async function handler(req, res) {
     );
 
     // Send the encoded images as JSON
+    if (page === 1) {
+      return res
+        .status(200)
+        .json({ images: encodedImages, totalPages: totalPages });
+    }
     return res.status(200).json({ images: encodedImages });
-
-    // Send the images as a response
-    // return res.status(200).json({ images: imageBuffers });
   } catch (error) {
     console.error("Error in handler:", error);
     return res.status(500).json({ error: "Failed to process PDF" });
@@ -39,7 +44,7 @@ export default async function handler(req, res) {
  *
  * @param {Buffer} pdfBuffer - The PDF file as a buffer.
  * @param {number} startPage - The starting page number (1-based index).
- * @returns {Promise<Buffer[]>} An array of image buffers (JPEG format).
+ * @returns {Promise<{ imageBuffers: Buffer[], totalPages: number }>}
  */
 async function convertPdfToImages(pdfBuffer, startPage) {
   try {
@@ -55,7 +60,7 @@ async function convertPdfToImages(pdfBuffer, startPage) {
     const totalPages = pdfDocument.numPages;
 
     // Limit the range of pages (5 pages from the startPage or until the last page)
-    const endPage = Math.min(startPage + 4, totalPages);
+    const endPage = Math.min(startPage + 5, totalPages);
 
     for (let i = startPage; i <= endPage; i++) {
       const page = await pdfDocument.getPage(i);
@@ -66,7 +71,7 @@ async function convertPdfToImages(pdfBuffer, startPage) {
       imageBuffers.push(imageBuffer);
     }
 
-    return imageBuffers;
+    return { imageBuffers, totalPages };
   } catch (error) {
     console.error("Error converting PDF to images:", error);
     throw error;
@@ -77,11 +82,11 @@ async function convertPdfToImages(pdfBuffer, startPage) {
  * Renders a single PDF page to an image buffer.
  *
  * @param {PDFPageProxy} page - The PDF.js page object.
- * @returns {Promise<Buffer>} The image as a buffer (JPEG format).
+ * @returns {Promise<Buffer>} The image as a buffer (PNG format with transparency).
  */
 async function renderPageToImage(page) {
   try {
-    const viewport = page.getViewport({ scale: 1.2 });
+    const viewport = page.getViewport({ scale: 1 });
 
     const canvas = new Canvas(viewport.width, viewport.height);
     const context = canvas.getContext("2d");
@@ -92,9 +97,36 @@ async function renderPageToImage(page) {
     };
     await page.render(renderContext).promise;
 
-    return canvas.toBuffer("image/jpeg");
+    // Process the image to remove white background
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    removeWhiteBackground(imageData);
+    context.putImageData(imageData, 0, 0);
+
+    return canvas.toBuffer("image/png"); // PNG supports transparency
   } catch (error) {
     console.error("Error rendering page to image:", error);
     throw error;
+  }
+}
+
+/**
+ * Removes white background from an image by making near-white pixels transparent.
+ *
+ * @param {ImageData} imageData - The image data object from the canvas.
+ */
+function removeWhiteBackground(imageData) {
+  const { data } = imageData;
+
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const a = data[i + 3];
+
+    // Check if the pixel is near white
+    if (r > 240 && g > 240 && b > 240) {
+      // Set alpha to 0 (make transparent)
+      data[i + 3] = 0;
+    }
   }
 }

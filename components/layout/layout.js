@@ -3,11 +3,12 @@ import classes from "./layout.module.css";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Layout({ children }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isMouseOffScreen, setIsMouseOffScreen] = useState(false);
-
+  const pathname = usePathname();
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 48em)");
     const handleMediaChange = (event) => {
@@ -40,7 +41,7 @@ export default function Layout({ children }) {
       <main className={classes.main}>
         <Header />
         {children}
-        <Footer />
+        {!pathname?.includes("book") && <Footer />}
       </main>
     </>
   );
