@@ -101,6 +101,22 @@
   animation-delay: 1s;
 }
 
+.planetOne,
+.planetTwo {
+  position: absolute;
+}
+
+.planetOne {
+  top: 10vh;
+  left: 15vw;
+}
+
+.planetTwo {
+  top: 45vh;
+  left: 80vw;
+  z-index: 99;
+}
+
 .bookContent:hover .main::before,
 .bookContent:hover .main::after {
   filter: blur(3px);
@@ -172,6 +188,7 @@
 
 .imagesAll {
   position: relative;
+  z-index: 999;
 }
 
 .imagesAll > img {

@@ -3,6 +3,8 @@ import classes from "@/styles/Home.module.css";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ContentCube from "@/components/home/content_cube";
+import SmallCube from "@/components/home/small_cube";
 
 export default function Home() {
   const [quote, setQuote] = useState("");
@@ -64,58 +66,18 @@ export default function Home() {
           </div>
           <div className={classes.quoteOther}>
             {mostRecent.map((item, idx) => (
-              <Link className={classes.quoteSmall} key={idx} href={item.link}>
-                <div className={classes.quoteImage}>
-                  <Image
-                    src={item.img}
-                    alt={item.name}
-                    fill={true}
-                    priority={true}
-                    sizes="100vw"
-                    style={{
-                      objectFit: "cover",
-                      objectPosition: "center",
-                    }}
-                  />
-                </div>
-                <div className={classes.smallDetails}>
-                  <div className={classes.smallTitle}>{item.name}</div>
-                  <div className={classes.smallDetail}>{item.detail}</div>
-                </div>
-              </Link>
+              <SmallCube classes={classes} key={idx} item={item} />
             ))}
           </div>
         </div>
         <div className={classes.mostVisited}>
           {mostVisited.map((item, idx) => (
-            <Link
-              className={`${classes.mostVisitedSingle} hover`}
+            <ContentCube
+              classes={classes}
               key={idx}
-              href={item.link}
-              onClick={(e) => {
-                if (!enable) {
-                  e.preventDefault();
-                }
-              }}
-            >
-              <div className={classes.cubeImage}>
-                <Image
-                  src={item.img}
-                  alt={item.name}
-                  fill={true}
-                  priority={true}
-                  sizes="100vw"
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                />
-              </div>
-              <div className={classes.smallDetails}>
-                <div className={classes.smallTitle}>{item.name}</div>
-                <div className={classes.smallDetail}>{item.detail}</div>
-              </div>
-            </Link>
+              item={item}
+              enable={enable}
+            />
           ))}
         </div>
       </div>

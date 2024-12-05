@@ -189,3 +189,93 @@ main {
     color-scheme: dark;
   }
 }
+
+/* Planet 2 #id CSS */
+
+#saturn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(80deg, #69e9d6, #404d44, #000000);
+}
+
+#ring1 {
+  transform: rotateX(80deg);
+  top: -20px;
+  left: -65px;
+}
+
+#ring2 {
+  transform: rotateX(-100deg);
+  left: -65px;
+  z-index: -1;
+  top: -3px;
+}
+
+#asteriod1 {
+  top: 8px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+}
+
+#asteriod2 {
+  top: 35px;
+  height: 10px;
+  left: -55px;
+}
+
+#asteriod3 {
+  top: 35px;
+  height: 8px;
+  left: 85px;
+}
+
+#asteriod4 {
+  top: 40px;
+  height: 4px;
+  width: 4px;
+  left: -40px;
+}
+
+#asteriod5 {
+  top: 35px;
+  height: 4px;
+  width: 4px;
+  left: 82px;
+}
+
+#asteriod6 {
+  top: 6px;
+  left: -5px;
+  border-radius: 50%;
+}
+
+#asteriod7 {
+  top: 15px;
+  left: -35px;
+}
+
+#asteriod8 {
+  top: 35px;
+  left: 65px;
+}
+
+#asteriod9 {
+  top: 60px;
+  left: -10px;
+}
+
+#asteriod10 {
+  top: 15px;
+  left: 112px;
+}
+
+#explore {
+  position: absolute;
+  top: 32px;
+  font-size: 15px;
+  color: hsl(171, 59%, 74%);
+  left: 10px;
+  transition: all 3s;
+}

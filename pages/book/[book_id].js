@@ -1,5 +1,7 @@
 import { bookMap } from "@/lib/storage";
 import BlackHole from "@/reuse/loader/blackHole";
+import Planet1 from "@/reuse/planets/planet1";
+import Planet2 from "@/reuse/planets/planet2";
 import classes from "@/styles/book.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -87,6 +89,12 @@ export default function BookMain() {
       <div className={classes.shootingStar1}></div>
       <div className={classes.shootingStar2}></div>
       <div className={classes.shootingStar3}></div>
+      <div className={classes.planetOne}>
+        <Planet1 />
+      </div>
+      <div className={classes.planetTwo}>
+        <Planet2 />
+      </div>
       {error ? (
         <div>Error</div>
       ) : (

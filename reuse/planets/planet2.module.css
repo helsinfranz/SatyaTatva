@@ -1,0 +1,75 @@
+.main {
+  width: 70px;
+  margin: auto;
+  position: relative;
+  transform: rotateZ(0deg);
+  isolation: isolate;
+  scale: 1;
+  transition: all 1.5s;
+  /* transform: scale(0.25); */
+}
+
+.main:hover {
+  transform: rotateZ(240deg);
+  scale: 2;
+  /* filter: drop-shadow(10px,10px,10px,white); */
+  filter: drop-shadow(-1px -1px 5px #69e9d6);
+}
+
+.rings {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  /* background-color: #000000; */
+  border-radius: 150px 150px 0 0;
+  background: radial-gradient(
+    circle at 50% 100%,
+    transparent 30%,
+    #69e9d6 40%,
+    #404d44 50%,
+    #44867c 60%,
+    #404d44 70%,
+    transparent
+  );
+}
+
+.asteriodsLarge {
+  position: absolute;
+  width: 8px;
+  height: 10px;
+  border-radius: 15px 8px;
+  background: linear-gradient(220deg, #6f7776, #598ea3, #311515);
+  transform: rotateZ(0deg);
+  transition: all 3s;
+}
+
+.asteriodsSmall {
+  position: absolute;
+  width: 4px;
+  height: 3px;
+  border-radius: 15px 8px;
+  background: linear-gradient(80deg, #6f7776, #598ea3, #311515);
+  transform-origin: 50px 50px;
+  transform: rotateZ(0deg);
+  transition: all 3s;
+}
+
+.main:hover > .asteriodsLarge,
+.main:hover > .asteriodsSmall {
+  transform: translateX(28px);
+}
+
+.main:hover > #explore {
+  translate: -10px 20px;
+  transform: rotateZ(120deg);
+}
+
+.main:not(hover) > #explore {
+  translate: 0px;
+  transform: rotateZ(0deg);
+}
+
+.main:not(hover) > .asteriodsLarge,
+.main:not(hover) > .asteriodsSmall {
+  transform: translateX(0px);
+}
