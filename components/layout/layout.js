@@ -39,7 +39,7 @@ export default function Layout({ children }) {
     <>
       {!isSmallScreen && !isMouseOffScreen && <Cursor />}
       <main className={classes.main}>
-        <Header />
+        {!pathname?.includes("book") && <Header />}
         {children}
         {!pathname?.includes("book") && <Footer />}
       </main>

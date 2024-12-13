@@ -4,13 +4,21 @@ import Planet1 from "@/reuse/planets/planet1";
 import Planet2 from "@/reuse/planets/planet2";
 import classes from "@/styles/book.module.css";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FaAngleDoubleRight } from "react-icons/fa";
+import {
+  IoArrowBack,
+  IoBookmarkOutline,
+  IoChevronBackOutline,
+  IoChevronForwardOutline,
+} from "react-icons/io5";
 
 export default function BookMain() {
   const router = useRouter();
   const book_id = router.query.book_id;
+  const pageRef = useRef(null);
 
-  const [pageData, setPageData] = useState([]);
+  const [pageData, setPageData] = useState({});
   const [totalPages, setTotalPages] = useState(1);
   const [pageNo, setPageNo] = useState(0);
   const [firstPageNo, setFirstPageNo] = useState(0);
@@ -29,6 +37,9 @@ export default function BookMain() {
     async function fetchData(path) {
       setLoading(true);
       setPageNo(0);
+      if (pageRef.current) {
+        pageRef.current.value = 0;
+      }
       const res = await fetch("/api/test", {
         method: "POST",
         headers: {
@@ -43,7 +54,12 @@ export default function BookMain() {
       }
       const data = await res.json();
       setTotalPages(data.totalPages || 0);
-      setPageData(data.images || []);
+      setPageData(
+        data.images.reduce((acc, item, index) => {
+          acc[index] = item;
+          return acc;
+        }, {})
+      );
       setFirstPageNo(0);
       setSecondPageNo(1);
       setLoading(false);
@@ -75,14 +91,96 @@ export default function BookMain() {
           return;
         }
         const data = await res.json();
-        setPageData((prev) => [...prev, ...data.images]);
+        const newData = data.images.reduce((acc, item, index) => {
+          acc[index + pageNo] = item;
+          return acc;
+        }, {});
+        setPageData((prev) => ({
+          ...prev,
+          ...newData,
+        }));
         setSmallLoading(false);
       }
     }
-    if (!pageData[firstPageNo] && pageData.length > 0) {
+    if (!pageData[firstPageNo] && Object.keys(pageData).length > 0) {
       nextLoad();
     }
   }, [firstPageNo]);
+
+  function leftClick() {
+    if (flip.start === true) return;
+    setFlip({
+      start: true,
+      src: pageData[pageNo - 1],
+      side: "left",
+      half: false,
+    });
+    if (pageNo > 1) {
+      setPageNo(pageNo - 2);
+      pageRef.current.value = pageNo - 2;
+    } else {
+      setPageNo(0);
+      pageRef.current.value = 0;
+    }
+    setFirstPageNo(pageNo < 2 ? 0 : pageNo - 3);
+    setTimeout(() => {
+      setFlip({
+        start: true,
+        src: pageData[pageNo - 2 < 0 ? 0 : pageNo - 2],
+        side: "left",
+        half: true,
+      });
+    }, 200);
+    setTimeout(() => {
+      setFlip({
+        start: false,
+        src: "",
+        side: "",
+        half: false,
+      });
+      setSecondPageNo(pageNo < 2 ? 1 : pageNo - 2);
+    }, 600);
+  }
+
+  function rightClick() {
+    if (flip.start === true) return;
+    if (pageNo === 0) {
+      setPageNo(1);
+      pageRef.current.value = 1;
+      return;
+    }
+    setFlip({
+      start: true,
+      src: pageData[pageNo],
+      side: "right",
+      half: false,
+    });
+    if (pageNo < totalPages - 1) {
+      setPageNo(pageNo + 2);
+      pageRef.current.value = pageNo + 2;
+    } else {
+      setPageNo(totalPages);
+      pageRef.current.value = totalPages;
+    }
+    setSecondPageNo(pageNo === 0 ? 1 : pageNo + 2);
+    setTimeout(() => {
+      setFlip({
+        start: true,
+        src: pageData[pageNo + 1 > totalPages ? totalPages : pageNo + 1],
+        side: "right",
+        half: true,
+      });
+    }, 200);
+    setTimeout(() => {
+      setFlip({
+        start: false,
+        src: "",
+        side: "",
+        half: false,
+      });
+      setFirstPageNo(pageNo === 0 ? 0 : pageNo + 1);
+    }, 600);
+  }
 
   return (
     <div className={classes.main}>
@@ -119,179 +217,124 @@ export default function BookMain() {
                     src="/book/covers_left.png"
                     alt="Page 0"
                     onClick={() => setPageNo(1)}
+                    style={{
+                      filter: "brightness(0.8)",
+                    }}
                   />
                 )}
-                {pageData.length > 0 && pageNo < totalPages && pageNo > 0 && (
-                  <>
-                    <img
-                      src="/book/pages1.png"
-                      alt="PageMain"
-                      className={classes.bookPages}
-                    />
-                    <div className={classes.images}>
+                {Object.keys(pageData).length > 0 &&
+                  pageNo < totalPages &&
+                  pageNo > 0 && (
+                    <>
                       <img
-                        src={
-                          pageData[firstPageNo]
-                            ? `data:image/png;base64,${pageData[firstPageNo]}`
-                            : "/book/page_temp.png"
-                        }
-                        alt={`Page ${pageNo}`}
-                        style={smallLoading ? { display: "none" } : {}}
-                        onClick={() => {
-                          if (flip.start === true) return;
-                          setFlip({
-                            start: true,
-                            src: pageData[pageNo - 1],
-                            side: "left",
-                            half: false,
-                          });
-                          if (pageNo > 1) {
-                            setPageNo(pageNo - 2);
-                          } else {
-                            setPageNo(0);
-                          }
-                          setFirstPageNo(pageNo < 2 ? 0 : pageNo - 3);
-                          setTimeout(() => {
-                            setFlip({
-                              start: true,
-                              src: pageData[pageNo - 2 < 0 ? 0 : pageNo - 2],
-                              side: "left",
-                              half: true,
-                            });
-                          }, 200);
-                          setTimeout(() => {
-                            setFlip({
-                              start: false,
-                              src: "",
-                              side: "",
-                              half: false,
-                            });
-                            setSecondPageNo(pageNo < 2 ? 1 : pageNo - 2);
-                          }, 600);
-                        }}
-                        // onError={nextLoad}
+                        src="/book/pages1.png"
+                        alt="PageMain"
+                        className={classes.bookPages}
                       />
-                      <img
-                        src={
-                          pageData[secondPageNo]
-                            ? `data:image/png;base64,${pageData[secondPageNo]}`
-                            : "/book/page_temp_2.png"
-                        }
-                        alt={`Page ${pageNo + 1}`}
-                        style={smallLoading ? { display: "none" } : {}}
-                        onClick={() => {
-                          if (flip.start === true) return;
-                          setFlip({
-                            start: true,
-                            src: pageData[pageNo],
-                            side: "right",
-                            half: false,
-                          });
-                          if (pageNo < totalPages - 1) {
-                            setPageNo(pageNo + 2);
-                          } else {
-                            setPageNo(totalPages);
-                          }
-                          setSecondPageNo(pageNo === 0 ? 1 : pageNo + 2);
-                          setTimeout(() => {
-                            setFlip({
-                              start: true,
-                              src: pageData[
-                                pageNo + 1 > totalPages
-                                  ? totalPages
-                                  : pageNo + 1
-                              ],
-                              side: "right",
-                              half: true,
-                            });
-                          }, 200);
-                          setTimeout(() => {
-                            setFlip({
-                              start: false,
-                              src: "",
-                              side: "",
-                              half: false,
-                            });
-                            setFirstPageNo(pageNo === 0 ? 0 : pageNo + 1);
-                          }, 600);
-                        }}
-                      />
-                      <div
-                        style={
-                          !flip.start || flip.side !== "right"
-                            ? { visibility: "hidden" }
-                            : flip.half
-                            ? {
-                                left: 0,
-                              }
-                            : {}
-                        }
-                        className={`${classes.flipContainer} ${classes.flip} ${
-                          flip.start
-                            ? flip.side === "right"
-                              ? classes.flippedRight
-                              : ""
-                            : ""
-                        }`}
-                      >
+                      <div className={classes.images}>
                         <img
                           src={
-                            flip.src
-                              ? `data:image/png;base64,${flip.src}`
-                              : "/book/page_temp_2.png"
-                          }
-                          alt={`Flipping Page`}
-                          style={
-                            flip.half && flip.side === "right"
-                              ? {
-                                  transform: "rotateY(-180deg)",
-                                }
-                              : {}
-                          }
-                        />
-                      </div>
-                      <div
-                        style={
-                          !flip.start || flip.side !== "left"
-                            ? { visibility: "hidden" }
-                            : flip.half
-                            ? {
-                                right: 0,
-                              }
-                            : {}
-                        }
-                        className={`${classes.flipContainer} ${classes.flipL} ${
-                          flip.start
-                            ? flip.side === "left"
-                              ? classes.flippedLeft
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        <img
-                          src={
-                            flip.src
-                              ? `data:image/png;base64,${flip.src}`
+                            pageData[firstPageNo]
+                              ? `data:image/png;base64,${pageData[firstPageNo]}`
                               : "/book/page_temp.png"
                           }
-                          alt={`Flipping Page`}
+                          alt={`Page ${pageNo}`}
+                          style={smallLoading ? { display: "none" } : {}}
+                          onClick={leftClick}
+                        />
+                        <img
+                          src={
+                            pageData[secondPageNo]
+                              ? `data:image/png;base64,${pageData[secondPageNo]}`
+                              : "/book/page_temp_2.png"
+                          }
+                          alt={`Page ${pageNo + 1}`}
+                          style={smallLoading ? { display: "none" } : {}}
+                          onClick={rightClick}
+                        />
+                        <div
                           style={
-                            flip.half && flip.side === "left"
+                            !flip.start || flip.side !== "right"
+                              ? { visibility: "hidden" }
+                              : flip.half
                               ? {
-                                  transform: "rotateY(180deg)",
+                                  left: 0,
                                 }
                               : {}
                           }
-                        />
+                          className={`${classes.flipContainer} ${
+                            classes.flip
+                          } ${
+                            flip.start
+                              ? flip.side === "right"
+                                ? classes.flippedRight
+                                : ""
+                              : ""
+                          }`}
+                        >
+                          <img
+                            src={
+                              flip.src
+                                ? `data:image/png;base64,${flip.src}`
+                                : "/book/page_temp_2.png"
+                            }
+                            alt={`Flipping Page`}
+                            style={
+                              flip.half && flip.side === "right"
+                                ? {
+                                    transform: "rotateY(-180deg)",
+                                  }
+                                : {}
+                            }
+                          />
+                        </div>
+                        <div
+                          style={
+                            !flip.start || flip.side !== "left"
+                              ? { visibility: "hidden" }
+                              : flip.half
+                              ? {
+                                  right: 0,
+                                }
+                              : {}
+                          }
+                          className={`${classes.flipContainer} ${
+                            classes.flipL
+                          } ${
+                            flip.start
+                              ? flip.side === "left"
+                                ? classes.flippedLeft
+                                : ""
+                              : ""
+                          }`}
+                        >
+                          <img
+                            src={
+                              flip.src
+                                ? `data:image/png;base64,${flip.src}`
+                                : "/book/page_temp.png"
+                            }
+                            alt={`Flipping Page`}
+                            style={
+                              flip.half && flip.side === "left"
+                                ? {
+                                    transform: "rotateY(180deg)",
+                                  }
+                                : {}
+                            }
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
                 {pageNo === totalPages && (
                   <img
                     src="/book/covers_right.png"
                     alt="last Page"
                     onClick={() => setPageNo((prev) => prev - 2)}
+                    style={{
+                      filter: "brightness(0.8)",
+                    }}
                   />
                 )}
               </div>
@@ -299,6 +342,41 @@ export default function BookMain() {
           )}
         </div>
       )}
+      <div className={classes.backButton} onClick={() => router.back()}>
+        <IoArrowBack />
+      </div>
+      <div className={classes.bookmarkButton}>
+        <IoBookmarkOutline />
+      </div>
+      <div className={classes.backPage} onClick={leftClick}>
+        <IoChevronBackOutline />
+      </div>
+      <div className={classes.forwardPage} onClick={rightClick}>
+        <IoChevronForwardOutline />
+      </div>
+      <form
+        className={classes.fastForward}
+        onSubmit={(e) => {
+          e.preventDefault();
+          let page = parseInt(pageRef.current.value);
+          if (isNaN(page) || page < 1 || page > totalPages) return;
+          if (page % 2 === 0) page--;
+          setPageNo(page);
+          setFirstPageNo(page - 1);
+          setSecondPageNo(page);
+        }}
+      >
+        <input
+          className={classes.fastForwardInput}
+          type="number"
+          ref={pageRef}
+          min={1}
+          max={totalPages - 1}
+        />
+        <button type="submit" className={classes.fastForwardButton}>
+          <FaAngleDoubleRight />
+        </button>
+      </form>
     </div>
   );
 }

@@ -5,7 +5,8 @@
   align-items: center;
   gap: 2rem;
   height: 100%;
-  background: rgb(23, 23, 23, 0.7);
+  /* background: rgb(23, 23, 23, 0.7); */
+  background: rgb(0, 0, 0, 0.7);
   width: 100%;
 }
 
@@ -109,12 +110,14 @@
 .planetOne {
   top: 10vh;
   left: 15vw;
+  opacity: 0.6;
 }
 
 .planetTwo {
   top: 45vh;
   left: 80vw;
   z-index: 99;
+  opacity: 0.4;
 }
 
 .bookContent:hover .main::before,
@@ -303,4 +306,116 @@
   /* left: 0; */
   right: 50%;
   transition: all 0.6s ease;
+}
+
+.backButton,
+.bookmarkButton,
+.backPage,
+.forwardPage,
+.fastForward {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backButton > svg,
+.bookmarkButton > svg,
+.backPage > svg,
+.forwardPage > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.backButton,
+.bookmarkButton {
+  top: 2rem;
+  left: 2rem;
+  z-index: 9999;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.bookmarkButton {
+  left: unset;
+  right: 2rem;
+}
+
+.backButton:hover,
+.bookmarkButton:hover,
+.backPage:hover,
+.forwardPage:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.backPage,
+.forwardPage {
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.backPage {
+  left: 2rem;
+}
+
+.forwardPage {
+  right: 2rem;
+}
+
+.fastForward {
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.fastForwardInput {
+  cursor: text;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.fastForwardInput::-webkit-outer-spin-button,
+.fastForwardInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.fastForwardInput:focus {
+  outline: none;
+}
+
+.fastForwardButton {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fastForwardButton:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
