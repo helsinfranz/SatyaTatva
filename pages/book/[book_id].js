@@ -1,3 +1,4 @@
+import { processPdf } from "@/lib/pdf_fetch";
 import { bookMap } from "@/lib/storage";
 import BlackHole from "@/reuse/loader/blackHole";
 import Planet1 from "@/reuse/planets/planet1";
@@ -40,29 +41,37 @@ export default function BookMain() {
       if (pageRef.current) {
         pageRef.current.value = 0;
       }
-      const res = await fetch("/api/test", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ page: 1, filePath: path }),
-      });
-      if (!res.ok) {
+      // const res = await fetch("/api/test", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ page: 1, filePath: path }),
+      // });
+      // if (!res.ok) {
+      //   setError(true);
+      //   setLoading(false);
+      //   return;
+      // }
+      // const data = await res.json();
+
+      try {
+        const data = await processPdf(`/book/${path}`, 1);
+        setTotalPages(data.totalPages || 0);
+        setPageData(
+          data.images.reduce((acc, item, index) => {
+            acc[index] = item;
+            return acc;
+          }, {})
+        );
+        setFirstPageNo(0);
+        setSecondPageNo(1);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
         setError(true);
         setLoading(false);
-        return;
       }
-      const data = await res.json();
-      setTotalPages(data.totalPages || 0);
-      setPageData(
-        data.images.reduce((acc, item, index) => {
-          acc[index] = item;
-          return acc;
-        }, {})
-      );
-      setFirstPageNo(0);
-      setSecondPageNo(1);
-      setLoading(false);
     }
 
     if (book_id) {
@@ -78,28 +87,38 @@ export default function BookMain() {
       if (pageNo < totalPages) {
         setSmallLoading(true);
         const path = bookMap[book_id];
-        const res = await fetch("/api/test", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ page: pageNo + 1, filePath: path }),
-        });
-        if (!res.ok) {
+        // const res = await fetch("/api/test", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ page: pageNo + 1, filePath: path }),
+        // });
+
+        // if (!res.ok) {
+        //   setError(true);
+        //   setSmallLoading(false);
+        //   return;
+        // }
+        // const data = await res.json();
+
+        try {
+          const data = await processPdf(`/book/${path}`, pageNo + 1);
+
+          const newData = data.images.reduce((acc, item, index) => {
+            acc[index + pageNo - 1] = item; //-1 because starating from 0 in pageNo.
+            return acc;
+          }, {});
+          setPageData((prev) => ({
+            ...prev,
+            ...newData,
+          }));
+          setSmallLoading(false);
+        } catch (error) {
+          console.error("Error fetching data:", error);
           setError(true);
           setSmallLoading(false);
-          return;
         }
-        const data = await res.json();
-        const newData = data.images.reduce((acc, item, index) => {
-          acc[index + pageNo] = item;
-          return acc;
-        }, {});
-        setPageData((prev) => ({
-          ...prev,
-          ...newData,
-        }));
-        setSmallLoading(false);
       }
     }
     if (!pageData[firstPageNo] && Object.keys(pageData).length > 0) {
@@ -235,7 +254,8 @@ export default function BookMain() {
                         <img
                           src={
                             pageData[firstPageNo]
-                              ? `data:image/png;base64,${pageData[firstPageNo]}`
+                              ? // ? `data:image/png;base64,${pageData[firstPageNo]}`
+                                pageData[firstPageNo]
                               : "/book/page_temp.png"
                           }
                           alt={`Page ${pageNo}`}
@@ -245,7 +265,8 @@ export default function BookMain() {
                         <img
                           src={
                             pageData[secondPageNo]
-                              ? `data:image/png;base64,${pageData[secondPageNo]}`
+                              ? // ? `data:image/png;base64,${pageData[secondPageNo]}`
+                                pageData[secondPageNo]
                               : "/book/page_temp_2.png"
                           }
                           alt={`Page ${pageNo + 1}`}
@@ -275,8 +296,9 @@ export default function BookMain() {
                           <img
                             src={
                               flip.src
-                                ? `data:image/png;base64,${flip.src}`
-                                : "/book/page_temp_2.png"
+                                ? flip.src
+                                : // ? `data:image/png;base64,${flip.src}`
+                                  "/book/page_temp_2.png"
                             }
                             alt={`Flipping Page`}
                             style={
@@ -311,8 +333,9 @@ export default function BookMain() {
                           <img
                             src={
                               flip.src
-                                ? `data:image/png;base64,${flip.src}`
-                                : "/book/page_temp.png"
+                                ? flip.src
+                                : // ? `data:image/png;base64,${flip.src}`
+                                  "/book/page_temp.png"
                             }
                             alt={`Flipping Page`}
                             style={
