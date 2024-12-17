@@ -215,11 +215,34 @@
   /* padding: 2rem; */
 }
 
+.images > img {
+  filter: brightness(0.8);
+}
+
 .images > img,
 .flip img,
 .flipL img {
   height: 37rem;
   cursor: pointer; /* Change cursor to pointer when hovering over image */
+}
+
+.bookTitleMain {
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%) rotateZ(-0.5deg);
+  font-family: "Cinzel Decorative", serif; /* Elegant serif font */
+  font-size: 3vw; /* Adjust size based on image width */
+  color: #442714;
+  text-shadow: 0 1px 0 #000, /* Inner shadow for depth */ 0 2px 0 #000,
+    0 3px 1px rgba(0, 0, 0, 0.5),
+    /* Light outer shadow */ 0 0 5px rgba(0, 0, 0, 0.2); /* Glow effect for realism */
+  letter-spacing: 2px;
+  font-weight: bold;
+  opacity: 0.8;
+  filter: brightness(0.8);
+  cursor: default;
+  pointer-events: none;
 }
 
 .flip,

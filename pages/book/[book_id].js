@@ -1,5 +1,5 @@
 import { processPdf } from "@/lib/pdf_fetch";
-import { bookMap } from "@/lib/storage";
+import { bookMap, titleMap } from "@/lib/storage";
 import BlackHole from "@/reuse/loader/blackHole";
 import Planet1 from "@/reuse/planets/planet1";
 import Planet2 from "@/reuse/planets/planet2";
@@ -20,6 +20,7 @@ export default function BookMain() {
   const pageRef = useRef(null);
 
   const [pageData, setPageData] = useState({});
+  const [bookTitle, setBookTitle] = useState("Granth");
   const [totalPages, setTotalPages] = useState(1);
   const [pageNo, setPageNo] = useState(0);
   const [firstPageNo, setFirstPageNo] = useState(0);
@@ -41,22 +42,9 @@ export default function BookMain() {
       if (pageRef.current) {
         pageRef.current.value = 0;
       }
-      // const res = await fetch("/api/test", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ page: 1, filePath: path }),
-      // });
-      // if (!res.ok) {
-      //   setError(true);
-      //   setLoading(false);
-      //   return;
-      // }
-      // const data = await res.json();
 
       try {
-        const data = await processPdf(`/book/${path}`, 1);
+        const data = await processPdf(path, 1);
         setTotalPages(data.totalPages || 0);
         setPageData(
           data.images.reduce((acc, item, index) => {
@@ -76,6 +64,8 @@ export default function BookMain() {
 
     if (book_id) {
       const path = bookMap[book_id];
+      const title = titleMap[book_id] || "Granth";
+      setBookTitle(title);
       if (path) {
         fetchData(path);
       }
@@ -87,23 +77,8 @@ export default function BookMain() {
       if (pageNo < totalPages) {
         setSmallLoading(true);
         const path = bookMap[book_id];
-        // const res = await fetch("/api/test", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({ page: pageNo + 1, filePath: path }),
-        // });
-
-        // if (!res.ok) {
-        //   setError(true);
-        //   setSmallLoading(false);
-        //   return;
-        // }
-        // const data = await res.json();
-
         try {
-          const data = await processPdf(`/book/${path}`, pageNo + 1);
+          const data = await processPdf(path, pageNo + 1);
 
           const newData = data.images.reduce((acc, item, index) => {
             acc[index + pageNo - 1] = item; //-1 because starating from 0 in pageNo.
@@ -232,14 +207,18 @@ export default function BookMain() {
             >
               <div className={classes.imagesAll}>
                 {pageNo === 0 && (
-                  <img
-                    src="/book/covers_left.png"
-                    alt="Page 0"
-                    onClick={() => setPageNo(1)}
-                    style={{
-                      filter: "brightness(0.8)",
-                    }}
-                  />
+                  <>
+                    <img
+                      src="/book/covers_left.png"
+                      alt="Page 0"
+                      onClick={() => setPageNo(1)}
+                      draggable="false"
+                      style={{
+                        filter: "brightness(0.8)",
+                      }}
+                    />
+                    <div className={classes.bookTitleMain}>{bookTitle}</div>
+                  </>
                 )}
                 {Object.keys(pageData).length > 0 &&
                   pageNo < totalPages &&
@@ -248,6 +227,7 @@ export default function BookMain() {
                       <img
                         src="/book/pages1.png"
                         alt="PageMain"
+                        draggable="false"
                         className={classes.bookPages}
                       />
                       <div className={classes.images}>
@@ -259,6 +239,7 @@ export default function BookMain() {
                               : "/book/page_temp.png"
                           }
                           alt={`Page ${pageNo}`}
+                          draggable="false"
                           style={smallLoading ? { display: "none" } : {}}
                           onClick={leftClick}
                         />
@@ -270,6 +251,7 @@ export default function BookMain() {
                               : "/book/page_temp_2.png"
                           }
                           alt={`Page ${pageNo + 1}`}
+                          draggable="false"
                           style={smallLoading ? { display: "none" } : {}}
                           onClick={rightClick}
                         />
@@ -292,6 +274,7 @@ export default function BookMain() {
                                 : ""
                               : ""
                           }`}
+                          draggable="false"
                         >
                           <img
                             src={
@@ -308,6 +291,7 @@ export default function BookMain() {
                                   }
                                 : {}
                             }
+                            draggable="false"
                           />
                         </div>
                         <div
@@ -329,6 +313,7 @@ export default function BookMain() {
                                 : ""
                               : ""
                           }`}
+                          draggable="false"
                         >
                           <img
                             src={
@@ -345,6 +330,7 @@ export default function BookMain() {
                                   }
                                 : {}
                             }
+                            draggable="false"
                           />
                         </div>
                       </div>
@@ -354,7 +340,13 @@ export default function BookMain() {
                   <img
                     src="/book/covers_right.png"
                     alt="last Page"
-                    onClick={() => setPageNo((prev) => prev - 2)}
+                    draggable="false"
+                    onClick={() => {
+                      setPageNo(totalPages - 2);
+                      pageRef.current.value = totalPages - 2;
+                      setFirstPageNo(totalPages - 3);
+                      setSecondPageNo(totalPages - 2);
+                    }}
                     style={{
                       filter: "brightness(0.8)",
                     }}
@@ -365,16 +357,19 @@ export default function BookMain() {
           )}
         </div>
       )}
-      <div className={classes.backButton} onClick={() => router.back()}>
+      <div
+        className={`${classes.backButton} hover`}
+        onClick={() => router.back()}
+      >
         <IoArrowBack />
       </div>
-      <div className={classes.bookmarkButton}>
+      <div className={`${classes.bookmarkButton} hover`}>
         <IoBookmarkOutline />
       </div>
-      <div className={classes.backPage} onClick={leftClick}>
+      <div className={`${classes.backPage} hover`} onClick={leftClick}>
         <IoChevronBackOutline />
       </div>
-      <div className={classes.forwardPage} onClick={rightClick}>
+      <div className={`${classes.forwardPage} hover`} onClick={rightClick}>
         <IoChevronForwardOutline />
       </div>
       <form
