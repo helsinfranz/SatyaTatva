@@ -195,18 +195,20 @@
 }
 
 .imagesAll > img {
-  height: 40rem;
+  /* height: 40rem; */
+  height: calc(100vh - 6rem);
 }
 
 .bookPages {
-  width: 64rem;
+  width: calc(100% + 10rem);
+  margin-left: -5rem;
 }
 
 .images {
   position: absolute;
-  top: 50%;
+  top: 1.5rem;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,11 +217,36 @@
   /* padding: 2rem; */
 }
 
+.images > img {
+  filter: brightness(0.8);
+}
+
 .images > img,
 .flip img,
 .flipL img {
-  height: 37rem;
+  /* height: 37rem; */
+  height: calc(100vh - 9rem);
   cursor: pointer; /* Change cursor to pointer when hovering over image */
+}
+
+.bookTitleMain {
+  position: absolute;
+  top: 45%;
+  left: 54%;
+  transform: translate(-50%, -50%) rotateZ(-0.5deg);
+  font-family: "Cinzel Decorative", serif; /* Elegant serif font */
+  font-size: 2.5rem; /* Adjust size based on image width */
+  color: #442714;
+  text-shadow: 0 1px 0 #000, /* Inner shadow for depth */ 0 2px 0 #000,
+    0 3px 1px rgba(0, 0, 0, 0.5),
+    /* Light outer shadow */ 0 0 5px rgba(0, 0, 0, 0.2); /* Glow effect for realism */
+  letter-spacing: 2px;
+  font-weight: bold;
+  opacity: 0.8;
+  filter: brightness(0.8);
+  cursor: default;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .flip,
@@ -242,45 +269,6 @@
   overflow: hidden; /* Optional: Ensures the image doesn't overflow */
   border-radius: 5px;
 }
-
-/* .flip {
-  right: 0;
-  left: 50%;
-}
-
-.flip > img:first-child {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: rotateY(180deg) scaleX(-1);
-  z-index: 9999;
-  transition: transform 0.1s ease;
-}
-
-.flip > img:last-child {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: rotateY(108.5deg);
-  z-index: 999;
-}
-
-.flippedRight {
-  transform: rotateY(-180deg);
-  left: 0;
-  right: 50%;
-  transition: all 0.6s ease;
-}
-
-.flippedRight > img:first-child {
-  transform: rotateY(108.5deg);
-  transition: all 0.6s ease;
-}
-
-.flippedRight > img:last-child {
-  transform: rotateY(180deg);
-  transition: all 0.6s ease;
-} */
 
 .flipL {
   left: 0;
@@ -380,6 +368,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  z-index: 9999;
 }
 
 .fastForwardInput {
@@ -418,4 +407,106 @@
 .fastForwardButton:hover {
   background-color: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
+}
+
+.bookHolderMain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-height: 34.68em) {
+  .bookTitleMain {
+    font-size: 2rem;
+    top: 44%;
+  }
+}
+
+@media (max-height: 27.5em) {
+  .bookTitleMain {
+    font-size: 1.5rem;
+    top: 42%;
+  }
+}
+
+@media (max-width: 62.5em) {
+  .backButton > svg,
+  .bookmarkButton > svg,
+  .backPage > svg,
+  .forwardPage > svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .backButton,
+  .bookmarkButton {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem;
+  }
+
+  .bookmarkButton {
+    left: unset;
+    right: 1rem;
+  }
+
+  .backPage,
+  .forwardPage {
+    padding: 0.5rem;
+  }
+
+  .backPage {
+    left: 1rem;
+  }
+
+  .forwardPage {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 56em) and (min-height: 27.5em) {
+  .bookPages {
+    margin-left: 0;
+    width: calc(100vw - 8rem);
+  }
+
+  .imagesAll > img {
+    height: calc((100vw - 8rem) / 2 * 1.29);
+  }
+
+  .images > img,
+  .flip img,
+  .flipL img {
+    height: calc((100vw - 11rem) / 2 * 1.29);
+  }
+
+  .bookHolderMain {
+    align-items: center;
+  }
+
+  .images {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .bookTitleMain {
+    font-size: 4vw;
+    top: 48%;
+  }
+
+  .planetOne {
+    top: -10vh;
+    left: 0vw;
+  }
+
+  .planetTwo {
+    display: none;
+  }
+}
+
+@media (max-width: 25em) {
+  .bookTitleMain {
+    font-size: 0.75rem;
+  }
 }
