@@ -6,9 +6,10 @@ import Planet2 from "@/reuse/planets/planet2";
 import classes from "@/styles/book.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleRight, FaForward } from "react-icons/fa";
 import {
   IoArrowBack,
+  IoBookmark,
   IoBookmarkOutline,
   IoChevronBackOutline,
   IoChevronForwardOutline,
@@ -28,6 +29,7 @@ export default function BookMain() {
   const [loading, setLoading] = useState(false);
   const [smallLoading, setSmallLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [bookmarked, setBookmarked] = useState(0);
   const [flip, setFlip] = useState({
     start: false,
     src: "",
@@ -46,15 +48,21 @@ export default function BookMain() {
       try {
         const data = await processPdf(path, 1);
         setTotalPages(data.totalPages || 0);
-        setPageData(
-          data.images.reduce((acc, item, index) => {
-            acc[index] = item;
-            return acc;
-          }, {})
-        );
+        setPageData(data.images);
         setFirstPageNo(0);
         setSecondPageNo(1);
         setLoading(false);
+        const slug = `data-${book_id}`;
+        const stored = JSON.parse(localStorage.getItem(slug) || "{}");
+        if (stored || Object.keys(stored).length > 0) {
+          if (stored.bookmarked) {
+            setBookmarked(stored.bookmarked);
+          }
+          setPageNo(stored.pageNo || 0);
+          pageRef.current.value = stored.pageNo || 0;
+          setFirstPageNo(stored.pageNo - 1 < 0 ? 0 : stored.pageNo - 1);
+          setSecondPageNo(stored.pageNo);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(true);
@@ -78,15 +86,17 @@ export default function BookMain() {
         setSmallLoading(true);
         const path = bookMap[book_id];
         try {
-          const data = await processPdf(path, pageNo + 1);
+          setPageData((prev) => filterPageData(pageNo + 1, prev));
 
-          const newData = data.images.reduce((acc, item, index) => {
-            acc[index + pageNo - 1] = item; //-1 because starating from 0 in pageNo.
-            return acc;
-          }, {});
+          const data = await processPdf(
+            path,
+            pageNo + 1,
+            Object.keys(pageData)
+          );
+
           setPageData((prev) => ({
             ...prev,
-            ...newData,
+            ...data.images,
           }));
           setSmallLoading(false);
         } catch (error) {
@@ -112,9 +122,11 @@ export default function BookMain() {
     if (pageNo > 1) {
       setPageNo(pageNo - 2);
       pageRef.current.value = pageNo - 2;
+      savePageNo(pageNo - 2);
     } else {
       setPageNo(0);
       pageRef.current.value = 0;
+      savePageNo(0);
     }
     setFirstPageNo(pageNo < 2 ? 0 : pageNo - 3);
     setTimeout(() => {
@@ -152,9 +164,11 @@ export default function BookMain() {
     if (pageNo < totalPages - 1) {
       setPageNo(pageNo + 2);
       pageRef.current.value = pageNo + 2;
+      savePageNo(pageNo + 2);
     } else {
       setPageNo(totalPages);
       pageRef.current.value = totalPages;
+      savePageNo(totalPages);
     }
     setSecondPageNo(pageNo === 0 ? 1 : pageNo + 2);
     setTimeout(() => {
@@ -176,6 +190,30 @@ export default function BookMain() {
     }, 600);
   }
 
+  function savePageNo(pageNumber) {
+    if (!localStorage) return;
+    const slug = `data-${book_id}`;
+    const stored = JSON.parse(localStorage.getItem(slug) || "{}");
+    const newStore = {
+      ...stored,
+      pageNo: pageNumber,
+    };
+    localStorage.setItem(slug, JSON.stringify(newStore));
+  }
+
+  function filterPageData(currentPage, pageData) {
+    const start = Math.max(0, currentPage - 15);
+    const end = currentPage + 16;
+    return Object.keys(pageData)
+      .filter((key) => {
+        const pageNumber = parseInt(key, 10);
+        return pageNumber >= start && pageNumber <= end;
+      })
+      .reduce((filteredData, key) => {
+        filteredData[key] = pageData[key];
+        return filteredData;
+      }, {});
+  }
   return (
     <div className={classes.main}>
       <div className={classes.shootingStar1}></div>
@@ -355,9 +393,49 @@ export default function BookMain() {
       >
         <IoArrowBack />
       </div>
-      <div className={`${classes.bookmarkButton} hover`}>
-        <IoBookmarkOutline />
+      <div
+        className={`${classes.bookmarkButton} hover`}
+        title={bookmarked ? "Remove Bookmark" : "Bookmark"}
+        onClick={() => {
+          if (bookmarked) {
+            localStorage.setItem(
+              `data-${book_id}`,
+              JSON.stringify({
+                pageNo: pageNo,
+              })
+            );
+            setBookmarked(0);
+          } else {
+            if (pageNo === 0 || pageNo === totalPages) return;
+            localStorage.setItem(
+              `data-${book_id}`,
+              JSON.stringify({
+                pageNo: pageNo,
+                bookmarked: pageNo,
+              })
+            );
+            setBookmarked(pageNo);
+          }
+        }}
+      >
+        {bookmarked > 0 ? <IoBookmark /> : <IoBookmarkOutline />}
       </div>
+      {bookmarked > 0 && (
+        <div
+          className={`${classes.bookmarkButton} ${classes.goTobBookmarkButton} hover`}
+          title="Go to Bookmark"
+          onClick={() => {
+            let page = bookmarked;
+            if (page % 2 === 0) page--;
+            setPageNo(page);
+            setFirstPageNo(page - 1);
+            setSecondPageNo(page);
+            pageRef.current.value = page;
+          }}
+        >
+          <FaForward />
+        </div>
+      )}
       <div className={`${classes.backPage} hover`} onClick={leftClick}>
         <IoChevronBackOutline />
       </div>

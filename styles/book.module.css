@@ -327,6 +327,10 @@
   background-color: rgba(255, 255, 255, 0.02);
 }
 
+.goTobBookmarkButton {
+  top: 6.5rem;
+}
+
 .bookmarkButton {
   left: unset;
   right: 2rem;
@@ -444,6 +448,10 @@
     top: 1rem;
     left: 1rem;
     padding: 0.5rem;
+  }
+
+  .goTobBookmarkButton {
+    top: 3.75rem;
   }
 
   .bookmarkButton {
