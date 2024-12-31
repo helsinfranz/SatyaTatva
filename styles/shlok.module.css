@@ -4,6 +4,35 @@
   position: relative;
 }
 
+.shlokImagesContainer {
+  width: 100%;
+  height: 100%;
+  /* position: relative; */
+  overflow: hidden;
+}
+
+.sliderTrack {
+  display: flex;
+  transition: all 0.5s ease-in-out;
+  /* width: 100%; */
+  height: 100%;
+  /* position: relative; */
+  overflow: hidden;
+  /* scroll-snap-type: x mandatory; */
+  scrollbar-width: none;
+  /* -ms-overflow-style: none; */
+  scroll-behavior: smooth;
+}
+
+.shlokImageMain {
+  position: relative;
+  width: 100vw;
+}
+/* 
+.shlokNextImageMain {
+
+} */
+
 .container > div {
   position: absolute;
 }

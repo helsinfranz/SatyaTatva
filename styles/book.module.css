@@ -300,7 +300,9 @@
 .bookmarkButton,
 .backPage,
 .forwardPage,
-.fastForward {
+.fastForward,
+.zoomIn,
+.zoomOut {
   position: absolute;
   cursor: pointer;
   display: flex;
@@ -311,13 +313,17 @@
 .backButton > svg,
 .bookmarkButton > svg,
 .backPage > svg,
-.forwardPage > svg {
+.forwardPage > svg,
+.zoomIn > svg,
+.zoomOut > svg {
   width: 1.5rem;
   height: 1.5rem;
 }
 
 .backButton,
-.bookmarkButton {
+.bookmarkButton,
+.zoomIn,
+.zoomOut {
   top: 2rem;
   left: 2rem;
   z-index: 9999;
@@ -339,7 +345,9 @@
 .backButton:hover,
 .bookmarkButton:hover,
 .backPage:hover,
-.forwardPage:hover {
+.forwardPage:hover,
+.zoomIn:hover,
+.zoomOut:hover {
   background-color: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
 }
@@ -420,6 +428,10 @@
   justify-content: center;
 }
 
+.zoom {
+  display: none;
+}
+
 @media (max-height: 34.68em) {
   .bookTitleMain {
     font-size: 2rem;
@@ -438,13 +450,17 @@
   .backButton > svg,
   .bookmarkButton > svg,
   .backPage > svg,
-  .forwardPage > svg {
+  .forwardPage > svg,
+  .zoomIn > svg,
+  .zoomOut > svg {
     width: 1rem;
     height: 1rem;
   }
 
   .backButton,
-  .bookmarkButton {
+  .bookmarkButton,
+  .zoomIn,
+  .zoomOut {
     top: 1rem;
     left: 1rem;
     padding: 0.5rem;
@@ -514,7 +530,43 @@
 }
 
 @media (max-width: 25em) {
+  .zoom {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 1rem;
+    z-index: 9999999;
+  }
+  .zoomIn,
+  .zoomOut {
+    position: unset;
+  }
   .bookTitleMain {
     font-size: 0.75rem;
+  }
+  .backPage,
+  .forwardPage {
+    top: unset;
+    bottom: 2.2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(-50%);
+  }
+  .backPage {
+    left: 2rem;
+  }
+  .forwardPage {
+    right: 0rem;
+  }
+  /* .imagesAll > img {
+    height: calc((100vw - 8rem) / 2 * 1.29);
+  } */
+
+  .images > img,
+  .flip img,
+  .flipL img {
+    height: calc((100vw - 9rem) / 2 * 1.29);
   }
 }

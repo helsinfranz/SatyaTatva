@@ -6,6 +6,7 @@ import Planet2 from "@/reuse/planets/planet2";
 import classes from "@/styles/book.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import { BsZoomIn, BsZoomOut } from "react-icons/bs";
 import { FaAngleDoubleRight, FaForward } from "react-icons/fa";
 import {
   IoArrowBack,
@@ -30,6 +31,7 @@ export default function BookMain() {
   const [smallLoading, setSmallLoading] = useState(false);
   const [error, setError] = useState(false);
   const [bookmarked, setBookmarked] = useState(0);
+  const [zoom, setZoom] = useState(0);
   const [flip, setFlip] = useState({
     start: false,
     src: "",
@@ -201,6 +203,16 @@ export default function BookMain() {
     localStorage.setItem(slug, JSON.stringify(newStore));
   }
 
+  function zoomIn() {
+    if (zoom === 3) return;
+    setZoom((prev) => prev + 1);
+  }
+
+  function zoomOut() {
+    if (zoom === 0) return;
+    setZoom((prev) => prev - 1);
+  }
+
   function filterPageData(currentPage, pageData) {
     const start = Math.max(0, currentPage - 15);
     const end = currentPage + 16;
@@ -228,13 +240,19 @@ export default function BookMain() {
       {error ? (
         <div>Error</div>
       ) : (
-        <div className={classes.bookContent}>
+        <div
+          className={classes.bookContent}
+          style={{ zoom: zoom, overflowX: "auto" }}
+        >
           {loading ? (
             <div className={classes.loaderHolder}>
               <BlackHole />
             </div>
           ) : (
-            <div className={classes.bookHolderMain}>
+            <div
+              className={classes.bookHolderMain}
+              style={zoom >= 2 ? { justifyContent: "unset" } : {}}
+            >
               <div className={classes.imagesAll}>
                 {pageNo === 0 && (
                   <>
@@ -465,6 +483,22 @@ export default function BookMain() {
           <FaAngleDoubleRight />
         </button>
       </form>
+      <div className={classes.zoom}>
+        <div
+          className={`${classes.zoomIn} hover`}
+          onClick={zoomIn}
+          style={zoom === 3 ? { opacity: 0.5, cursor: "not-allowed" } : {}}
+        >
+          <BsZoomIn />
+        </div>
+        <div
+          className={`${classes.zoomOut} hover`}
+          onClick={zoomOut}
+          style={zoom === 0 ? { opacity: 0.5, cursor: "not-allowed" } : {}}
+        >
+          <BsZoomOut />
+        </div>
+      </div>
     </div>
   );
 }

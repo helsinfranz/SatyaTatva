@@ -64,6 +64,13 @@ export default function Shlok() {
     }
   }, [slug]);
 
+  useEffect(() => {
+    if (shlokNo > 0) {
+      const sliderTrack = document.getElementById("sliderTrack");
+      sliderTrack.scrollLeft = shlokNo * 100;
+    }
+  }, [shlokNo]);
+
   async function startMovement(title, record) {
     if (shlokMovement.length > 0) {
       setShlokNo(0);
@@ -167,17 +174,47 @@ export default function Shlok() {
 
   return (
     <div className={classes.container}>
-      <Image
-        src="/testingHero.jpg"
-        alt="Picture of the author"
-        fill={true}
-        priority={true}
-        sizes="100vw"
-        style={{
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-      />
+      <div className={classes.shlokImagesContainer}>
+        <div
+          className={classes.sliderTrack}
+          id="sliderTrack"
+          // style={{ transform: `translateX(-${shlokNo * 100}vw)` }}
+        >
+          {shlokNo > 0 && shlok ? (
+            Object.keys(shlok).map((s, idx) => (
+              <div className={classes.shlokImageMain} key={idx}>
+                <Image
+                  src={
+                    shlok[`shlok${idx + 1}`]?.split("\n\n")[2] !== ""
+                      ? shlok[`shlok${idx + 1}`].split("\n\n")[2]
+                      : "/testingHero.jpg"
+                  }
+                  alt={slug}
+                  fill={true}
+                  priority={true}
+                  sizes="100vw"
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
+                />
+              </div>
+            ))
+          ) : (
+            <Image
+              src="/testingHero.jpg"
+              alt={slug}
+              fill={true}
+              priority={true}
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          )}
+        </div>
+      </div>
       <div className={classes.shlokMain}>
         <div className={classes.smallTitle}>
           {shlokNo > 0 && shlok

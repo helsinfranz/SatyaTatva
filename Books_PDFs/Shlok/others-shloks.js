@@ -5,70 +5,90 @@ const shivTandavStotram = {
 Jatatavigalajjala pravahapavitasthale
 Galeavalambya lambitam bhujangatungamalikam
 Damad damad damaddama ninadavadamarvayam
-Chakara chandtandavam tanotu nah shivah shivam`,
+Chakara chandtandavam tanotu nah shivah shivam
+
+/testingHero.jpg`,
   shlok2: `जटाकटा हसंभ्रम भ्रमन्निलिंपनिर्झरी विलोलवीचिवल्लरी विराजमानमूर्धनि।
 धगद्धगद्धगज्ज्वल ल्ललाटपट्टपावके किशोरचंद्रशेखरे रतिः प्रतिक्षणं मम: ॥२॥
 
 Jata kata hasambhrama bhramanilimpanirjhari
 Vilolavichivalarai virajamanamurdhani
 Dhagadhagadhagajjva lalalata pattapavake
-Kishora chandrashekhare ratih pratikshanam mama`,
+Kishora chandrashekhare ratih pratikshanam mama
+
+/images/ShivTandav01.jpg`,
   shlok3: `धराधरेंद्रनंदिनी विलासबन्धुबन्धुर स्फुरद्दिगंतसंतति प्रमोद मानमानसे।
 कृपाकटाक्षधोरणी निरुद्धदुर्धरापदि क्वचिद्विगम्बरे मनोविनोदमेतु वस्तुनि ॥३॥
 
 Dharadharendrana ndinivilasabandhubandhura
 Sphuradigantasantati pramodamanamanase
 Krupakatakshadhorani nirudhadurdharapadi
-Kvachidigambare manovinodametuvastuni`,
+Kvachidigambare manovinodametuvastuni
+
+/testingHero.jpg`,
   shlok4: `जटाभुजंगपिंगल स्फुरत्फणामणिप्रभा कदंबकुंकुमद्रव प्रलिप्तदिग्व धूमुखे।
 मदांधसिंधु रस्फुरत्वगुत्तरीयमेदुरे मनोविनोदद्भुतं बिंभर्तुभूत भर्तरि ॥४॥
 
 Jata bhujan gapingala sphuratphanamaniprabha
 Kadambakunkuma dravapralipta digvadhumukhe
 Madandha sindhu rasphuratvagutariyamedure
-Mano vinodamadbhutam bibhartu bhutabhartari`,
+Mano vinodamadbhutam bibhartu bhutabhartari
+
+/images/ShivTandav01.jpg`,
   shlok5: `सहस्रलोचन प्रभृत्यशेषलेखशेखर प्रसूनधूलिधोरणी विधूसरां घ्रिपीठभूः।
 भुजंगराजमालया निबद्धजाटजूटकः श्रियैचिरायजायतां चकोरबंधुशेखरः ॥५॥
 
 Sahasra lochana prabhritya sheshalekhashekhara
 Prasuna dhulidhorani vidhusaranghripithabhuh
 Bhujangaraja malaya nibaddhajatajutaka
-Shriyai chiraya jayatam chakora bandhushekharah`,
+Shriyai chiraya jayatam chakora bandhushekharah
+
+/testingHero.jpg`,
   shlok6: `ललाटचत्वरज्वल द्धनंजयस्फुलिंगभा निपीतपंच सायकंनम न्निलिंपनायकम्‌।
 सुधामयूखलेखया विराजमानशेखरं महाकपालिसंपदे शिरोजटालमस्तुनः ॥६॥
 
 Lalata chatvarajvaladhanajnjayasphulingabha
 nipitapajnchasayakam namannilimpanayakam
 Sudha mayukha lekhaya virajamanashekharam
-Maha kapali sampade shirojatalamastunah`,
+Maha kapali sampade shirojatalamastunah
+
+/images/ShivTandav01.jpg`,
   shlok7: `करालभालपट्टिका धगद्धगद्धगज्ज्वल द्धनंजया धरीकृतप्रचंड पंचसायके।
 धराधरेंद्रनंदिनी कुचाग्रचित्रपत्र कप्रकल्पनैकशिल्पिनी त्रिलोचनेरतिर्मम ॥७॥
 
 Karala bhala pattikadhagaddhagaddhagajjvala
 Ddhanajnjaya hutikruta prachandapajnchasayake
 Dharadharendra nandini kuchagrachitrapatraka
-Prakalpanaikashilpini trilochane ratirmama`,
+Prakalpanaikashilpini trilochane ratirmama
+
+/testingHero.jpg`,
   shlok8: `नवीनमेघमंडली निरुद्धदुर्धरस्फुर त्कुहुनिशीथनीतमः प्रबद्धबद्धकन्धरः।
 निलिम्पनिर्झरीधरस्तनोतु कृत्तिसिंधुरः कलानिधानबंधुरः श्रियं जगंद्धुरंधरः ॥८॥
 
 navina megha mandali niruddhadurdharasphurat
 Kuhu nishithinitamah prabandhabaddhakandharah
 nilimpanirjhari dharastanotu krutti sindhurah
-Kalanidhanabandhurah shriyam jagaddhurandharah`,
+Kalanidhanabandhurah shriyam jagaddhurandharah
+
+/images/ShivTandav01.jpg`,
   shlok9: `प्रफुल्लनीलपंकज प्रपंचकालिमप्रभा विडंबि कंठकंध रारुचि प्रबंधकंधरम्‌।
 स्मरच्छिदं पुरच्छिंद भवच्छिदं मखच्छिदं गजच्छिदांधकच्छिदं तमंतकच्छिदं भजे ॥९॥
 
 Praphulla nila pankaja prapajnchakalimchatha
 Vdambi kanthakandali raruchi prabaddhakandharam
 Smarachchidam purachchhidam bhavachchidam makhachchidam
-Gajachchidandhakachidam tamamtakachchidam bhaje`,
+Gajachchidandhakachidam tamamtakachchidam bhaje
+
+/testingHero.jpg`,
   shlok10: `अखर्वसर्वमंगला कलाकदम्बमंजरी रसप्रवाह माधुरी विजृंभणा मधुव्रतम्‌।
 स्मरांतकं पुरातकं भावंतकं मखांतकं गजांतकांधकांतकं तमंतकांतकं भजे ॥१०॥
 
 Akharvagarvasarvamangala kalakadambamajnjari
 Rasapravaha madhuri vijrumbhana madhuvratam
 Smarantakam purantakam bhavantakam makhantakam
-Gajantakandhakantakam tamantakantakam bhaje`,
+Gajantakandhakantakam tamantakantakam bhaje
+
+/images/ShivTandav01.jpg`,
   shlok11: `जयत्वदभ्रविभ्रम भ्रमद्भुजंगमस्फुरद्ध गद्धगद्विनिर्गमत्कराल भाल हव्यवाट्।
 धिमिद्धिमिद्धि मिध्वनन्मृदंग तुंगमंगलध्वनिक्रमप्रवर्तित: प्रचण्ड ताण्डवः शिवः ॥११॥
 
@@ -76,21 +96,26 @@ Jayatvadabhravibhrama bhramadbhujangamasafur
 Dhigdhigdhi nirgamatkarala bhaal havyavat
 Dhimiddhimiddhimidhva nanmrudangatungamangala
 Dhvanikramapravartita prachanda tandavah shivah
-`,
+
+/testingHero.jpg`,
   shlok12: `दृषद्विचित्रतल्पयो र्भुजंगमौक्तिकमस्र जोर्गरिष्ठरत्नलोष्ठयोः सुहृद्विपक्षपक्षयोः।
 तृणारविंदचक्षुषोः प्रजामहीमहेन्द्रयोः समं प्रवर्तयन्मनः कदा सदाशिवं भजे ॥१२॥
 
 Drushadvichitratalpayor bhujanga mauktikasrajor
 Garishtharatnaloshthayoh suhrudvipakshapakshayoh
 Trushnaravindachakshushoh prajamahimahendrayoh
-Sama pravartayanmanah kada sadashivam bhaje`,
+Sama pravartayanmanah kada sadashivam bhaje
+
+/images/ShivTandav01.jpg`,
   shlok13: `कदा निलिंपनिर्झरी निकुंजकोटरे वसन्‌ विमुक्तदुर्मतिः सदा शिरःस्थमंजलिं वहन्‌।
 विमुक्तलोललोचनो ललामभाललग्नकः शिवेति मंत्रमुच्चरन्‌ कदा सुखी भवाम्यहम्‌ ॥१३॥
 
 Kada nilimpanirjhari nikujnjakotare vasanh
 Vimuktadurmatih sada shirah sthamajnjalim vahanh
 Vimuktalolalochano lalamabhalalagnakah
-Shiveti mantramuchcharan sada sukhi bhavamyaham`,
+Shiveti mantramuchcharan sada sukhi bhavamyaham
+
+/testingHero.jpg`,
   shlok14: `इमं हि नित्यमेव मुक्तमुक्तमोत्तम स्तवं पठन्स्मरन्‌ ब्रुवन्नरो विशुद्धमेति संततम्‌।
 हरे गुरौ सुभक्तिमाशु याति नान्यथागतिं विमोहनं हि देहिनां सुशंकरस्य चिंतनम् ॥१६॥
 
@@ -98,7 +123,8 @@ Imam hi nityameva muktamuttamottamam stavam
 Pathansmaran bruvannaro vishuddhimeti santatam
 Hare gurau subhaktimashu yati nanyatha gatim
 Vimohanam hi dehinam sushankarasya chintanam
-`,
+
+/images/ShivTandav01.jpg`,
 };
 
 const hanumanChalisa = {

@@ -1,8 +1,6 @@
 import Head from "next/head";
 import classes from "@/styles/Home.module.css";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import ContentCube from "@/components/home/content_cube";
 import SmallCube from "@/components/home/small_cube";
 
