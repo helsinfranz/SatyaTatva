@@ -67,7 +67,7 @@ export default function Shlok() {
   useEffect(() => {
     if (shlokNo > 0) {
       const sliderTrack = document.getElementById("sliderTrack");
-      sliderTrack.scrollLeft = shlokNo * 100;
+      sliderTrack.style.transform = `translateX(-${(shlokNo - 1) * 100}vw)`;
     }
   }, [shlokNo]);
 
