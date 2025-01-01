@@ -148,7 +148,10 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                     >
                       {page}
                     </Link>
-                    <div className={classes.dashPagination}></div>
+                    <div
+                      className={classes.dashPagination}
+                      key="pagination1"
+                    ></div>
                   </>
                 )}
 
@@ -161,7 +164,10 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                     >
                       ...
                     </div>
-                    <div className={classes.dashPagination}></div>
+                    <div
+                      className={classes.dashPagination}
+                      key="pagination2"
+                    ></div>
                   </>
                 )}
 
@@ -174,7 +180,10 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                     >
                       ...
                     </div>
-                    <div className={classes.dashPagination}></div>
+                    <div
+                      className={classes.dashPagination}
+                      key="pagination3"
+                    ></div>
                   </>
                 )}
               </>
