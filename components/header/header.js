@@ -1,12 +1,13 @@
 import classes from "./header.module.css";
 import { IoClose, IoSearch } from "react-icons/io5";
 import { HiMiniEllipsisHorizontal } from "react-icons/hi2";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getSearchResults } from "@/lib/storage";
 
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -14,7 +15,9 @@ export default function Header() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [showSecDrawer, setShowSecDrawer] = useState(0);
   const [showNavs, setShowNavs] = useState(false);
+  const [searchResult, setSearchResult] = useState({});
   const pathname = usePathname();
+  const searchRef = useRef(null);
 
   useEffect(() => {
     if (searchOpen) {
@@ -45,12 +48,34 @@ export default function Header() {
     setShowSecDrawer(0);
     routeSelect();
   }
+
+  function searchSite() {
+    if (searchRef.current) {
+      const search = searchRef.current.value;
+      if (search) {
+        if (search.length < 3) {
+          setSearchResult({});
+          return;
+        }
+        const results = getSearchResults(search);
+        setSearchResult(results || {});
+      }
+    }
+  }
+
+  function closeSearch() {
+    setSearchOpen(false);
+
+    if (searchRef.current) {
+      searchRef.current.value = "";
+    }
+  }
   return (
     <>
       <div className={classes.header}>
         <div
           className={`${classes.search} hover`}
-          onClick={() => setSearchOpen(!searchOpen)}
+          onClick={() => setSearchOpen((prev) => !prev)}
         >
           <IoSearch />
         </div>
@@ -229,13 +254,23 @@ export default function Header() {
             type="text"
             placeholder="Search the site..."
             autoFocus={true}
+            ref={searchRef}
+            onChange={searchSite}
           />
           <IoSearch />
+          {Object.keys(searchResult).length > 0 && (
+            <div className={classes.searchResult}>
+              <div className={classes.searchResultItem}>
+                {Object.keys(searchResult).map((key) => (
+                  <Link key={key} href={`/book/${searchResult[key]}`}>
+                    {key}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </label>
-        <div
-          className={`${classes.searchClose} hover`}
-          onClick={() => setSearchOpen(false)}
-        >
+        <div className={`${classes.searchClose} hover`} onClick={closeSearch}>
           <IoClose />
         </div>
       </div>
