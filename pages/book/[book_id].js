@@ -31,6 +31,7 @@ export default function BookMain() {
   const [smallLoading, setSmallLoading] = useState(false);
   const [error, setError] = useState(false);
   const [bookmarked, setBookmarked] = useState(0);
+  const [quality, setQuality] = useState(1);
   const [zoom, setZoom] = useState(0);
   const [flip, setFlip] = useState({
     start: false,
@@ -48,23 +49,27 @@ export default function BookMain() {
       }
 
       try {
-        const data = await processPdf(path, 1);
-        setTotalPages(data.totalPages || 0);
-        setPageData(data.images);
         setFirstPageNo(0);
         setSecondPageNo(1);
-        setLoading(false);
+        setQuality(1);
         const slug = `data-${book_id}`;
         const stored = JSON.parse(localStorage.getItem(slug) || "{}");
         if (stored || Object.keys(stored).length > 0) {
           if (stored.bookmarked) {
             setBookmarked(stored.bookmarked);
           }
+          if (stored.quality) {
+            setQuality(parseFloat(stored.quality) || 1);
+          }
           setPageNo(stored.pageNo || 0);
           pageRef.current.value = stored.pageNo || 0;
           setFirstPageNo(stored.pageNo - 1 < 0 ? 0 : stored.pageNo - 1);
           setSecondPageNo(stored.pageNo);
         }
+        const data = await processPdf(quality, path, 1);
+        setTotalPages(data.totalPages || 0);
+        setPageData(data.images);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(true);
@@ -91,6 +96,7 @@ export default function BookMain() {
           setPageData((prev) => filterPageData(pageNo + 1, prev));
 
           const data = await processPdf(
+            quality,
             path,
             pageNo + 1,
             Object.keys(pageData)
@@ -420,6 +426,7 @@ export default function BookMain() {
               `data-${book_id}`,
               JSON.stringify({
                 pageNo: pageNo,
+                quality: quality,
               })
             );
             setBookmarked(0);
@@ -430,6 +437,7 @@ export default function BookMain() {
               JSON.stringify({
                 pageNo: pageNo,
                 bookmarked: pageNo,
+                quality: quality,
               })
             );
             setBookmarked(pageNo);
@@ -454,6 +462,27 @@ export default function BookMain() {
           <FaForward />
         </div>
       )}
+      <div
+        className={`${classes.qualityButton} ${
+          bookmarked > 0 ? classes.bookmarkActiveQuality : ""
+        } hover`}
+        title={`${
+          quality === 1 ? "Low" : quality === 1.5 ? "Medium" : "High"
+        } Quality`}
+        onClick={() => {
+          const slug = `data-${book_id}`;
+          const stored = JSON.parse(localStorage.getItem(slug) || "{}");
+          const newQuality = quality === 1 ? 1.5 : quality === 1.5 ? 2 : 1;
+          const newStore = {
+            ...stored,
+            quality: newQuality,
+          };
+          localStorage.setItem(slug, JSON.stringify(newStore));
+          setQuality(newQuality);
+        }}
+      >
+        {quality}x
+      </div>
       <div className={`${classes.backPage} hover`} onClick={leftClick}>
         <IoChevronBackOutline />
       </div>

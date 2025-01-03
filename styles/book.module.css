@@ -302,7 +302,8 @@
 .forwardPage,
 .fastForward,
 .zoomIn,
-.zoomOut {
+.zoomOut,
+.qualityButton {
   position: absolute;
   cursor: pointer;
   display: flex;
@@ -323,7 +324,8 @@
 .backButton,
 .bookmarkButton,
 .zoomIn,
-.zoomOut {
+.zoomOut,
+.qualityButton {
   top: 2rem;
   left: 2rem;
   z-index: 9999;
@@ -342,12 +344,26 @@
   right: 2rem;
 }
 
+.qualityButton {
+  left: unset;
+  right: 2rem;
+  top: 6.5rem;
+  font-size: 1.2rem;
+  width: calc(3.5rem + 1.6px);
+  height: calc(3.5rem + 1.6px);
+}
+
+.bookmarkActiveQuality {
+  top: 11rem;
+}
+
 .backButton:hover,
 .bookmarkButton:hover,
 .backPage:hover,
 .forwardPage:hover,
 .zoomIn:hover,
-.zoomOut:hover {
+.zoomOut:hover,
+.qualityButton:hover {
   background-color: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
 }
@@ -460,7 +476,8 @@
   .backButton,
   .bookmarkButton,
   .zoomIn,
-  .zoomOut {
+  .zoomOut,
+  .qualityButton {
     top: 1rem;
     left: 1rem;
     padding: 0.5rem;
@@ -470,9 +487,21 @@
     top: 3.75rem;
   }
 
-  .bookmarkButton {
+  .bookmarkButton,
+  .qualityButton {
     left: unset;
     right: 1rem;
+  }
+
+  .qualityButton {
+    top: 3.75rem;
+    font-size: 0.8rem;
+    width: calc(2rem + 1.6px);
+    height: calc(2rem + 1.6px);
+  }
+
+  .bookmarkActiveQuality {
+    top: 6.5rem;
   }
 
   .backPage,
