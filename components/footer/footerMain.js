@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import classes from "./footerMain.module.css";
-import { FaFacebookF, FaShareAlt } from "react-icons/fa";
+import { FaAt, FaFacebookF, FaGithub, FaShareAlt } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
+import { ImLocation2 } from "react-icons/im";
+import { IoMail } from "react-icons/io5";
 
 export default function FooterMain() {
   return (
@@ -23,40 +25,56 @@ export default function FooterMain() {
           </Link>
         </div>
         <div className={classes.footerSiteDetailsText}>
-          Alessa is a creative digital design agency located in San Francisco,
-          California.
+          Eternals is an open source and non profit organization located in
+          Bharat.
         </div>
         <div className={classes.footerSiteDetailsText}>
-          We provide a wide range of services in concept design, web design,
-          product design, branding, UX/UI design, and other creative stuff.
+          We provide a wide range of books, shloks, blogs and stories related to
+          Sanatana Dharma.
         </div>
         <div className={classes.footerSiteDetailsText}>
-          We are a client-oriented company and are happy to help you with your
-          ideas.
+          We are driven by our users and community. We are always open to
+          bringing new ideas and suggestions.
         </div>
       </div>
       <div className={classes.footerSiteLinks}>
         <div className={classes.footerSiteLinksTitle}>Useful Links</div>
         <div className={classes.footerSiteLinksMain}>
-          <div className={`${`${classes.footerSiteLink} hover`} hover`}>
-            About Studio
-          </div>
-          <div className={`${classes.footerSiteLink} hover`}>Our Services</div>
-          <div className={`${classes.footerSiteLink} hover`}>Testimonials</div>
-          <div className={`${classes.footerSiteLink} hover`}>
-            News & Stories
-          </div>
-          <div className={`${classes.footerSiteLink} hover`}>Get in Touch</div>
+          <Link className={classes.footerSiteLink} href="/about">
+            About Eternals
+          </Link>
+          <Link className={classes.footerSiteLink} href="/services">
+            Our Services
+          </Link>
+          <Link className={classes.footerSiteLink} href="/support">
+            Support
+          </Link>
+          <Link className={classes.footerSiteLink} href="/blog">
+            Blogs & Stories
+          </Link>
+          <Link className={classes.footerSiteLink} href="/contact">
+            Get in Touch
+          </Link>
         </div>
       </div>
       <div className={classes.footerSiteLinks}>
-        <div className={classes.footerSiteLinksTitle}>Explore Works</div>
+        <div className={classes.footerSiteLinksTitle}>Explore Content</div>
         <div className={classes.footerSiteLinksMain}>
-          <div className={`${classes.footerSiteLink} hover`}>Art</div>
-          <div className={`${classes.footerSiteLink} hover`}>Branding</div>
-          <div className={`${classes.footerSiteLink} hover`}>Concept</div>
-          <div className={`${classes.footerSiteLink} hover`}>Design</div>
-          <div className={`${classes.footerSiteLink} hover`}>Photography</div>
+          <Link className={classes.footerSiteLink} href="/veda/rig">
+            Rig Veda
+          </Link>
+          <Link className={classes.footerSiteLink} href="/purana/hindi">
+            Purana in Hindi
+          </Link>
+          <Link className={classes.footerSiteLink} href="/purana/english">
+            Purana in English
+          </Link>
+          <Link className={classes.footerSiteLink} href="/others/shloks">
+            Shloks
+          </Link>
+          <Link className={classes.footerSiteLink} href="/others/books">
+            Extra Books
+          </Link>
         </div>
       </div>
       <div className={classes.footerSiteSocials}>
@@ -64,25 +82,25 @@ export default function FooterMain() {
         <div className={classes.footerSiteSocialMain}>
           <div className={classes.footerSiteSocialSingle}>
             <div className={classes.footerSiteSocialSvg}>
-              <FaShareAlt />
+              <ImLocation2 />
             </div>
-            1800 11th Ave, CA 94122
+            Uttarakhand, Bharat
           </div>
           <div className={classes.footerSiteSocialSingle}>
             <div className={classes.footerSiteSocialSvg}>
-              <FaShareAlt />
+              <IoMail />
             </div>
-            alessa@example.com
+            decexcorp@gmail.com
           </div>
           <div className={classes.footerSiteSocialSingle}>
             <div className={classes.footerSiteSocialSvg}>
-              <FaShareAlt />
+              <FaGithub />
             </div>
-            +1 (234) 555 - 67 - 89
+            github.com/helsinfranz/eternal
           </div>
           <div className={classes.footerSiteSocialSingle}>
             <div className={classes.footerSiteSocialSvg}>
-              <FaShareAlt />
+              <FaAt />
             </div>
             <div className={classes.socials}>
               <Link className={classes.socialLinks} href="/">

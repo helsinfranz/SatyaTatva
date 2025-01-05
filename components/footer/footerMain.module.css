@@ -42,7 +42,7 @@
   flex-direction: column;
 }
 
-.footerSiteLinksMain > div {
+.footerSiteLinksMain > a {
   padding: 1rem 0.5rem;
   cursor: pointer;
   font-size: 0.9rem;
@@ -51,11 +51,11 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footerSiteLinksMain > div:last-child {
+.footerSiteLinksMain > a:last-child {
   border-bottom: none;
 }
 
-.footerSiteLinksMain > div:hover {
+.footerSiteLinksMain > a:hover {
   padding: 1rem 1.5rem;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
@@ -82,7 +82,7 @@
 }
 
 .footerSiteSocialSvg {
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   padding: 0.5rem;
   border-radius: 50%;
   display: flex;

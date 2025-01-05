@@ -8,6 +8,30 @@
   gap: 2rem;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overflow-y: hidden;
+}
+
+.comingsoon {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+.comingsoontext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #edeff2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.comingsoontext > svg {
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 .container {

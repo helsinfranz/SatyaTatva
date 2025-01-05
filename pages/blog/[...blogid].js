@@ -2,10 +2,18 @@ import FooterMain from "@/components/footer/footerMain";
 import classes from "@/styles/blog.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const tags = ["info", "news", "work"];
 
 export default function BlogMain() {
+  // Do remove after blog completion.
+  const router = useRouter();
+  if (typeof window !== "undefined") {
+    router.push("/");
+  }
+  return <></>;
+  // Do remove after blog completion.
   return (
     <div className={classes.blogMain}>
       <div className={classes.container2}>

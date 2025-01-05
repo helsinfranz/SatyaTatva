@@ -9,7 +9,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSearchResults } from "@/lib/storage";
 
-export default function Header() {
+export default function Header({ setIsSeachOpened }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [optionsOpen, setoptionsOpen] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
@@ -23,6 +23,7 @@ export default function Header() {
     if (searchOpen) {
       document.getElementById("search").focus();
     }
+    setIsSeachOpened(searchOpen);
   }, [searchOpen]);
 
   useEffect(() => {

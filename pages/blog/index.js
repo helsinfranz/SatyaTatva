@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { GiSandsOfTime } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -122,7 +123,9 @@ export default function Blog() {
 
   return (
     <div className={classes.blogMain}>
-      <div className={classes.container}>
+      {/* <div className={classes.container}> */}
+      {/* Coming Soon Replace from above */}
+      <div className={`${classes.container} ${classes.comingsoon}`}>
         <div className={classes.main}>
           {tag && <div className={classes.tagName}>{tag}</div>}
           {contentDetails.map((content, idx) => (
@@ -249,6 +252,12 @@ export default function Blog() {
           </div>
         </div>
       </div>
+      {/* Coming Soon Delete Later */}
+      <div className={classes.comingsoontext}>
+        <GiSandsOfTime />
+        Coming Soon
+      </div>
+      {/* Coming Soon Delete Later */}
       <FooterMain />
     </div>
   );

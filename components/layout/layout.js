@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 export default function Layout({ children }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isMouseOffScreen, setIsMouseOffScreen] = useState(false);
+  const [isSeachOpened, setIsSeachOpened] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 48em)");
@@ -37,9 +38,9 @@ export default function Layout({ children }) {
   }, []);
   return (
     <>
-      {!isSmallScreen && !isMouseOffScreen && <Cursor />}
+      {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && <Cursor />}
       <main className={classes.main}>
-        {!pathname?.includes("book") && <Header />}
+        {!pathname?.includes("book") && <Header setIsSeachOpened={setIsSeachOpened} />}
         {children}
         {!pathname?.includes("book") && <Footer />}
       </main>
