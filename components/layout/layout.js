@@ -40,9 +40,13 @@ export default function Layout({ children }) {
     <>
       {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && <Cursor />}
       <main className={classes.main}>
-        {!pathname?.includes("book/") && <Header setIsSeachOpened={setIsSeachOpened} />}
+        {!pathname?.includes("book/") && !pathname?.includes("shlok/") && (
+          <Header setIsSeachOpened={setIsSeachOpened} />
+        )}
         {children}
-        {!pathname?.includes("book/") && <Footer />}
+        {!pathname?.includes("book/") && !pathname?.includes("shlok/") && (
+          <Footer />
+        )}
       </main>
     </>
   );

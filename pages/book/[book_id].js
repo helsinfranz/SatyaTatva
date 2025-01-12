@@ -32,7 +32,7 @@ export default function BookMain() {
   const [error, setError] = useState(false);
   const [bookmarked, setBookmarked] = useState(0);
   const [quality, setQuality] = useState(1);
-  const [zoom, setZoom] = useState(0);
+  const [zoom, setZoom] = useState(1);
   const [flip, setFlip] = useState({
     start: false,
     src: "",
@@ -67,7 +67,7 @@ export default function BookMain() {
           setSecondPageNo(stored.pageNo);
         }
         const data = await processPdf(quality, path, 1);
-        setTotalPages(data.totalPages || 0);
+        setTotalPages(data.totalPages + 1 || 0);
         setPageData(data.images);
         setLoading(false);
       } catch (error) {
@@ -90,7 +90,8 @@ export default function BookMain() {
   useEffect(() => {
     async function nextLoad() {
       if (pageNo < totalPages) {
-        setSmallLoading(true);
+        if (pageNo === 0) return;
+        setLoading(true);
         const path = bookMap[book_id];
         try {
           setPageData((prev) => filterPageData(pageNo + 1, prev));
@@ -99,14 +100,16 @@ export default function BookMain() {
             quality,
             path,
             pageNo + 1,
-            Object.keys(pageData)
+            Object.keys(pageData).map((key) => parseInt(key, 10))
           );
+
+          console.log(data);
 
           setPageData((prev) => ({
             ...prev,
             ...data.images,
           }));
-          setSmallLoading(false);
+          setLoading(false);
         } catch (error) {
           console.error("Error fetching data:", error);
           setError(true);
@@ -121,6 +124,13 @@ export default function BookMain() {
 
   function leftClick() {
     if (flip.start === true) return;
+    if (pageNo === totalPages) {
+      setPageNo(totalPages - 1);
+      pageRef.current.value = totalPages - 1;
+      setFirstPageNo(totalPages - 2);
+      setSecondPageNo(totalPages - 1);
+      return;
+    }
     setFlip({
       start: true,
       src: pageData[pageNo - 1],
@@ -159,8 +169,10 @@ export default function BookMain() {
   function rightClick() {
     if (flip.start === true) return;
     if (pageNo === 0) {
-      setPageNo(1);
-      pageRef.current.value = 1;
+      setPageNo(2);
+      pageRef.current.value = 2;
+      setFirstPageNo(1);
+      setSecondPageNo(2);
       return;
     }
     setFlip({
@@ -215,7 +227,7 @@ export default function BookMain() {
   }
 
   function zoomOut() {
-    if (zoom === 0) return;
+    if (zoom === 1) return;
     setZoom((prev) => prev - 1);
   }
 
@@ -265,7 +277,12 @@ export default function BookMain() {
                     <img
                       src="/book/covers_left.png"
                       alt="Page 0"
-                      onClick={() => setPageNo(1)}
+                      onClick={() => {
+                        setPageNo(2);
+                        pageRef.current.value = 2;
+                        setFirstPageNo(1);
+                        setSecondPageNo(2);
+                      }}
                       draggable="false"
                       style={{
                         filter: "brightness(0.8)",
@@ -396,10 +413,10 @@ export default function BookMain() {
                     alt="last Page"
                     draggable="false"
                     onClick={() => {
-                      setPageNo(totalPages - 2);
-                      pageRef.current.value = totalPages - 2;
-                      setFirstPageNo(totalPages - 3);
-                      setSecondPageNo(totalPages - 2);
+                      setPageNo(totalPages - 1);
+                      pageRef.current.value = totalPages - 1;
+                      setFirstPageNo(totalPages - 2);
+                      setSecondPageNo(totalPages - 1);
                     }}
                     style={{
                       filter: "brightness(0.8)",
@@ -495,8 +512,9 @@ export default function BookMain() {
           e.preventDefault();
           let page = parseInt(pageRef.current.value);
           if (isNaN(page) || page < 1 || page > totalPages) return;
-          if (page % 2 === 0) page--;
+          if (page % 2 !== 0) page++;
           setPageNo(page);
+          pageRef.current.value = page;
           setFirstPageNo(page - 1);
           setSecondPageNo(page);
         }}
@@ -523,7 +541,7 @@ export default function BookMain() {
         <div
           className={`${classes.zoomOut} hover`}
           onClick={zoomOut}
-          style={zoom === 0 ? { opacity: 0.5, cursor: "not-allowed" } : {}}
+          style={zoom === 1 ? { opacity: 0.5, cursor: "not-allowed" } : {}}
         >
           <BsZoomOut />
         </div>

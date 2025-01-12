@@ -32,8 +32,27 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
     }
   }, [page]);
 
+  useEffect(() => {
+    function checkScroll() {
+      const scrollContainer = document.getElementById("scrollContainer");
+      const scrollPosition = scrollContainer.scrollTop;
+      const parallaxElement = document.getElementById("heroImage");
+      if (parallaxElement) {
+        parallaxElement.style.transform = `translateY(calc(-50% - ${
+          scrollPosition * 0.25
+        }px))`;
+      }
+    }
+    const scrollContainer = document.getElementById("scrollContainer");
+
+    scrollContainer.addEventListener("scroll", checkScroll);
+    return () => {
+      scrollContainer.removeEventListener("scroll", checkScroll);
+    };
+  }, []);
+
   return (
-    <div className={classes.container}>
+    <div className={classes.container} id="scrollContainer">
       <div className={classes.topHero}>
         <div className={classes.heroImage}>
           <Image
@@ -43,7 +62,7 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
             height={500}
           />
         </div>
-        <div className={classes.heroText}>
+        <div className={classes.heroText} id="heroImage">
           <h1>
             {categoryProp?.charAt(0)?.toUpperCase() + categoryProp?.slice(1) ||
               "Category"}

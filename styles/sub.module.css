@@ -297,7 +297,7 @@
   }
   .heroText {
     position: static;
-    transform: none;
+    transform: none !important;
   }
   .heroText > h1 {
     font-size: 2rem;

@@ -22,7 +22,7 @@ export default function ContentCube({ classes, item, enable }) {
           alt={item.name}
           fill={true}
           priority={true}
-          sizes="100vw"
+          sizes="35vw"
           style={{
             objectFit: "cover",
             objectPosition: "center",

@@ -14,7 +14,7 @@ export default function SmallCube({ classes, item }) {
           alt={item.name}
           fill={true}
           priority={true}
-          sizes="100vw"
+          sizes="35vw"
           style={{
             objectFit: "cover",
             objectPosition: "center",

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import classes from "@/styles/shlok.module.css";
 import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { IoPause } from "react-icons/io5";
+import { IoArrowBack, IoPause } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { getShlokas } from "@/Books_PDFs/Shlok/others-shloks.js";
 import { BsRecord2 } from "react-icons/bs";
@@ -525,6 +525,12 @@ export default function Shlok() {
             )}
           </>
         )}
+      </div>
+      <div
+        className={`${classes.backButton} hover`}
+        onClick={() => router.back()}
+      >
+        <IoArrowBack />
       </div>
     </div>
   );

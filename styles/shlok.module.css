@@ -85,7 +85,7 @@
 .shlokSliderMain {
   padding: 1rem;
   border-radius: 50%;
-  background: rgb(255, 255, 255, 0.1);
+  background: rgb(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -102,7 +102,7 @@
 }
 
 .shlokSliderMain:hover {
-  background: rgb(255, 255, 255, 0.15);
+  background: rgb(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
@@ -314,14 +314,41 @@
   height: 1.5rem;
 }
 
+.backButton {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 2rem;
+  left: 2rem;
+  z-index: 9999;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: rgb(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.backButton > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.backButton:hover {
+  background: rgb(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
 @media (max-width: 48em) {
   .shlokMain {
     bottom: 3.25rem;
     left: 1rem;
     right: 1rem;
-    top: 1rem;
+    /* top: 1rem; */
     padding: 0.75rem 1.5rem;
     overflow-y: auto;
+    height: max-content;
   }
 
   .shlokSlider {
@@ -334,16 +361,25 @@
     padding: 0.75rem;
   }
 
-  .shlokSliderMain > svg {
+  .shlokSliderMain > svg,
+  .backButton > svg {
     width: 0.75rem;
     height: 0.75rem;
+  }
+
+  .backButton {
+    top: unset;
+    right: unset;
+    bottom: 0.5rem;
+    left: 1rem;
+    padding: 0.75rem;
   }
 
   .shlokSettings {
     top: unset;
     right: unset;
     bottom: 0.5rem;
-    left: 1rem;
+    left: 4rem;
   }
 
   .recordMain {
