@@ -193,6 +193,7 @@ export default function Shlok() {
                   fill={true}
                   priority={true}
                   sizes="100vw"
+                  quality={100}
                   style={{
                     objectFit: "cover",
                     objectPosition: "center",
@@ -207,6 +208,7 @@ export default function Shlok() {
               fill={true}
               priority={true}
               sizes="100vw"
+              quality={100}
               style={{
                 objectFit: "cover",
                 objectPosition: "center",

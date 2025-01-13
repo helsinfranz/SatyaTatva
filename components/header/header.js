@@ -8,8 +8,9 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSearchResults } from "@/lib/storage";
+import CurserFollower from "@/reuse/curser/curserFollower";
 
-export default function Header({ setIsSeachOpened }) {
+export default function Header({ setIsSeachOpened, setIsCursor }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [optionsOpen, setoptionsOpen] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
@@ -229,6 +230,9 @@ export default function Header({ setIsSeachOpened }) {
             onClick={() => setoptionsOpen(!optionsOpen)}
           >
             <MdKeyboardArrowLeft />
+          </div>
+          <div className={`${classes.cursorOption} hover`}>
+            <CurserFollower setIsCursor={setIsCursor} />
           </div>
           <div className={classes.burger_drawer}>
             <label className={classes.hamburger}>

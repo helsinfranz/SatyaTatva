@@ -9,6 +9,7 @@ export default function Layout({ children }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isMouseOffScreen, setIsMouseOffScreen] = useState(false);
   const [isSeachOpened, setIsSeachOpened] = useState(false);
+  const [isCursor, setIsCursor] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 48em)");
@@ -38,10 +39,15 @@ export default function Layout({ children }) {
   }, []);
   return (
     <>
-      {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && <Cursor />}
+      {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && !isCursor && (
+        <Cursor />
+      )}
       <main className={classes.main}>
         {!pathname?.includes("book/") && !pathname?.includes("shlok/") && (
-          <Header setIsSeachOpened={setIsSeachOpened} />
+          <Header
+            setIsSeachOpened={setIsSeachOpened}
+            setIsCursor={setIsCursor}
+          />
         )}
         {children}
         {!pathname?.includes("book/") && !pathname?.includes("shlok/") && (

@@ -56,8 +56,14 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
       <div className={classes.topHero}>
         <div className={classes.heroImage}>
           <Image
-            src="/testingHero.jpg"
-            alt="Picture of the author"
+            src={
+              categoryProp === "purana"
+                ? "/banners/purana.jpg"
+                : categoryProp === "upanishad"
+                ? "/banners/upanishad.jpg"
+                : "/banners/veda.jpg"
+            }
+            alt={`${categoryProp} banner`}
             width={1200}
             height={500}
           />

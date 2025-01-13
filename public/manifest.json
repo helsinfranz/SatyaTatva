@@ -1,0 +1,21 @@
+{
+  "name": "DeceX",
+  "short_name": "DeceX",
+  "description": "DeceX is a decentralized and anonymous platform for discussions and interactions, ensuring privacy and security for users.",
+  "icons": [
+    {
+      "src": "./logos/brand_logo_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./logos/brand_logo_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#E7E9EA",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any"
+}

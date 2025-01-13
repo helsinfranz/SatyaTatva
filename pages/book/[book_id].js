@@ -3,11 +3,14 @@ import { bookMap, titleMap } from "@/lib/storage";
 import BlackHole from "@/reuse/loader/blackHole";
 import Planet1 from "@/reuse/planets/planet1";
 import Planet2 from "@/reuse/planets/planet2";
+import { shortText } from "@/reuse/shortText";
 import classes from "@/styles/book.module.css";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { BsZoomIn, BsZoomOut } from "react-icons/bs";
-import { FaAngleDoubleRight, FaForward } from "react-icons/fa";
+import { FaAngleDoubleRight, FaForward, FaHome } from "react-icons/fa";
+import { IoMdRefresh } from "react-icons/io";
 import {
   IoArrowBack,
   IoBookmark,
@@ -30,6 +33,7 @@ export default function BookMain() {
   const [loading, setLoading] = useState(false);
   const [smallLoading, setSmallLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [errorType, setErrorType] = useState(0);
   const [bookmarked, setBookmarked] = useState(0);
   const [quality, setQuality] = useState(1);
   const [zoom, setZoom] = useState(1);
@@ -67,12 +71,14 @@ export default function BookMain() {
           setSecondPageNo(stored.pageNo);
         }
         const data = await processPdf(quality, path, 1);
+        console.log(data);
         setTotalPages(data.totalPages + 1 || 0);
         setPageData(data.images);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(true);
+        setErrorType(1);
         setLoading(false);
       }
     }
@@ -83,6 +89,9 @@ export default function BookMain() {
       setBookTitle(title);
       if (path) {
         fetchData(path);
+      } else {
+        setError(true);
+        setErrorType(2);
       }
     }
   }, [book_id]);
@@ -113,6 +122,7 @@ export default function BookMain() {
         } catch (error) {
           console.error("Error fetching data:", error);
           setError(true);
+          setErrorType(1);
           setSmallLoading(false);
         }
       }
@@ -123,7 +133,7 @@ export default function BookMain() {
   }, [firstPageNo]);
 
   function leftClick() {
-    if (flip.start === true) return;
+    if (flip.start === true || error) return;
     if (pageNo === totalPages) {
       setPageNo(totalPages - 1);
       pageRef.current.value = totalPages - 1;
@@ -167,7 +177,7 @@ export default function BookMain() {
   }
 
   function rightClick() {
-    if (flip.start === true) return;
+    if (flip.start === true || error) return;
     if (pageNo === 0) {
       setPageNo(2);
       pageRef.current.value = 2;
@@ -211,7 +221,7 @@ export default function BookMain() {
   }
 
   function savePageNo(pageNumber) {
-    if (!localStorage) return;
+    if (!localStorage || error) return;
     const slug = `data-${book_id}`;
     const stored = JSON.parse(localStorage.getItem(slug) || "{}");
     const newStore = {
@@ -255,9 +265,40 @@ export default function BookMain() {
       <div className={classes.planetTwo}>
         <Planet2 />
       </div>
-      {error ? (
-        <div>Error</div>
-      ) : (
+      {error && errorType === 1 && (
+        <div className={classes.error}>
+          <div className={classes.errorMain}>
+            <div className="title-404">Loading Error</div>
+            <div className="subheading-404">
+              <p>Something went wrong, and failed to load the book content.</p>
+              <p>You can refresh to fix this issue.</p>
+            </div>
+            <div className="gohome-404 hover" onClick={() => router.reload()}>
+              Refresh
+              <IoMdRefresh />
+            </div>
+          </div>
+        </div>
+      )}
+      {error && errorType === 2 && (
+        <div className={classes.error}>
+          <div className={classes.errorMain}>
+            <div className="title-404">Book not found</div>
+            <div className="subheading-404">
+              <p>
+                Something went wrong, and we cannot find the book you are
+                looking for.
+              </p>
+              <p>You can return to the Home Page or mail us.</p>
+            </div>
+            <Link className="gohome-404 hover" href={"/"}>
+              Go to Home
+              <FaHome />
+            </Link>
+          </div>
+        </div>
+      )}
+      {!error && (
         <div
           className={classes.bookContent}
           style={{ zoom: zoom, overflowX: "auto" }}
@@ -288,7 +329,9 @@ export default function BookMain() {
                         filter: "brightness(0.8)",
                       }}
                     />
-                    <div className={classes.bookTitleMain}>{bookTitle}</div>
+                    <div className={classes.bookTitleMain}>
+                      {shortText(bookTitle)}
+                    </div>
                   </>
                 )}
                 {Object.keys(pageData).length > 0 &&
@@ -438,6 +481,7 @@ export default function BookMain() {
         className={`${classes.bookmarkButton} hover`}
         title={bookmarked ? "Remove Bookmark" : "Bookmark"}
         onClick={() => {
+          if (error) return;
           if (bookmarked) {
             localStorage.setItem(
               `data-${book_id}`,
@@ -487,6 +531,7 @@ export default function BookMain() {
           quality === 1 ? "Low" : quality === 1.5 ? "Medium" : "High"
         } Quality`}
         onClick={() => {
+          if (error) return;
           const slug = `data-${book_id}`;
           const stored = JSON.parse(localStorage.getItem(slug) || "{}");
           const newQuality = quality === 1 ? 1.5 : quality === 1.5 ? 2 : 1;
@@ -510,6 +555,7 @@ export default function BookMain() {
         className={classes.fastForward}
         onSubmit={(e) => {
           e.preventDefault();
+          if (error) return;
           let page = parseInt(pageRef.current.value);
           if (isNaN(page) || page < 1 || page > totalPages) return;
           if (page % 2 !== 0) page++;

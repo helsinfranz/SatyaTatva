@@ -448,6 +448,38 @@
   display: none;
 }
 
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 1.5rem;
+  z-index: 9999;
+}
+
+.errorMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.errorMain > svg {
+  width: 3rem;
+  height: 3rem;
+  color: white;
+}
+
 @media (max-height: 34.68em) {
   .bookTitleMain {
     font-size: 2rem;
@@ -515,6 +547,10 @@
 
   .forwardPage {
     right: 1rem;
+  }
+
+  .errorMain {
+    max-width: 90vw;
   }
 }
 
