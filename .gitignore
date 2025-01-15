@@ -12,6 +12,14 @@
 # next.js
 /.next/
 /out/
+/.env
+
+# webpack
+/public/sw.js
+/public/sw.js.map
+/public/service-worker.js
+/public/workbox-*.js
+/public/workbox-*.js.map
 
 # production
 /build

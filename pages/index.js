@@ -35,8 +35,58 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const mostRecent = JSON.parse(localStorage.getItem("mostRecent")) || [];
-    const mostVisited = JSON.parse(localStorage.getItem("mostVisited")) || [];
+    const mostRecent = JSON.parse(localStorage.getItem("mostRecent")) || [
+      {
+        name: "श्री हनुमान चालीसा",
+        detail: "Shri Hanuman Chalisa",
+        img: "/banners/hanuman_chalisa.webp",
+        link: "/shlok/others-hanuman-chalisa",
+      },
+      {
+        name: "शिव तांडव स्तोत्र",
+        detail: "Shiv Tandav Stotram",
+        img: "/banners/shiv_tandav_strotam.jpg",
+        link: "/shlok/others-shiv-tandav-stotram",
+      },
+    ];
+    const mostVisited = JSON.parse(localStorage.getItem("mostVisited")) || [
+      {
+        name: "Mahabharata",
+        detail: "Mahabharata in English",
+        img: "/banners/mahabharat.png",
+        link: "/book/others-mahabharata-english",
+      },
+      {
+        name: "Ramayan",
+        detail: "Ramayan in English",
+        img: "/banners/ramayana.jpg",
+        link: "/book/others-ramayan-english",
+      },
+      {
+        name: "श्री हनुमान चालीसा",
+        detail: "Shri Hanuman Chalisa",
+        img: "/banners/hanuman_chalisa.webp",
+        link: "/shlok/others-hanuman-chalisa",
+      },
+      {
+        name: "शिव तांडव स्तोत्र",
+        detail: "Shiv Tandav Stotram",
+        img: "/banners/shiv_tandav_strotam.jpg",
+        link: "/shlok/others-shiv-tandav-stotram",
+      },
+      {
+        name: "Shri Ramcharitmanas",
+        detail: "Shri Ramcharitmanas in English",
+        img: "/banners/ramcharitmanas.jpg",
+        link: "/book/others-shri-ramcharitmanas-english",
+      },
+      {
+        name: "Shrimad Bhagwat Geeta",
+        detail: "Shrimad Bhagwat Geeta in English",
+        img: "/banners/bhagavad_gita.jpg",
+        link: "/book/others-bhagavad-gita-english",
+      },
+    ];
     setQuote(
       "Do this as it the main thing. Do this as it the main thing. Do this as it the main thing. Do this as it the main thing"
     );

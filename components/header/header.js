@@ -10,7 +10,12 @@ import { usePathname } from "next/navigation";
 import { getSearchResults } from "@/lib/storage";
 import CurserFollower from "@/reuse/curser/curserFollower";
 
-export default function Header({ setIsSeachOpened, setIsCursor }) {
+export default function Header({
+  setIsSeachOpened,
+  setIsCursor,
+  isCursor,
+  language,
+}) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [optionsOpen, setoptionsOpen] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
@@ -61,6 +66,8 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
         }
         const results = getSearchResults(search);
         setSearchResult(results || {});
+      } else {
+        setSearchResult({});
       }
     }
   }
@@ -70,6 +77,7 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
 
     if (searchRef.current) {
       searchRef.current.value = "";
+      setSearchResult({});
     }
   }
   return (
@@ -89,7 +97,7 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
                   href="/"
                   className={pathname === "/" ? classes.selectedLink : ""}
                 >
-                  Home
+                  {language ? "होम" : "Home"}
                 </Link>
               </li>
               <li>
@@ -97,7 +105,7 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
                   href="/blog"
                   className={pathname === "/blog" ? classes.selectedLink : ""}
                 >
-                  Blogs
+                  {language ? "ब्लॉग" : "Blogs"}
                 </Link>
               </li>
               <li>
@@ -110,21 +118,29 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
                     e.preventDefault();
                   }}
                 >
-                  Veda
+                  {language ? "वेद" : "Veda"}
                 </Link>
                 <div className={classes.hover_container}>
                   <div className={classes.hover_links}>
                     <div>
-                      <Link href="/veda/rig">Rig Veda</Link>
+                      <Link href="/veda/rig">
+                        {language ? "ऋग्वेद" : "Rig Veda"}
+                      </Link>
                     </div>
                     <div>
-                      <Link href="/veda/yajur">Yajur Veda</Link>
+                      <Link href="/veda/yajur">
+                        {language ? "यजुर्वेद" : "Yajur Veda"}
+                      </Link>
                     </div>
                     <div>
-                      <Link href="/veda/sam">Sam Veda</Link>
+                      <Link href="/veda/sam">
+                        {language ? "सामवेद" : "Sam Veda"}
+                      </Link>
                     </div>
                     <div>
-                      <Link href="/veda/atharv">Atharv Veda</Link>
+                      <Link href="/veda/atharv">
+                        {language ? "अथर्ववेद" : "Atharv Veda"}
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -152,15 +168,19 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
                     e.preventDefault();
                   }}
                 >
-                  Purana
+                  {language ? "पुराण" : "Purana"}
                 </Link>
                 <div className={classes.hover_container}>
                   <div className={classes.hover_links}>
                     <div>
-                      <Link href="/purana/hindi">Purana in Hindi</Link>
+                      <Link href="/purana/hindi">
+                        {language ? "पुराण हिंदी में" : "Purana in Hindi"}
+                      </Link>
                     </div>
                     <div>
-                      <Link href="/purana/english">Purana in English</Link>
+                      <Link href="/purana/english">
+                        {language ? "अंग्रेजी में पुराण" : "Purana in English"}
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -175,16 +195,20 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
                     e.preventDefault();
                   }}
                 >
-                  Upanishad
+                  {language ? "उपनिषद" : "Upanishad"}
                 </Link>
                 <div className={classes.hover_container}>
                   <div className={classes.hover_links}>
                     <div>
-                      <Link href="/upanishad/hindi">Upanishad in Hindi</Link>
+                      <Link href="/upanishad/hindi">
+                        {language ? "उपनिषद हिंदी में" : "Upanishad in Hindi"}
+                      </Link>
                     </div>
                     <div>
                       <Link href="/upanishad/english">
-                        Upanishad in English
+                        {language
+                          ? "अंग्रेजी में उपनिषद"
+                          : "Upanishad in English"}
                       </Link>
                     </div>
                   </div>
@@ -200,15 +224,19 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
                     e.preventDefault();
                   }}
                 >
-                  Others
+                  {language ? "अन्य" : "Others"}
                 </Link>
                 <div className={classes.hover_container}>
                   <div className={classes.hover_links}>
                     <div>
-                      <Link href="/others/shloks">Shloks</Link>
+                      <Link href="/others/shloks">
+                        {language ? "श्लोक" : "Shloks"}
+                      </Link>
                     </div>
                     <div>
-                      <Link href="/others/books">Books</Link>
+                      <Link href="/others/books">
+                        {language ? "किताबें" : "Books"}
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -232,7 +260,7 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
             <MdKeyboardArrowLeft />
           </div>
           <div className={`${classes.cursorOption} hover`}>
-            <CurserFollower setIsCursor={setIsCursor} />
+            <CurserFollower isCursor={isCursor} setIsCursor={setIsCursor} />
           </div>
           <div className={classes.burger_drawer}>
             <label className={classes.hamburger}>
@@ -317,9 +345,9 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
               </Link>
               <Link
                 className={`${classes.optionMainLink} hover`}
-                href={"/support"}
+                href={"/donate"}
               >
-                Support
+                Donate
               </Link>
               <Link
                 className={`${classes.optionMainLink} hover`}
@@ -328,8 +356,8 @@ export default function Header({ setIsSeachOpened, setIsCursor }) {
                 Blogs &amp; Stories
               </Link>
               <Link
+                href="mailto:decexcorp@gmail.com"
                 className={`${classes.optionMainLink} hover`}
-                href={"/contact"}
               >
                 Get in Touch
               </Link>

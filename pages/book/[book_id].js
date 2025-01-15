@@ -1,6 +1,7 @@
 import { processPdf } from "@/lib/pdf_fetch";
 import { bookMap, titleMap } from "@/lib/storage";
 import BlackHole from "@/reuse/loader/blackHole";
+import ProgressBar from "@/reuse/loader/progressBar";
 import Planet1 from "@/reuse/planets/planet1";
 import Planet2 from "@/reuse/planets/planet2";
 import { shortText } from "@/reuse/shortText";
@@ -37,6 +38,7 @@ export default function BookMain() {
   const [bookmarked, setBookmarked] = useState(0);
   const [quality, setQuality] = useState(1);
   const [zoom, setZoom] = useState(1);
+  const [progress, setProgress] = useState(100);
   const [flip, setFlip] = useState({
     start: false,
     src: "",
@@ -56,6 +58,7 @@ export default function BookMain() {
         setFirstPageNo(0);
         setSecondPageNo(1);
         setQuality(1);
+        setProgress(100);
         const slug = `data-${book_id}`;
         const stored = JSON.parse(localStorage.getItem(slug) || "{}");
         if (stored || Object.keys(stored).length > 0) {
@@ -70,8 +73,13 @@ export default function BookMain() {
           setFirstPageNo(stored.pageNo - 1 < 0 ? 0 : stored.pageNo - 1);
           setSecondPageNo(stored.pageNo);
         }
-        const data = await processPdf(quality, path, 1);
-        console.log(data);
+        const data = await processPdf(
+          quality,
+          path,
+          stored ? (stored.pageNo ? stored.pageNo - 1 : 1) : 1,
+          {},
+          setProgress
+        );
         setTotalPages(data.totalPages + 1 || 0);
         setPageData(data.images);
         setLoading(false);
@@ -111,8 +119,6 @@ export default function BookMain() {
             pageNo + 1,
             Object.keys(pageData).map((key) => parseInt(key, 10))
           );
-
-          console.log(data);
 
           setPageData((prev) => ({
             ...prev,
@@ -304,9 +310,14 @@ export default function BookMain() {
           style={{ zoom: zoom, overflowX: "auto" }}
         >
           {loading ? (
-            <div className={classes.loaderHolder}>
-              <BlackHole />
-            </div>
+            <>
+              <div className={classes.loaderHolder}>
+                <BlackHole />
+              </div>
+              <div className={classes.progressBar}>
+                <ProgressBar progress={progress} />
+              </div>
+            </>
           ) : (
             <div
               className={classes.bookHolderMain}
@@ -325,6 +336,7 @@ export default function BookMain() {
                         setSecondPageNo(2);
                       }}
                       draggable="false"
+                      fetchPriority="high"
                       style={{
                         filter: "brightness(0.8)",
                       }}
@@ -342,6 +354,7 @@ export default function BookMain() {
                         src="/book/pages1.png"
                         alt="PageMain"
                         draggable="false"
+                        fetchPriority="high"
                         className={classes.bookPages}
                       />
                       <div className={classes.images}>
@@ -461,6 +474,7 @@ export default function BookMain() {
                       setFirstPageNo(totalPages - 2);
                       setSecondPageNo(totalPages - 1);
                     }}
+                    fetchPriority="high"
                     style={{
                       filter: "brightness(0.8)",
                     }}
@@ -513,7 +527,7 @@ export default function BookMain() {
           title="Go to Bookmark"
           onClick={() => {
             let page = bookmarked;
-            if (page % 2 === 0) page--;
+            if (page % 2 !== 0) page++;
             setPageNo(page);
             setFirstPageNo(page - 1);
             setSecondPageNo(page);

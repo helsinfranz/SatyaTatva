@@ -16,10 +16,14 @@ export default async function handler(req, res) {
     }
 
     const filePath = path.join(`Books_PDFs/${pdfUrl}`);
+    try {
+      const pdfBuffer = await fs.readFile(filePath);
 
-    const pdfBuffer = await fs.readFile(filePath);
-
-    return res.status(200).send({ buffer: pdfBuffer });
+      return res.status(200).send({ buffer: pdfBuffer });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Failed to read the file.");
+    }
   } else {
     res.setHeader("Allow", ["POST"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);

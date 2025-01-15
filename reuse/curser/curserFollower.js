@@ -1,6 +1,6 @@
 import classes from "./curserFollower.module.css";
 
-export default function CurserFollower({ setIsCursor }) {
+export default function CurserFollower({ isCursor, setIsCursor }) {
   return (
     <div className={classes.toggleCont} title="Cursor Follower">
       <input
@@ -8,7 +8,7 @@ export default function CurserFollower({ setIsCursor }) {
         id="toggle"
         name="toggle"
         type="checkbox"
-        defaultChecked={true}
+        checked={!isCursor}
         onChange={(e) => setIsCursor(!e.target.checked)}
       />
       <label className={classes.toggleLabel} htmlFor="toggle">

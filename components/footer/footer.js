@@ -11,19 +11,44 @@ export default function Footer() {
     <div className={classes.footer}>
       <div className={classes.copyright}>Copyright © 2025</div>
       <div className={classes.socials}>
-        <Link className={classes.socialLinks} href="/">
+        <Link
+          className={classes.socialLinks}
+          href="https://x.com/decexcorp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaFacebookF />
         </Link>
-        <Link className={classes.socialLinks} href="/">
+        <Link
+          className={classes.socialLinks}
+          href="https://x.com/decexcorp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaTwitter />
         </Link>
-        <Link className={classes.socialLinks} href="/">
+        <Link
+          className={classes.socialLinks}
+          href="https://x.com/decexcorp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaLinkedinIn />
         </Link>
-        <Link className={classes.socialLinks} href="/">
+        <Link
+          className={classes.socialLinks}
+          href="https://x.com/decexcorp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaYoutube />
         </Link>
-        <Link className={classes.socialLinks} href="/">
+        <Link
+          className={classes.socialLinks}
+          href="https://x.com/decexcorp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <AiFillInstagram />
         </Link>
       </div>
