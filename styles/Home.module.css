@@ -46,6 +46,23 @@
   font-weight: 300;
 }
 
+.quoteBy {
+  font-size: 0.9rem;
+  font-weight: bold;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quoteBy > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .quoteOther {
   display: flex;
   align-items: center;

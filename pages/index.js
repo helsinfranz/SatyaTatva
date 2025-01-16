@@ -3,9 +3,11 @@ import classes from "@/styles/Home.module.css";
 import { useEffect, useRef, useState } from "react";
 import ContentCube from "@/components/home/content_cube";
 import SmallCube from "@/components/home/small_cube";
+import { getRandomShlok } from "@/lib/storage";
+import { TbListSearch } from "react-icons/tb";
+import Link from "next/link";
 
 export default function Home() {
-  const [quote, setQuote] = useState("");
   const [mostRecent, setMostRecent] = useState([]);
   const [mostVisited, setMostVisited] = useState([]);
   const [enable, setEnable] = useState(true);
@@ -87,9 +89,6 @@ export default function Home() {
         link: "/book/others-bhagavad-gita-english",
       },
     ];
-    setQuote(
-      "Do this as it the main thing. Do this as it the main thing. Do this as it the main thing. Do this as it the main thing"
-    );
     setMostRecent(mostRecent);
     setMostVisited(mostVisited);
   }, []);
@@ -110,7 +109,19 @@ export default function Home() {
         <div className={classes.topHero}>
           <div className={classes.quote}>
             <div className={classes.quoteTitle}>Quote of the day</div>
-            <div className={classes.quoteMain}>{quote}</div>
+            <div className={classes.quoteMain}>{getRandomShlok().quote}</div>
+            <div className={classes.quoteBy}>
+              - {getRandomShlok().source}
+              <Link
+                href={`https://www.google.com/search?q=${
+                  getRandomShlok().quote
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TbListSearch />
+              </Link>
+            </div>
           </div>
           <div className={classes.quoteOther}>
             {mostRecent.map((item, idx) => (

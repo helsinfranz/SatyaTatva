@@ -4,11 +4,11 @@ import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoArrowBack, IoPause } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
-import { getShlokas } from "@/Books_PDFs/Shlok/others-shloks.js";
+import { getShlokas } from "@/reuse/Shlok/others-shloks.js";
 import { BsRecord2 } from "react-icons/bs";
 import { FaRegPlayCircle, FaRegStopCircle } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { getShlokasMovements } from "@/Books_PDFs/Shlok/pre-recorded";
+import { getShlokasMovements } from "@/reuse/Shlok/pre-recorded";
 import { getSingleShlokData } from "@/lib/storage";
 
 export default function Shlok() {
@@ -52,7 +52,7 @@ export default function Shlok() {
       ];
       if (localStorageData) {
         const parsedData = JSON.parse(localStorageData);
-        if (parsedData.some((item) => item.name === shlokData.title)) return;
+        if (parsedData.some((item) => item.link === "/shlok/" + slug)) return;
         const updatedData = [...addingData, parsedData[0]];
         localStorage.setItem("mostRecent", JSON.stringify(updatedData));
       } else {

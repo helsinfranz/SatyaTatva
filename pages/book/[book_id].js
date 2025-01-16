@@ -1,5 +1,5 @@
 import { processPdf } from "@/lib/pdf_fetch";
-import { bookMap, titleMap } from "@/lib/storage";
+import { bookMap, getSingleBookData, titleMap } from "@/lib/storage";
 import BlackHole from "@/reuse/loader/blackHole";
 import ProgressBar from "@/reuse/loader/progressBar";
 import Planet1 from "@/reuse/planets/planet1";
@@ -82,6 +82,28 @@ export default function BookMain() {
         );
         setTotalPages(data.totalPages + 1 || 0);
         setPageData(data.images);
+        const localStorageData = localStorage.getItem("mostRecent");
+        const bookData = getSingleBookData(book_id);
+        const addingData = [
+          {
+            name: bookData.title,
+            link: "/book/" + book_id,
+            detail: bookData.subTitle,
+            img: bookData.image,
+          },
+        ];
+        if (localStorageData) {
+          const parsedData = JSON.parse(localStorageData);
+          if (parsedData.some((item) => item.link === "/book/" + book_id))
+            return;
+          const updatedData = [...addingData, parsedData[0]];
+          localStorage.setItem("mostRecent", JSON.stringify(updatedData));
+        } else {
+          localStorage.setItem(
+            "mostRecent",
+            JSON.stringify([...addingData, ...addingData])
+          );
+        }
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
