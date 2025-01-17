@@ -108,6 +108,11 @@
   height: 6rem;
 }
 
+.bannerMainSvg {
+  width: 1200px;
+  height: 500px;
+}
+
 .contentMainDetails {
   display: flex;
   flex-direction: column;
@@ -298,6 +303,9 @@
     width: 5rem;
     height: 5rem;
   }
+  .bannerMainSvg {
+    width: 100%;
+  }
   .contentMainDetails {
     gap: 1.5rem;
   }
@@ -322,6 +330,10 @@
   .contentMainSvg {
     width: 25rem;
     height: 15rem;
+  }
+  .bannerMainSvg {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -399,6 +411,13 @@
     transform: translate(-50%, -50%);
     width: 4rem;
     height: 4rem;
+  }
+  .bannerMainSvg {
+    width: 100%;
+  }
+  .bannerMainSvg > svg {
+    width: 3rem;
+    height: 3rem;
   }
   .contentMain {
     width: 100%;

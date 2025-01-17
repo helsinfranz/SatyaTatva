@@ -327,39 +327,43 @@ export default function Header({
               />
             </div>
             <div className={classes.optionDetails}>
-              <h2 className={classes.optionName}>Himanshu Rawat</h2>
-              <div className={classes.optionDescription}>Founding Owner</div>
+              <h2 className={classes.optionName}>
+                {language ? "हिमांशु रावत" : "Himanshu Rawat"}
+              </h2>
+              <div className={classes.optionDescription}>
+                {language ? "संस्थापक" : "Founding Owner"}
+              </div>
             </div>
           </div>
           <div className={classes.option2}>
             <h1 className={classes.optionMainTitle}>Useful Links</h1>
             <div className={classes.optionMainLinks}>
               <Link className={`${classes.optionMainLink} hover`} href={"/"}>
-                About Eternal
+                {language ? "सियाराम.इन के बारे में" : "About SiyaRam.in"}
               </Link>
               <Link
                 className={`${classes.optionMainLink} hover`}
                 href={"/services"}
               >
-                Our Services
+                {language ? "हमारी सेवाएँ" : "Our Services"}
               </Link>
               <Link
                 className={`${classes.optionMainLink} hover`}
                 href={"/donate"}
               >
-                Donate
+                {language ? "दान करें" : "Donate"}
               </Link>
               <Link
                 className={`${classes.optionMainLink} hover`}
                 href={"/blog"}
               >
-                Blogs &amp; Stories
+                {language ? "ब्लॉग और कहानियां" : "Blogs & Stories"}
               </Link>
               <Link
                 href="mailto:decexcorp@gmail.com"
                 className={`${classes.optionMainLink} hover`}
               >
-                Get in Touch
+                {language ? "संपर्क करें" : "Get in Touch"}
               </Link>
             </div>
           </div>
@@ -388,7 +392,7 @@ export default function Header({
               href="/"
               onClick={routeSelect}
             >
-              Home
+              {language ? "होम" : "Home"}
             </Link>
             <Link
               className={`${classes.burger_option} ${
@@ -397,7 +401,7 @@ export default function Header({
               href="/blog"
               onClick={routeSelect}
             >
-              Blogs
+              {language ? "ब्लॉग" : "Blogs"}
             </Link>
             <Link
               className={`${classes.burger_option} ${
@@ -409,7 +413,7 @@ export default function Header({
                 setShowSecDrawer(1);
               }}
             >
-              Veda
+              {language ? "वेद" : "Veda"}
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -432,7 +436,7 @@ export default function Header({
                 setShowSecDrawer(2);
               }}
             >
-              Purana
+              {language ? "पुराण" : "Purana"}
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -455,7 +459,7 @@ export default function Header({
                 setShowSecDrawer(3);
               }}
             >
-              Upanishad
+              {language ? "उपनिषद" : "Upanishad"}
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -478,7 +482,7 @@ export default function Header({
                 setShowSecDrawer(4);
               }}
             >
-              Others
+              {language ? "अन्य" : "Others"}
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -516,7 +520,7 @@ export default function Header({
               >
                 <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
               </svg>
-              Veda
+              {language ? "वेद" : "Veda"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -525,7 +529,7 @@ export default function Header({
               href="/veda/rig"
               onClick={routeSelectSmall}
             >
-              Rig Veda
+              {language ? "ऋग्वेद" : "Rig Veda"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -534,7 +538,7 @@ export default function Header({
               href="/veda/yajur"
               onClick={routeSelectSmall}
             >
-              Yajur Veda
+              {language ? "यजुर्वेद" : "Yajur Veda"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -543,7 +547,7 @@ export default function Header({
               href="/veda/sam"
               onClick={routeSelectSmall}
             >
-              Sam Veda
+              {language ? "सामवेद" : "Sam Veda"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -552,7 +556,7 @@ export default function Header({
               href="/veda/atharv"
               onClick={routeSelectSmall}
             >
-              Atharv Veda
+              {language ? "अथर्ववेद" : "Atharv Veda"}
             </Link>
           </div>
           <div
@@ -579,7 +583,7 @@ export default function Header({
               >
                 <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
               </svg>
-              Purana
+              {language ? "पुराण" : "Purana"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -590,7 +594,7 @@ export default function Header({
               href="/purana/hindi"
               onClick={routeSelectSmall}
             >
-              Purana in Hindi
+              {language ? "पुराण हिंदी में" : "Purana in Hindi"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -601,7 +605,7 @@ export default function Header({
               href="/purana/english"
               onClick={routeSelectSmall}
             >
-              Purana in English
+              {language ? "अंग्रेजी में पुराण" : "Purana in English"}
             </Link>
           </div>
           <div
@@ -628,7 +632,7 @@ export default function Header({
               >
                 <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
               </svg>
-              Upanishad
+              {language ? "उपनिषद" : "Upanishad"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -639,7 +643,7 @@ export default function Header({
               href="/upanishad/hindi"
               onClick={routeSelectSmall}
             >
-              Upanishad in Hindi
+              {language ? "उपनिषद हिंदी में" : "Upanishad in Hindi"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -650,7 +654,7 @@ export default function Header({
               href="/upanishad/english"
               onClick={routeSelectSmall}
             >
-              Upanishad in English
+              {language ? "अंग्रेजी में उपनिषद" : "Upanishad in English"}
             </Link>
           </div>
           <div
@@ -677,7 +681,7 @@ export default function Header({
               >
                 <path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"></path>
               </svg>
-              Others
+              {language ? "अन्य" : "Others"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -688,7 +692,7 @@ export default function Header({
               href="/others/shloks"
               onClick={routeSelectSmall}
             >
-              Shloks
+              {language ? "श्लोक" : "Shloks"}
             </Link>
             <Link
               className={`${classes.burger_option_small} ${
@@ -699,7 +703,7 @@ export default function Header({
               href="/others/books"
               onClick={routeSelectSmall}
             >
-              Books
+              {language ? "किताबें" : "Books"}
             </Link>
           </div>
         </>

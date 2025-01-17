@@ -30,7 +30,6 @@ export default function Document() {
         <meta
           property="twitter:image"
           content="https://www.decex.app/images/decex_black_raw.png"
-          // content="https://pbs.twimg.com/profile_images/1809979194014912512/8qV_tJ-Q_400x400.png"
         ></meta>
         <meta property="twitter:domain" content="decex.app"></meta>
         <meta name="twitter:url" content="https://www.decex.app" />
@@ -44,7 +43,6 @@ export default function Document() {
         <meta
           property="og:image"
           content="https://www.decex.app/images/decex_black_raw.png"
-          // content="https://pbs.twimg.com/profile_images/1809979194014912512/8qV_tJ-Q_400x400.png"
         ></meta>
         <meta property="og:title" content="DeceX Corp."></meta>
         <meta property="og:site_name" content="DeceX Corp." />

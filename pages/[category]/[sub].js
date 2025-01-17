@@ -18,6 +18,17 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [imageLoad, setImageLoad] = useState([]);
   const [imageError, setImageError] = useState([]);
+  const [bannerLoad, setBannerLoad] = useState(true);
+  const [bannerError, setBannerError] = useState(false);
+  useEffect(() => {
+    setBannerLoad(true);
+    setBannerError(false);
+    document.getElementById("scrollContainer").scrollTop = 0;
+    if (categoryProp === "veda" || categoryProp === "others") {
+      setBannerLoad(false);
+    }
+  }, [categoryProp]);
+
   useEffect(() => {
     if (contentArray.length > 0) {
       setPages(Math.ceil(contentArray.length / 4));
@@ -60,19 +71,44 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
     <div className={classes.container} id="scrollContainer">
       <div className={classes.topHero}>
         <div className={classes.heroImage}>
-          <Image
-            src={
-              categoryProp === "purana"
-                ? "/banners/purana.jpg"
-                : categoryProp === "upanishad"
-                ? "/banners/upanishad.jpg"
-                : "/banners/veda.jpg"
-            }
-            alt={`${categoryProp} banner`}
-            priority={true}
-            width={1200}
-            height={500}
-          />
+          {bannerLoad && <MeteorLoader />}
+          {bannerError ? (
+            <div
+              className={`${classes.contentMainSvg} ${classes.bannerMainSvg}`}
+            >
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 512 512"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m41.37 64 22.628-22.628L470.627 448l-22.628 22.627zm-2.65 148.78C13.39 235.88 0 267.42 0 304c0 36 14.38 68.88 40.49 92.59C65.64 419.43 99.56 432 136 432h228.12L110.51 178.39c-28.01 5.39-53.09 17.33-71.79 34.39zm437.87 194.45C499.76 388.78 512 361.39 512 328c0-61.85-48.44-95.34-97.75-102.64-6.52-41.18-24.05-76.4-51.11-102.46A153.57 153.57 0 0 0 256 80c-30.47 0-58.9 8.62-83.07 25l302.82 302.86c.25-.21.57-.41.84-.63z"></path>
+              </svg>
+            </div>
+          ) : (
+            <Image
+              src={
+                categoryProp === "purana"
+                  ? "/banners/purana.jpg"
+                  : categoryProp === "upanishad"
+                  ? "/banners/upanishad.jpg"
+                  : "/banners/veda.jpg"
+              }
+              alt={`${categoryProp} banner`}
+              priority={true}
+              width={1200}
+              height={500}
+              style={bannerLoad ? { opacity: 0 } : {}}
+              onLoad={() => setBannerLoad(false)}
+              onError={() => {
+                setBannerLoad(false);
+                setBannerError(true);
+              }}
+            />
+          )}
         </div>
         <div className={classes.heroText} id="heroImage">
           <h1>
@@ -95,7 +131,7 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
+                    strokeWidth="0"
                     viewBox="0 0 512 512"
                     height="1em"
                     width="1em"
@@ -110,10 +146,18 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                   height={400}
                   src={content.image}
                   alt={content.title}
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
+                  style={
+                    !imageLoad.includes(idx)
+                      ? {
+                          opacity: 0,
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }
+                      : {
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }
+                  }
                   priority={true}
                   onLoad={() => {
                     setImageLoad((prev) => [...prev, idx]);

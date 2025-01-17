@@ -383,8 +383,7 @@ export default function BookMain() {
                         <img
                           src={
                             pageData[firstPageNo]
-                              ? // ? `data:image/png;base64,${pageData[firstPageNo]}`
-                                pageData[firstPageNo]
+                              ? pageData[firstPageNo]
                               : "/book/page_temp.png"
                           }
                           alt={`Page ${pageNo}`}
@@ -395,8 +394,7 @@ export default function BookMain() {
                         <img
                           src={
                             pageData[secondPageNo]
-                              ? // ? `data:image/png;base64,${pageData[secondPageNo]}`
-                                pageData[secondPageNo]
+                              ? pageData[secondPageNo]
                               : "/book/page_temp_2.png"
                           }
                           alt={`Page ${pageNo + 1}`}
@@ -426,12 +424,7 @@ export default function BookMain() {
                           draggable="false"
                         >
                           <img
-                            src={
-                              flip.src
-                                ? flip.src
-                                : // ? `data:image/png;base64,${flip.src}`
-                                  "/book/page_temp_2.png"
-                            }
+                            src={flip.src ? flip.src : "/book/page_temp_2.png"}
                             alt={`Flipping Page`}
                             style={
                               flip.half && flip.side === "right"
@@ -465,12 +458,7 @@ export default function BookMain() {
                           draggable="false"
                         >
                           <img
-                            src={
-                              flip.src
-                                ? flip.src
-                                : // ? `data:image/png;base64,${flip.src}`
-                                  "/book/page_temp.png"
-                            }
+                            src={flip.src ? flip.src : "/book/page_temp.png"}
                             alt={`Flipping Page`}
                             style={
                               flip.half && flip.side === "left"

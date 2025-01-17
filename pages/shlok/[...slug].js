@@ -21,12 +21,38 @@ export default function Shlok() {
   const [customMovements, setCustomMovements] = useState(null);
   const [shlokCustomMovement, setShlokCustomMovement] = useState([]);
   const [timeFrames, setTimeFrames] = useState([]);
+  const [imgError, setImgError] = useState([]);
   const isMovementStoppedRef = useRef(false); // Use a ref instead of state
   const isMovementEndedRef = useRef(false); // Use a ref instead of state
   const inputRef = useRef(null);
   const [selectedTitle, setSelectedTitle] = useState(
     "Shlok-Movement-Pre-recorded"
   );
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowLeft") {
+        if (customMovements) {
+          return;
+        }
+        if (shlokNo > 1) {
+          setShlokNo((prev) => prev - 1);
+        }
+      } else if (event.key === "ArrowRight") {
+        if (customMovements) {
+          updateCustomMovement(true);
+          return;
+        }
+        if (shlokNo < Object.keys(shlok).length) setShlokNo((prev) => prev + 1);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [shlok, shlokNo]);
 
   useEffect(() => {
     if (slug) {
@@ -175,14 +201,28 @@ export default function Shlok() {
   return (
     <div className={classes.container}>
       <div className={classes.shlokImagesContainer}>
-        <div
-          className={classes.sliderTrack}
-          id="sliderTrack"
-          // style={{ transform: `translateX(-${shlokNo * 100}vw)` }}
-        >
+        <div className={classes.sliderTrack} id="sliderTrack">
           {shlokNo > 0 && shlok ? (
             Object.keys(shlok).map((s, idx) => (
               <div className={classes.shlokImageMain} key={idx}>
+                {imgError.includes(idx) && (
+                  <div className={classes.shlokImageError}>
+                    <Image
+                      src="/images/decex_black.png"
+                      alt="Replacement Image"
+                      width={540}
+                      height={100}
+                      quality={100}
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      draggable={false}
+                    />
+                  </div>
+                )}
                 <Image
                   src={
                     shlok[`shlok${idx + 1}`]?.split("\n\n")[2] !== ""
@@ -198,6 +238,8 @@ export default function Shlok() {
                     objectFit: "cover",
                     objectPosition: "center",
                   }}
+                  onError={() => setImgError((prev) => [...prev, idx])}
+                  draggable={false}
                 />
               </div>
             ))
@@ -213,6 +255,7 @@ export default function Shlok() {
                 objectFit: "cover",
                 objectPosition: "center",
               }}
+              draggable={false}
             />
           )}
         </div>
