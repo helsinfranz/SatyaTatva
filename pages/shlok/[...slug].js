@@ -9,7 +9,8 @@ import { BsRecord2 } from "react-icons/bs";
 import { FaRegPlayCircle, FaRegStopCircle } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { getShlokasMovements } from "@/reuse/Shlok/pre-recorded";
-import { getSingleShlokData } from "@/lib/storage";
+import { getSingleShlokData, titleMap } from "@/lib/storage";
+import Head from "next/head";
 
 export default function Shlok() {
   const router = useRouter();
@@ -199,384 +200,405 @@ export default function Shlok() {
   }
 
   return (
-    <div className={classes.container}>
-      <div className={classes.shlokImagesContainer}>
-        <div className={classes.sliderTrack} id="sliderTrack">
-          {shlokNo > 0 && shlok ? (
-            Object.keys(shlok).map((s, idx) => (
-              <div className={classes.shlokImageMain} key={idx}>
-                {imgError.includes(idx) && (
-                  <div className={classes.shlokImageError}>
-                    <Image
-                      src="/images/decex_black.png"
-                      alt="Replacement Image"
-                      width={540}
-                      height={100}
-                      quality={100}
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                      draggable={false}
-                    />
-                  </div>
-                )}
-                <Image
-                  src={
-                    shlok[`shlok${idx + 1}`]?.split("\n\n")[2] !== ""
-                      ? shlok[`shlok${idx + 1}`].split("\n\n")[2]
-                      : "/testingHero.jpg"
-                  }
-                  alt={slug}
-                  fill={true}
-                  priority={true}
-                  sizes="100vw"
-                  quality={100}
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                  onError={() => setImgError((prev) => [...prev, idx])}
-                  draggable={false}
-                />
-              </div>
-            ))
-          ) : (
-            <Image
-              src="/testingHero.jpg"
-              alt={slug}
-              fill={true}
-              priority={true}
-              sizes="100vw"
-              quality={100}
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-              draggable={false}
-            />
-          )}
-        </div>
-      </div>
-      <div className={classes.shlokMain}>
-        <div className={classes.smallTitle}>
-          {shlokNo > 0 && shlok
-            ? shlok[`shlok${shlokNo}`].split("\n\n")[0]
-            : "Shlok"}
-        </div>
-        <div className={classes.smallDetail}>
-          {shlokNo > 0 ? shlok[`shlok${shlokNo}`].split("\n\n")[1] : slug}
-        </div>
-      </div>
-      <div className={classes.shlokSlider}>
-        <div
-          className={`${classes.shlokSliderMain} hover`}
-          onClick={() => {
-            if (customMovements) {
-              return;
-            }
-            if (shlokNo > 1) setShlokNo((prev) => prev - 1);
-          }}
-        >
-          <IoIosArrowBack />
-        </div>
-        <div className={`${classes.shlokSliderMain} hover`}>
-          <IoPause />
-        </div>
-        <div
-          className={`${classes.shlokSliderMain} hover`}
-          onClick={() => {
-            if (customMovements) {
-              updateCustomMovement(true);
-              return;
-            }
-            if (shlokNo < Object.keys(shlok).length)
-              setShlokNo((prev) => prev + 1);
-          }}
-        >
-          <IoIosArrowForward />
-        </div>
-      </div>
-      <div
-        className={`${classes.shlokSettings} ${classes.shlokMain} ${
-          shlokSettings === 0 ? classes.recordMain + " hover" : ""
-        }`}
-        style={shlokSettings === 4 ? { padding: "0.5rem 0.8rem" } : {}}
-        onClick={() => {
-          if (shlokSettings === 0) setShlokSettings(1);
-        }}
-      >
-        {shlokSettings === 0 && (
-          <div
-            className={classes.shlokRecord}
-            title="Record the movement according to any song"
-          >
-            <BsRecord2 />
-          </div>
-        )}
-        {shlokSettings === 1 && (
-          <>
-            <div className={classes.smallTitle} style={{ textAlign: "center" }}>
-              Record Rhythm
-            </div>
-            <div className={classes.shlokSettingsMain}>
-              <div className={classes.shlokSettingsOption}>
-                <div className={classes.shlokSettingsLabel}>Pre-Recorded</div>
-                <div
-                  className={classes.smallDetail}
-                  onClick={() => {
-                    setShlokSettings(2);
-                  }}
-                >
-                  Open
-                </div>
-              </div>
-              <div className={classes.shlokSettingsOption}>
-                <div className={classes.shlokSettingsLabel}>Custom</div>
-                <div
-                  className={classes.smallDetail}
-                  onClick={() => {
-                    setShlokSettings(3);
-                  }}
-                >
-                  Open
-                </div>
-              </div>
-              <div
-                className={classes.shlokSettingsClose}
-                onClick={() => {
-                  setShlokSettings(0);
-                }}
-              >
-                Close
-              </div>
-            </div>
-          </>
-        )}
-        {shlokSettings === 2 && (
-          <>
-            <div className={classes.smallTitle} style={{ textAlign: "center" }}>
-              Pre-Recorded
-            </div>
-            <div className={classes.shlokSettingsMain}>
-              {shlokMovement.map((movement, index) => (
-                <>
-                  <div
-                    className={classes.shlokPlaying}
-                    style={{ gap: "2rem" }}
-                    key={index}
-                  >
-                    <div className={classes.shlokPlayingLabel}>
-                      <div className={classes.shlokPlayingLabelInside}>
-                        {movement.title}
-                      </div>
+    <>
+      <Head>
+        <title>{`${titleMap[slug]} - पढ़ें और जप करें | सत्यतत्व`}</title>
+        <meta
+          name="description"
+          content={`शक्तिशाली ${titleMap[slug]} को पढ़ें और जपें। जानिए सनातन धर्म में इसका अर्थ और महत्व।`}
+        />
+      </Head>
+      <div className={classes.container}>
+        <div className={classes.shlokImagesContainer}>
+          <div className={classes.sliderTrack} id="sliderTrack">
+            {shlokNo > 0 && shlok ? (
+              Object.keys(shlok).map((s, idx) => (
+                <div className={classes.shlokImageMain} key={idx}>
+                  {imgError.includes(idx) && (
+                    <div className={classes.shlokImageError}>
+                      <Image
+                        src="/logos/SatyaTatva_FI_NB.png"
+                        alt="Replacement Image"
+                        width={200}
+                        height={200}
+                        quality={100}
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                        draggable={false}
+                      />
                     </div>
-                    <div
-                      className={classes.shlokPlayingClose}
-                      onClick={async () => {
-                        await startMovement(movement.title, movement.record);
-                      }}
-                    >
-                      <FaRegPlayCircle />
-                    </div>
-                  </div>
-                </>
-              ))}
-              {shlokMovement.length === 0 && (
-                <div
-                  className={classes.smallDetail}
-                  style={{
-                    paddingBottom: "1rem",
-                    fontSize: "1rem",
-                    opacity: 0.8,
-                  }}
-                >
-                  No Pre-recorded movements added
-                </div>
-              )}
-              <div
-                className={classes.shlokSettingsClose}
-                onClick={() => {
-                  setShlokSettings(1);
-                }}
-              >
-                Back
-              </div>
-            </div>
-          </>
-        )}
-        {shlokSettings === 3 && (
-          <>
-            <div className={classes.smallTitle} style={{ textAlign: "center" }}>
-              Custom
-            </div>
-            <div className={classes.shlokSettingsMain}>
-              {shlokCustomMovement.map((movement, index) => (
-                <>
-                  <div
-                    className={classes.shlokPlaying}
-                    style={{ gap: "2rem" }}
-                    key={index}
-                  >
-                    <div className={classes.shlokPlayingLabel}>
-                      <div className={classes.shlokPlayingLabelInside}>
-                        {movement.title}
-                      </div>
-                    </div>
-                    <div
-                      className={classes.shlokPlayingClose}
-                      onClick={async () => {
-                        await startMovement(movement.title, movement.record);
-                      }}
-                    >
-                      <FaRegPlayCircle />
-                    </div>
-                    <div
-                      className={classes.shlokPlayingClose}
-                      style={{ marginLeft: "-1.5rem" }}
-                      onClick={() => {
-                        deleteCustomMovement(movement.title);
-                      }}
-                    >
-                      <MdDelete />
-                    </div>
-                  </div>
-                </>
-              ))}
-              {shlokCustomMovement.length === 0 && (
-                <div
-                  className={classes.smallDetail}
-                  style={{
-                    paddingBottom: "1rem",
-                    fontSize: "1rem",
-                    opacity: 0.8,
-                  }}
-                >
-                  No custom movements added
-                </div>
-              )}
-              <div
-                className={classes.shlokSettingsClose}
-                style={{ marginBottom: "-0.5rem" }}
-                onClick={() => {
-                  setShlokSettings(5);
-                }}
-              >
-                Add
-              </div>
-              <div
-                className={classes.shlokSettingsClose}
-                onClick={() => {
-                  setShlokSettings(1);
-                }}
-              >
-                Back
-              </div>
-            </div>
-          </>
-        )}
-        {shlokSettings === 4 && (
-          <div
-            className={`${classes.shlokPlaying} ${classes.smallShlokPlaying}`}
-          >
-            <div className={classes.shlokPlayingLabel}>
-              <div className={classes.shlokPlayingLabelInside}>
-                {selectedTitle}
-              </div>
-            </div>
-            <div
-              className={classes.shlokPlayingClose}
-              onClick={() => {
-                stopMovement();
-              }}
-            >
-              <FaRegStopCircle />
-            </div>
-          </div>
-        )}
-        {shlokSettings === 5 && (
-          <>
-            <div className={classes.smallTitle} style={{ textAlign: "center" }}>
-              Add Custom
-            </div>
-            {!customMovements ? (
-              <div className={classes.shlokSettingsMain}>
-                <form
-                  className={classes.smallDetail}
-                  onSubmit={addCustomMovement}
-                  style={{ opacity: 1 }}
-                >
-                  <input
-                    className={classes.shlokInput}
-                    type="text"
-                    ref={inputRef}
-                    minLength={4}
-                    maxLength={20}
-                    placeholder="Record Title"
-                  />
-                  <button
-                    className={classes.shlokSettingsClose}
+                  )}
+                  <Image
+                    src={
+                      shlok[`shlok${idx + 1}`]?.split("\n\n")[2] !== ""
+                        ? shlok[`shlok${idx + 1}`].split("\n\n")[2]
+                        : "/testingHero.jpg"
+                    }
+                    alt={slug}
+                    fill={true}
+                    priority={true}
+                    sizes="100vw"
+                    quality={100}
                     style={{
-                      marginBottom: "-0.5rem",
-                      outline: "none",
-                      border: "none",
-                      width: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
                     }}
-                    type="submit"
+                    onError={() => setImgError((prev) => [...prev, idx])}
+                    draggable={false}
+                  />
+                </div>
+              ))
+            ) : (
+              <Image
+                src="/testingHero.jpg"
+                alt={slug}
+                fill={true}
+                priority={true}
+                sizes="100vw"
+                quality={100}
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+                draggable={false}
+              />
+            )}
+          </div>
+        </div>
+        <div className={classes.shlokMain}>
+          <div className={classes.smallTitle}>
+            {shlokNo > 0 && shlok
+              ? shlok[`shlok${shlokNo}`].split("\n\n")[0]
+              : "Shlok"}
+          </div>
+          <div className={classes.smallDetail}>
+            {shlokNo > 0 ? shlok[`shlok${shlokNo}`].split("\n\n")[1] : slug}
+          </div>
+        </div>
+        <div className={classes.shlokSlider}>
+          <div
+            className={`${classes.shlokSliderMain} hover`}
+            onClick={() => {
+              if (customMovements) {
+                return;
+              }
+              if (shlokNo > 1) setShlokNo((prev) => prev - 1);
+            }}
+          >
+            <IoIosArrowBack />
+          </div>
+          <div className={`${classes.shlokSliderMain} hover`}>
+            <IoPause />
+          </div>
+          <div
+            className={`${classes.shlokSliderMain} hover`}
+            onClick={() => {
+              if (customMovements) {
+                updateCustomMovement(true);
+                return;
+              }
+              if (shlokNo < Object.keys(shlok).length)
+                setShlokNo((prev) => prev + 1);
+            }}
+          >
+            <IoIosArrowForward />
+          </div>
+        </div>
+        <div
+          className={`${classes.shlokSettings} ${classes.shlokMain} ${
+            shlokSettings === 0 ? classes.recordMain + " hover" : ""
+          }`}
+          style={shlokSettings === 4 ? { padding: "0.5rem 0.8rem" } : {}}
+          onClick={() => {
+            if (shlokSettings === 0) setShlokSettings(1);
+          }}
+        >
+          {shlokSettings === 0 && (
+            <div
+              className={classes.shlokRecord}
+              title="Record the movement according to any song"
+            >
+              <BsRecord2 />
+            </div>
+          )}
+          {shlokSettings === 1 && (
+            <>
+              <div
+                className={classes.smallTitle}
+                style={{ textAlign: "center" }}
+              >
+                Record Rhythm
+              </div>
+              <div className={classes.shlokSettingsMain}>
+                <div className={classes.shlokSettingsOption}>
+                  <div className={classes.shlokSettingsLabel}>Pre-Recorded</div>
+                  <div
+                    className={classes.smallDetail}
+                    onClick={() => {
+                      setShlokSettings(2);
+                    }}
                   >
-                    Create
-                  </button>
-                </form>
+                    Open
+                  </div>
+                </div>
+                <div className={classes.shlokSettingsOption}>
+                  <div className={classes.shlokSettingsLabel}>Custom</div>
+                  <div
+                    className={classes.smallDetail}
+                    onClick={() => {
+                      setShlokSettings(3);
+                    }}
+                  >
+                    Open
+                  </div>
+                </div>
                 <div
                   className={classes.shlokSettingsClose}
                   onClick={() => {
-                    setShlokSettings(3);
+                    setShlokSettings(0);
+                  }}
+                >
+                  Close
+                </div>
+              </div>
+            </>
+          )}
+          {shlokSettings === 2 && (
+            <>
+              <div
+                className={classes.smallTitle}
+                style={{ textAlign: "center" }}
+              >
+                Pre-Recorded
+              </div>
+              <div className={classes.shlokSettingsMain}>
+                {shlokMovement.map((movement, index) => (
+                  <>
+                    <div
+                      className={classes.shlokPlaying}
+                      style={{ gap: "2rem" }}
+                      key={index}
+                    >
+                      <div className={classes.shlokPlayingLabel}>
+                        <div className={classes.shlokPlayingLabelInside}>
+                          {movement.title}
+                        </div>
+                      </div>
+                      <div
+                        className={classes.shlokPlayingClose}
+                        onClick={async () => {
+                          await startMovement(movement.title, movement.record);
+                        }}
+                      >
+                        <FaRegPlayCircle />
+                      </div>
+                    </div>
+                  </>
+                ))}
+                {shlokMovement.length === 0 && (
+                  <div
+                    className={classes.smallDetail}
+                    style={{
+                      paddingBottom: "1rem",
+                      fontSize: "1rem",
+                      opacity: 0.8,
+                    }}
+                  >
+                    No Pre-recorded movements added
+                  </div>
+                )}
+                <div
+                  className={classes.shlokSettingsClose}
+                  onClick={() => {
+                    setShlokSettings(1);
                   }}
                 >
                   Back
                 </div>
               </div>
-            ) : (
-              <>
+            </>
+          )}
+          {shlokSettings === 3 && (
+            <>
+              <div
+                className={classes.smallTitle}
+                style={{ textAlign: "center" }}
+              >
+                Custom
+              </div>
+              <div className={classes.shlokSettingsMain}>
+                {shlokCustomMovement.map((movement, index) => (
+                  <>
+                    <div
+                      className={classes.shlokPlaying}
+                      style={{ gap: "2rem" }}
+                      key={index}
+                    >
+                      <div className={classes.shlokPlayingLabel}>
+                        <div className={classes.shlokPlayingLabelInside}>
+                          {movement.title}
+                        </div>
+                      </div>
+                      <div
+                        className={classes.shlokPlayingClose}
+                        onClick={async () => {
+                          await startMovement(movement.title, movement.record);
+                        }}
+                      >
+                        <FaRegPlayCircle />
+                      </div>
+                      <div
+                        className={classes.shlokPlayingClose}
+                        style={{ marginLeft: "-1.5rem" }}
+                        onClick={() => {
+                          deleteCustomMovement(movement.title);
+                        }}
+                      >
+                        <MdDelete />
+                      </div>
+                    </div>
+                  </>
+                ))}
+                {shlokCustomMovement.length === 0 && (
+                  <div
+                    className={classes.smallDetail}
+                    style={{
+                      paddingBottom: "1rem",
+                      fontSize: "1rem",
+                      opacity: 0.8,
+                    }}
+                  >
+                    No custom movements added
+                  </div>
+                )}
                 <div
-                  className={classes.ListeningDetails}
-                  style={{
-                    paddingBottom: "1rem",
-                    fontSize: "1rem",
-                    opacity: 0.8,
+                  className={classes.shlokSettingsClose}
+                  style={{ marginBottom: "-0.5rem" }}
+                  onClick={() => {
+                    setShlokSettings(5);
                   }}
                 >
-                  <div className={classes.loading}>
-                    <div className={classes.load}></div>
-                    <div className={classes.load}></div>
-                    <div className={classes.load}></div>
-                    <div className={classes.load}></div>
-                  </div>
-                  Recording...
+                  Add
                 </div>
+                <div
+                  className={classes.shlokSettingsClose}
+                  onClick={() => {
+                    setShlokSettings(1);
+                  }}
+                >
+                  Back
+                </div>
+              </div>
+            </>
+          )}
+          {shlokSettings === 4 && (
+            <div
+              className={`${classes.shlokPlaying} ${classes.smallShlokPlaying}`}
+            >
+              <div className={classes.shlokPlayingLabel}>
+                <div className={classes.shlokPlayingLabelInside}>
+                  {selectedTitle}
+                </div>
+              </div>
+              <div
+                className={classes.shlokPlayingClose}
+                onClick={() => {
+                  stopMovement();
+                }}
+              >
+                <FaRegStopCircle />
+              </div>
+            </div>
+          )}
+          {shlokSettings === 5 && (
+            <>
+              <div
+                className={classes.smallTitle}
+                style={{ textAlign: "center" }}
+              >
+                Add Custom
+              </div>
+              {!customMovements ? (
                 <div className={classes.shlokSettingsMain}>
+                  <form
+                    className={classes.smallDetail}
+                    onSubmit={addCustomMovement}
+                    style={{ opacity: 1 }}
+                  >
+                    <input
+                      className={classes.shlokInput}
+                      type="text"
+                      ref={inputRef}
+                      minLength={4}
+                      maxLength={20}
+                      placeholder="Record Title"
+                    />
+                    <button
+                      className={classes.shlokSettingsClose}
+                      style={{
+                        marginBottom: "-0.5rem",
+                        outline: "none",
+                        border: "none",
+                        width: "100%",
+                      }}
+                      type="submit"
+                    >
+                      Create
+                    </button>
+                  </form>
                   <div
                     className={classes.shlokSettingsClose}
                     onClick={() => {
-                      setCustomMovements(null);
+                      setShlokSettings(3);
                     }}
                   >
-                    Cancel
+                    Back
                   </div>
                 </div>
-              </>
-            )}
-          </>
-        )}
+              ) : (
+                <>
+                  <div
+                    className={classes.ListeningDetails}
+                    style={{
+                      paddingBottom: "1rem",
+                      fontSize: "1rem",
+                      opacity: 0.8,
+                    }}
+                  >
+                    <div className={classes.loading}>
+                      <div className={classes.load}></div>
+                      <div className={classes.load}></div>
+                      <div className={classes.load}></div>
+                      <div className={classes.load}></div>
+                    </div>
+                    Recording...
+                  </div>
+                  <div className={classes.shlokSettingsMain}>
+                    <div
+                      className={classes.shlokSettingsClose}
+                      onClick={() => {
+                        setCustomMovements(null);
+                      }}
+                    >
+                      Cancel
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
+          )}
+        </div>
+        <div
+          className={`${classes.backButton} hover`}
+          onClick={() => router.back()}
+        >
+          <IoArrowBack />
+        </div>
       </div>
-      <div
-        className={`${classes.backButton} hover`}
-        onClick={() => router.back()}
-      >
-        <IoArrowBack />
-      </div>
-    </div>
+    </>
   );
 }

@@ -13,7 +13,7 @@ export default function Footer() {
       <div className={classes.socials}>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/decexcorp"
+          href="https://x.com/SatyaTatva108"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -21,7 +21,7 @@ export default function Footer() {
         </Link>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/decexcorp"
+          href="https://x.com/SatyaTatva108"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -29,7 +29,7 @@ export default function Footer() {
         </Link>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/decexcorp"
+          href="https://x.com/SatyaTatva108"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -37,7 +37,7 @@ export default function Footer() {
         </Link>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/decexcorp"
+          href="https://x.com/SatyaTatva108"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -45,7 +45,7 @@ export default function Footer() {
         </Link>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/decexcorp"
+          href="https://x.com/SatyaTatva108"
           target="_blank"
           rel="noopener noreferrer"
         >

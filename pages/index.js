@@ -96,10 +96,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Eternal - Home</title>
-        <meta name="description" content="Home of Eternals" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>
+          SatyaTatva - Discover Vedas, Puranas, Upanishads, and Much More
+        </title>
+        <meta
+          name="description"
+          content="Explore the wisdom of Sanatan Dharma through Vedas, Upanishads, Puranas, and sacred shlokas in an engaging UI."
+        />
       </Head>
       <div
         className={`${classes.container} scrollable`}

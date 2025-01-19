@@ -16,16 +16,16 @@ export default function FooterMain() {
         <div className={classes.footerSiteDetailsLogo}>
           <Link href="/">
             <Image
-              src="/images/decex_black.png"
+              src="/logos/SatyaTatva_FI_NB.png"
               alt="Logo"
-              width={150}
-              height={30}
+              width={50}
+              height={50}
               priority={true}
             />
           </Link>
         </div>
         <div className={classes.footerSiteDetailsText}>
-          Eternals is an open source and non profit organization located in
+          Satya Tatva is an open source and non profit organization located in
           Bharat.
         </div>
         <div className={classes.footerSiteDetailsText}>
@@ -90,7 +90,7 @@ export default function FooterMain() {
             <div className={classes.footerSiteSocialSvg}>
               <IoMail />
             </div>
-            decexcorp@gmail.com
+            satyatatva108@gmail.com
           </div>
           <div className={classes.footerSiteSocialSingle}>
             <div className={classes.footerSiteSocialSvg}>

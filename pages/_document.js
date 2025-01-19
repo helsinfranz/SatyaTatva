@@ -17,40 +17,52 @@ export default function Document() {
         <link rel="manifest" href="/manifest.json" />
         <link
           rel="apple-touch-icon"
-          href="https://decex.app/images/decex_dp_192.png"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
         ></link>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="DeceX" />
-        {/* <meta name="theme-color" content="#333333" /> */}
+        <meta name="apple-mobile-web-app-title" content="SatyaTatva" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="author" content="DeceX"></meta>
+        <meta name="author" content="SatyaTatva"></meta>
         <meta
           property="twitter:image"
-          content="https://www.decex.app/images/decex_black_raw.png"
+          content="/logos/SatyaTatva_FI_NB.png"
         ></meta>
-        <meta property="twitter:domain" content="decex.app"></meta>
-        <meta name="twitter:url" content="https://www.decex.app" />
+        <meta property="twitter:domain" content="satyatatva.com"></meta>
+        <meta name="twitter:url" content="https://www.satyatatva.com" />
         <meta property="twitter:card" content="summary_large_image"></meta>
-        <meta property="twitter:title" content="DeceX Corp."></meta>
+        <meta property="twitter:title" content="SatyaTatva"></meta>
         <meta
           property="twitter:description"
-          content="DeceX is a decentralized and anonymous platform for discussions and interactions, ensuring privacy and security for users."
+          content="Explore the wisdom of Sanatan Dharma through Vedas, Upanishads, Puranas, Shlokas, and much more."
         ></meta>
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Satya Tatva" />
         <meta
-          property="og:image"
-          content="https://www.decex.app/images/decex_black_raw.png"
-        ></meta>
-        <meta property="og:title" content="DeceX Corp."></meta>
-        <meta property="og:site_name" content="DeceX Corp." />
+          property="og:title"
+          content="SatyaTatva - Discover Vedas, Puranas, Upanishads, and Much More"
+        />
         <meta
           property="og:description"
-          content="DeceX is a decentralized and anonymous platform for discussions and interactions, ensuring privacy and security for users."
+          content="Explore the wisdom of Sanatan Dharma through Vedas, Upanishads, Puranas, and sacred shlokas in an engaging UI."
         />
-        <meta property="og:url" content="https://www.decex.app/"></meta>
+        <meta property="og:image" content="/logos/SatyaTatva_FI_NB.png"></meta>
+        <meta property="og:url" content="https://www.satyatatva.com"></meta>
       </Head>
       <body>
         <Main />

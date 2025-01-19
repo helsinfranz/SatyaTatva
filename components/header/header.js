@@ -149,10 +149,10 @@ export default function Header({
             <div className={classes.logo}>
               <Link href="/">
                 <Image
-                  src="/images/decex_black.png"
+                  src="/logos/SatyaTatva_FI_NB.png"
                   alt="Logo"
-                  width={150}
-                  height={30}
+                  width={100}
+                  height={100}
                   priority={true}
                 />
               </Link>
@@ -339,7 +339,7 @@ export default function Header({
             <h1 className={classes.optionMainTitle}>Useful Links</h1>
             <div className={classes.optionMainLinks}>
               <Link className={`${classes.optionMainLink} hover`} href={"/"}>
-                {language ? "सियाराम.इन के बारे में" : "About SiyaRam.in"}
+                {language ? "सत्यतत्व के बारे में" : "About SatyaTatva"}
               </Link>
               <Link
                 className={`${classes.optionMainLink} hover`}
@@ -360,7 +360,7 @@ export default function Header({
                 {language ? "ब्लॉग और कहानियां" : "Blogs & Stories"}
               </Link>
               <Link
-                href="mailto:decexcorp@gmail.com"
+                href="mailto:satyatatva108@gmail.com"
                 className={`${classes.optionMainLink} hover`}
               >
                 {language ? "संपर्क करें" : "Get in Touch"}

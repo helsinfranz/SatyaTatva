@@ -339,7 +339,9 @@
 }
 
 .logo img {
-  max-width: 150px;
+  /* max-width: 150px; */
+  width: 4rem;
+  height: 4rem;
 }
 
 .container {
