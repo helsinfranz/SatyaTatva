@@ -23,6 +23,7 @@ export default function Document() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="SatyaTatva" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <link
           rel="icon"
           type="image/png"
@@ -38,7 +39,7 @@ export default function Document() {
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="author" content="SatyaTatva"></meta>
+        <meta name="author" content="SatyaTatva" />
         <meta
           property="twitter:image"
           content="/logos/SatyaTatva_FI_NB.png"
