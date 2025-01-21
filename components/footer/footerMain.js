@@ -99,7 +99,7 @@ export default function FooterMain() {
             <div className={classes.footerSiteSocialSvg}>
               <FaGithub />
             </div>
-            github.com/helsinfranz/eternal
+            github.com/helsinfranz/SatyaTatva
           </div>
           <div className={classes.footerSiteSocialSingle}>
             <div className={classes.footerSiteSocialSvg}>
