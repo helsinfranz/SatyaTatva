@@ -15,7 +15,7 @@ Please read and follow our [Code of Conduct](./CODE_OF_CONDUCT.md) to ensure a w
 **SatyaTatva** is a platform that brings the wisdom of **Sanatan Dharma** to modern users with:
 - **Vedas** and **Upanishads** available in **English** and **Hindi**.
 - Sacred **Puranas** and **Shlokas** like **Hanuman Chalisa**, **Shiv Tandav Stotram**, etc.
-- Additional **books** like the **Ramayana**, **Mahabharata**, and **Ram Charitramanas**, with more coming soon.
+- Additional **books** like the **Ramayana**, **Mahabharata**, **Ram Charitramanas**, etc, Also more coming soon.
 - **Offline access** via **Progressive Web App (PWA)** feature, accessible across all devices.
 - **Page flipping UI** for reading books and a user-friendly interface for reading texts.
 
@@ -54,7 +54,7 @@ There are several ways you can contribute to SatyaTatva:
 ## Development Guidelines
 
 - **Code Style:** We follow standard JavaScript (or your language of choice) style guides. For JavaScript, we use [Prettier](https://prettier.io/) for formatting and [ESLint](https://eslint.org/) for linting.
-- **Folder Structure:** Ensure that your changes are placed in the correct directory (e.g., `src`, `public`, `components`).
+- **Folder Structure:** Ensure that your changes are placed in the correct directory (e.g., `pages`, `public`, `components`).
 - **Testing:** Write unit and integration tests where applicable.
 - **Dependencies:** Ensure any new dependencies added are necessary and reviewed for security.
 - **UI Guidelines:** Follow our design system (if any) or provide clean, readable code that complements the existing UI.
@@ -139,12 +139,3 @@ We look forward to your contributions! If you have any questions or need assista
 ## Thank You for Contributing!
 
 Your contribution helps make **SatyaTatva** a great resource for people seeking the wisdom of Sanatan Dharma. 🙏
-
-### **How to Add a Code of Conduct Link:**
-To add a Code of Conduct file, create a new file named `CODE_OF_CONDUCT.md` in the root of your repository. The `CONTRIBUTING.md` file will automatically link to it as shown in the sample above:
-
-- **Create CODE_OF_CONDUCT.md:**  
-  Navigate to your GitHub repository > **Add file** > **Create new file** > Name it `CODE_OF_CONDUCT.md`.
-  
-- **Add content:**  
-  Here's a simple starting template for your Code of Conduct file:
