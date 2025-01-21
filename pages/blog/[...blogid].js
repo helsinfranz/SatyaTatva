@@ -28,7 +28,7 @@ export default function BlogMain() {
                   <Image
                     width={75}
                     height={75}
-                    src={"/testingHero.jpg"}
+                    src={"/testingHero.png"}
                     alt={"Skhand Concept"}
                   />
                 </div>

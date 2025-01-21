@@ -13,7 +13,7 @@ export default function Footer() {
       <div className={classes.socials}>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/SatyaTatva108"
+          href="https://www.facebook.com/people/Satya-Tatva/61572392306279/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -29,7 +29,7 @@ export default function Footer() {
         </Link>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/SatyaTatva108"
+          href="https://www.linkedin.com/company/satyatatva"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -37,7 +37,7 @@ export default function Footer() {
         </Link>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/SatyaTatva108"
+          href="https://www.youtube.com/@SatyaTatva108"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -45,7 +45,7 @@ export default function Footer() {
         </Link>
         <Link
           className={classes.socialLinks}
-          href="https://x.com/SatyaTatva108"
+          href="https://www.instagram.com/satyatatva108/"
           target="_blank"
           rel="noopener noreferrer"
         >

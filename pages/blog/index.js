@@ -14,7 +14,7 @@ const contentDetails = [
   {
     title: "Skhand Concept",
     subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
+    image: "/testingHero.png",
     likes: 0,
     description:
       "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
@@ -23,7 +23,7 @@ const contentDetails = [
   {
     title: "Skhand Concept",
     subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
+    image: "/testingHero.png",
     likes: 0,
     description:
       "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
@@ -32,7 +32,7 @@ const contentDetails = [
   {
     title: "Skhand Concept",
     subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
+    image: "/testingHero.png",
     likes: 0,
     description:
       "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
@@ -41,7 +41,7 @@ const contentDetails = [
   {
     title: "Skhand Concept",
     subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
+    image: "/testingHero.png",
     likes: 0,
     description:
       "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
@@ -50,7 +50,7 @@ const contentDetails = [
   {
     title: "Skhand Concept",
     subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
+    image: "/testingHero.png",
     likes: 0,
     description:
       "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",
@@ -59,7 +59,7 @@ const contentDetails = [
   {
     title: "Skhand Concept",
     subTitle: "Concept, Design",
-    image: "/testingHero.jpg",
+    image: "/testingHero.png",
     likes: 0,
     description:
       "Making this project we were inspired by modern trends in the development of motorsport in the desire to create a perfect, fast and recognizable silhouette. Every line, every bend has been thought out to the smallest detail to fit perfectly into the overall concept. Also, we tried to take into account all engineering requirements and constraints.",

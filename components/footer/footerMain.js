@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import classes from "./footerMain.module.css";
-import { FaAt, FaFacebookF, FaGithub, FaShareAlt } from "react-icons/fa";
+import { FaAt, FaFacebookF, FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
@@ -52,7 +52,10 @@ export default function FooterMain() {
           <Link className={classes.footerSiteLink} href="/blog">
             Blogs & Stories
           </Link>
-          <Link className={classes.footerSiteLink} href="/contact">
+          <Link
+            className={classes.footerSiteLink}
+            href="mailto:satyatatva108@gmail.com"
+          >
             Get in Touch
           </Link>
         </div>
@@ -103,19 +106,44 @@ export default function FooterMain() {
               <FaAt />
             </div>
             <div className={classes.socials}>
-              <Link className={classes.socialLinks} href="/">
+              <Link
+                className={classes.socialLinks}
+                href="https://www.facebook.com/people/Satya-Tatva/61572392306279/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaFacebookF />
               </Link>
-              <Link className={classes.socialLinks} href="/">
+              <Link
+                className={classes.socialLinks}
+                href="https://x.com/SatyaTatva108"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaTwitter />
               </Link>
-              <Link className={classes.socialLinks} href="/">
+              <Link
+                className={classes.socialLinks}
+                href="https://www.linkedin.com/company/satyatatva"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaLinkedinIn />
               </Link>
-              <Link className={classes.socialLinks} href="/">
+              <Link
+                className={classes.socialLinks}
+                href="https://www.youtube.com/@SatyaTatva108"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaYoutube />
               </Link>
-              <Link className={classes.socialLinks} href="/">
+              <Link
+                className={classes.socialLinks}
+                href="https://www.instagram.com/satyatatva108/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <AiFillInstagram />
               </Link>
             </div>

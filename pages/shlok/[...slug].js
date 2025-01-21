@@ -233,11 +233,7 @@ export default function Shlok() {
                     </div>
                   )}
                   <Image
-                    src={
-                      shlok[`shlok${idx + 1}`]?.split("\n\n")[2] !== ""
-                        ? shlok[`shlok${idx + 1}`].split("\n\n")[2]
-                        : "/testingHero.jpg"
-                    }
+                    src={shlok[`shlok${idx + 1}`]?.split("\n\n")[2]}
                     alt={slug}
                     fill={true}
                     priority={true}
@@ -254,7 +250,7 @@ export default function Shlok() {
               ))
             ) : (
               <Image
-                src="/testingHero.jpg"
+                src="/testingHero.png"
                 alt={slug}
                 fill={true}
                 priority={true}
@@ -309,9 +305,8 @@ export default function Shlok() {
           </div>
         </div>
         <div
-          className={`${classes.shlokSettings} ${classes.shlokMain} ${
-            shlokSettings === 0 ? classes.recordMain + " hover" : ""
-          }`}
+          className={`${classes.shlokSettings} ${classes.shlokMain} ${shlokSettings === 0 ? classes.recordMain + " hover" : ""
+            }`}
           style={shlokSettings === 4 ? { padding: "0.5rem 0.8rem" } : {}}
           onClick={() => {
             if (shlokSettings === 0) setShlokSettings(1);

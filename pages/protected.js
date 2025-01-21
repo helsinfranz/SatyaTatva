@@ -19,7 +19,7 @@ export default function Protected() {
       <div className={classes.container}>
         <div className={classes.bigImage}>
           <Image
-            src="/protected.jpg"
+            src="/protected.webp"
             alt="protected background"
             fill={true}
             priority={true}
@@ -33,7 +33,7 @@ export default function Protected() {
         <div className={classes.protected}>
           <div className={classes.protectedImage}>
             <Image
-              src="/protected.jpg"
+              src="/protected.webp"
               alt="protected background"
               width={192}
               height={128}
