@@ -103,17 +103,16 @@ Here's a breakdown of the project's folder structure:
 satyatatva/
 │
 ├── public/               # Public static files (images, fonts, etc.)
-│   ├── logos/            # SatyaTatva logo and other assets
-│   └── pdfs/             # PDFs for each book (for production)
+│   ├── logos/            # SatyaTatva logo
+│   └──  ...
 │
 ├── pages/                # Next.js pages
 │   ├── index.js          # Home page
-│   ├── books.js          # Books page
 │   └── ...               # Other page files
 │
 ├── components/           # Reusable components (headers, footers, etc.)
-│   ├── Header.js
-│   ├── Footer.js
+│   ├── header
+│   ├── footer
 │   └── ...               # Other shared components
 │
 ├── server/               # Mock server (used for dummy data and testing)
@@ -197,9 +196,9 @@ You can also visit our website: [SatyaTatva](https://satyatatva.com).
 ## Links
 
 - [SatyaTatva GitHub Repository](https://github.com/helsinfranz/satyatatva)
-- [License Information](https://opensource.org/licenses/MIT)
+- [License Information](https://opensource.org/licenses/Apache-2.0)
 - [Contributing Guidelines](https://github.com/helsinfranz/satyatatva/blob/main/CONTRIBUTING.md)
-- [Community Discussions](https://github.com/helsinfranz/satyatatva/discussions)
+- [Community Discussions](https://discord.gg/4kqYu5UCEH)
 
 ---
 
@@ -261,7 +260,9 @@ We would like to extend our gratitude to the following:
 - **Open-Source Libraries:** This project uses several open-source libraries that made our work much easier. Special thanks to:
   - [Next.js](https://nextjs.org)
   - [React](https://reactjs.org)
-
+  - [Express](https://expressjs.com/)
+  - [Uiverse](https://uiverse.io/)
+    
 ---
 
 ## Support
@@ -277,14 +278,13 @@ If you run into any issues or need support, you can:
 
 We encourage open discussion and learning in our community. Join us on our official forums and community channels:
 
-- **GitHub Discussions**: [SatyaTatva Discussions](https://github.com/helsinfranz/satyatatva/discussions)
-- **Discord Server**: Join our [Discord](https://discord.com/invite/yourdiscordinvite) for live discussions, suggestions, and support.
+- **GitHub Discussions**: [SatyaTatva Discussions](https://discord.gg/4kqYu5UCEH)
+- **Discord Server**: Join our [Discord](https://discord.gg/4kqYu5UCEH) for live discussions, suggestions, and support.
 
 ---
 
 ## Additional Resources
 
-- [Sanatan Dharma Resources](https://satyatatva.com/resources) - Explore curated lists of resources about Sanatan Dharma.
 - [SatyaTatva Blog](https://satyatatva.com/blog) - Read insightful articles on the meanings and importance of the sacred texts.
 - [License](https://opensource.org/licenses/Apache-2.0) - View the open-source license under which SatyaTatva is published.
 
