@@ -96,8 +96,10 @@ export default function BookMain() {
         ];
         if (localStorageData) {
           const parsedData = JSON.parse(localStorageData);
-          if (parsedData.some((item) => item.link === "/book/" + book_id))
+          if (parsedData.some((item) => item.link === "/book/" + book_id)) {
+            setLoading(false);
             return;
+          }
           const updatedData = [...addingData, parsedData[0]];
           localStorage.setItem("mostRecent", JSON.stringify(updatedData));
         } else {
@@ -428,20 +430,18 @@ export default function BookMain() {
                               !flip.start || flip.side !== "right"
                                 ? { visibility: "hidden" }
                                 : flip.half
-                                ? {
+                                  ? {
                                     left: 0,
                                   }
-                                : {}
+                                  : {}
                             }
-                            className={`${classes.flipContainer} ${
-                              classes.flip
-                            } ${
-                              flip.start
+                            className={`${classes.flipContainer} ${classes.flip
+                              } ${flip.start
                                 ? flip.side === "right"
                                   ? classes.flippedRight
                                   : ""
                                 : ""
-                            }`}
+                              }`}
                             draggable="false"
                           >
                             <img
@@ -452,8 +452,8 @@ export default function BookMain() {
                               style={
                                 flip.half && flip.side === "right"
                                   ? {
-                                      transform: "rotateY(-180deg)",
-                                    }
+                                    transform: "rotateY(-180deg)",
+                                  }
                                   : {}
                               }
                               draggable="false"
@@ -464,20 +464,18 @@ export default function BookMain() {
                               !flip.start || flip.side !== "left"
                                 ? { visibility: "hidden" }
                                 : flip.half
-                                ? {
+                                  ? {
                                     right: 0,
                                   }
-                                : {}
+                                  : {}
                             }
-                            className={`${classes.flipContainer} ${
-                              classes.flipL
-                            } ${
-                              flip.start
+                            className={`${classes.flipContainer} ${classes.flipL
+                              } ${flip.start
                                 ? flip.side === "left"
                                   ? classes.flippedLeft
                                   : ""
                                 : ""
-                            }`}
+                              }`}
                             draggable="false"
                           >
                             <img
@@ -486,8 +484,8 @@ export default function BookMain() {
                               style={
                                 flip.half && flip.side === "left"
                                   ? {
-                                      transform: "rotateY(180deg)",
-                                    }
+                                    transform: "rotateY(180deg)",
+                                  }
                                   : {}
                               }
                               draggable="false"
@@ -571,12 +569,10 @@ export default function BookMain() {
           </div>
         )}
         <div
-          className={`${classes.qualityButton} ${
-            bookmarked > 0 ? classes.bookmarkActiveQuality : ""
-          } hover`}
-          title={`${
-            quality === 1 ? "Low" : quality === 1.5 ? "Medium" : "High"
-          } Quality`}
+          className={`${classes.qualityButton} ${bookmarked > 0 ? classes.bookmarkActiveQuality : ""
+            } hover`}
+          title={`${quality === 1 ? "Low" : quality === 1.5 ? "Medium" : "High"
+            } Quality`}
           onClick={() => {
             if (error) return;
             const slug = `data-${book_id}`;
