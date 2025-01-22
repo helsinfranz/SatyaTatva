@@ -15,6 +15,7 @@ export default function Header({
   setIsCursor,
   isCursor,
   language,
+  renderLoad
 }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [optionsOpen, setoptionsOpen] = useState(false);
@@ -260,7 +261,7 @@ export default function Header({
             <MdKeyboardArrowLeft />
           </div>
           <div className={`${classes.cursorOption} hover`}>
-            <CurserFollower isCursor={isCursor} setIsCursor={setIsCursor} />
+            <CurserFollower isCursor={isCursor} setIsCursor={setIsCursor} renderLoad={renderLoad} />
           </div>
           <div className={classes.burger_drawer}>
             <label className={classes.hamburger}>
@@ -277,9 +278,7 @@ export default function Header({
         </div>
       </div>
       <div
-        className={`${classes.searchMain} ${
-          searchOpen ? classes.searchOpen : ""
-        }`}
+        className={`${classes.searchMain} ${searchOpen ? classes.searchOpen : ""}`}
       >
         <label className={`${classes.searhBar} hover`} htmlFor="search">
           <input
@@ -308,9 +307,7 @@ export default function Header({
         </div>
       </div>
       <div
-        className={`${classes.headerOptions} ${
-          optionsOpen ? classes.optionsOpened : ""
-        }`}
+        className={`${classes.headerOptions} ${optionsOpen ? classes.optionsOpened : ""}`}
         onClick={() => setoptionsOpen(false)}
       >
         <div
@@ -368,9 +365,7 @@ export default function Header({
             </div>
           </div>
           <div
-            className={`${classes.extra} ${
-              optionsOpen ? classes.extraOpen : ""
-            } hover`}
+            className={`${classes.extra} ${optionsOpen ? classes.extraOpen : ""} hover`}
             onClick={() => setoptionsOpen(false)}
           >
             <IoIosCloseCircleOutline />
@@ -381,32 +376,28 @@ export default function Header({
       {showNavs && (
         <>
           <div
-            className={`${classes.burger_main} ${
-              showDrawer ? classes.comeout_animation : ""
-            }`}
+            className={`${classes.burger_main} ${showDrawer ? classes.comeout_animation : ""
+              }`}
           >
             <Link
-              className={`${classes.burger_option} ${
-                pathname === "/" ? classes.option_selected : ""
-              }`}
+              className={`${classes.burger_option} ${pathname === "/" ? classes.option_selected : ""
+                }`}
               href="/"
               onClick={routeSelect}
             >
               {language ? "होम" : "Home"}
             </Link>
             <Link
-              className={`${classes.burger_option} ${
-                pathname === "/blog" ? classes.option_selected : ""
-              }`}
+              className={`${classes.burger_option} ${pathname === "/blog" ? classes.option_selected : ""
+                }`}
               href="/blog"
               onClick={routeSelect}
             >
               {language ? "ब्लॉग" : "Blogs"}
             </Link>
             <Link
-              className={`${classes.burger_option} ${
-                pathname?.includes("/veda") ? classes.option_selected : ""
-              }`}
+              className={`${classes.burger_option} ${pathname?.includes("/veda") ? classes.option_selected : ""
+                }`}
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -427,9 +418,8 @@ export default function Header({
               </svg>
             </Link>
             <Link
-              className={`${classes.burger_option} ${
-                pathname?.includes("/purana") ? classes.option_selected : ""
-              }`}
+              className={`${classes.burger_option} ${pathname?.includes("/purana") ? classes.option_selected : ""
+                }`}
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -450,9 +440,8 @@ export default function Header({
               </svg>
             </Link>
             <Link
-              className={`${classes.burger_option} ${
-                pathname?.includes("/upanishad") ? classes.option_selected : ""
-              }`}
+              className={`${classes.burger_option} ${pathname?.includes("/upanishad") ? classes.option_selected : ""
+                }`}
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -473,9 +462,8 @@ export default function Header({
               </svg>
             </Link>
             <Link
-              className={`${classes.burger_option} ${
-                pathname?.includes("/others") ? classes.option_selected : ""
-              }`}
+              className={`${classes.burger_option} ${pathname?.includes("/others") ? classes.option_selected : ""
+                }`}
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -497,9 +485,8 @@ export default function Header({
             </Link>
           </div>
           <div
-            className={`${classes.burger_main} ${
-              showSecDrawer === 1 ? classes.comeout_animation1 : ""
-            }`}
+            className={`${classes.burger_main} ${showSecDrawer === 1 ? classes.comeout_animation1 : ""
+              }`}
           >
             <Link
               className={classes.burger_option_back}
@@ -523,36 +510,32 @@ export default function Header({
               {language ? "वेद" : "Veda"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/veda/rig" ? classes.option_selected_small : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/veda/rig" ? classes.option_selected_small : ""
+                }`}
               href="/veda/rig"
               onClick={routeSelectSmall}
             >
               {language ? "ऋग्वेद" : "Rig Veda"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/veda/yajur" ? classes.option_selected_small : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/veda/yajur" ? classes.option_selected_small : ""
+                }`}
               href="/veda/yajur"
               onClick={routeSelectSmall}
             >
               {language ? "यजुर्वेद" : "Yajur Veda"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/veda/sam" ? classes.option_selected_small : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/veda/sam" ? classes.option_selected_small : ""
+                }`}
               href="/veda/sam"
               onClick={routeSelectSmall}
             >
               {language ? "सामवेद" : "Sam Veda"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/veda/atharv" ? classes.option_selected_small : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/veda/atharv" ? classes.option_selected_small : ""
+                }`}
               href="/veda/atharv"
               onClick={routeSelectSmall}
             >
@@ -560,9 +543,8 @@ export default function Header({
             </Link>
           </div>
           <div
-            className={`${classes.burger_main} ${
-              showSecDrawer === 2 ? classes.comeout_animation1 : ""
-            }`}
+            className={`${classes.burger_main} ${showSecDrawer === 2 ? classes.comeout_animation1 : ""
+              }`}
           >
             <Link
               className={classes.burger_option_back}
@@ -586,22 +568,20 @@ export default function Header({
               {language ? "पुराण" : "Purana"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/purana/hindi"
-                  ? classes.option_selected_small
-                  : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/purana/hindi"
+                ? classes.option_selected_small
+                : ""
+                }`}
               href="/purana/hindi"
               onClick={routeSelectSmall}
             >
               {language ? "पुराण हिंदी में" : "Purana in Hindi"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/purana/english"
-                  ? classes.option_selected_small
-                  : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/purana/english"
+                ? classes.option_selected_small
+                : ""
+                }`}
               href="/purana/english"
               onClick={routeSelectSmall}
             >
@@ -609,9 +589,8 @@ export default function Header({
             </Link>
           </div>
           <div
-            className={`${classes.burger_main} ${
-              showSecDrawer === 3 ? classes.comeout_animation1 : ""
-            }`}
+            className={`${classes.burger_main} ${showSecDrawer === 3 ? classes.comeout_animation1 : ""
+              }`}
           >
             <Link
               className={classes.burger_option_back}
@@ -635,22 +614,20 @@ export default function Header({
               {language ? "उपनिषद" : "Upanishad"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/upanishad/hindi"
-                  ? classes.option_selected_small
-                  : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/upanishad/hindi"
+                ? classes.option_selected_small
+                : ""
+                }`}
               href="/upanishad/hindi"
               onClick={routeSelectSmall}
             >
               {language ? "उपनिषद हिंदी में" : "Upanishad in Hindi"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/upanishad/english"
-                  ? classes.option_selected_small
-                  : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/upanishad/english"
+                ? classes.option_selected_small
+                : ""
+                }`}
               href="/upanishad/english"
               onClick={routeSelectSmall}
             >
@@ -658,9 +635,8 @@ export default function Header({
             </Link>
           </div>
           <div
-            className={`${classes.burger_main} ${
-              showSecDrawer === 4 ? classes.comeout_animation1 : ""
-            }`}
+            className={`${classes.burger_main} ${showSecDrawer === 4 ? classes.comeout_animation1 : ""
+              }`}
           >
             <Link
               className={classes.burger_option_back}
@@ -684,22 +660,20 @@ export default function Header({
               {language ? "अन्य" : "Others"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/others/shloks"
-                  ? classes.option_selected_small
-                  : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/others/shloks"
+                ? classes.option_selected_small
+                : ""
+                }`}
               href="/others/shloks"
               onClick={routeSelectSmall}
             >
               {language ? "श्लोक" : "Shloks"}
             </Link>
             <Link
-              className={`${classes.burger_option_small} ${
-                pathname === "/others/books"
-                  ? classes.option_selected_small
-                  : ""
-              }`}
+              className={`${classes.burger_option_small} ${pathname === "/others/books"
+                ? classes.option_selected_small
+                : ""
+                }`}
               href="/others/books"
               onClick={routeSelectSmall}
             >
