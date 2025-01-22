@@ -7,7 +7,7 @@ Galeavalambya lambitam bhujangatungamalikam
 Damad damad damaddama ninadavadamarvayam
 Chakara chandtandavam tanotu nah shivah shivam
 
-/shloka/shiv-tandav-strota/shloka1.jpg`,
+/shloka/shiv-tandav-strota/shloka1.webp`,
   shlok2: `जटाकटा हसंभ्रम भ्रमन्निलिंपनिर्झरी विलोलवीचिवल्लरी विराजमानमूर्धनि।
 धगद्धगद्धगज्ज्वल ल्ललाटपट्टपावके किशोरचंद्रशेखरे रतिः प्रतिक्षणं मम: ॥२॥
 
@@ -16,7 +16,7 @@ Vilolavichivalarai virajamanamurdhani
 Dhagadhagadhagajjva lalalata pattapavake
 Kishora chandrashekhare ratih pratikshanam mama
 
-/shloka/shiv-tandav-strota/shloka2.webp`,
+/shloka/shiv-tandav-strota/shloka2.jpg`,
   shlok3: `धराधरेंद्रनंदिनी विलासबन्धुबन्धुर स्फुरद्दिगंतसंतति प्रमोद मानमानसे।
 कृपाकटाक्षधोरणी निरुद्धदुर्धरापदि क्वचिद्विगम्बरे मनोविनोदमेतु वस्तुनि ॥३॥
 

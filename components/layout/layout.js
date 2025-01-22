@@ -4,6 +4,7 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Layout({ children }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -11,6 +12,7 @@ export default function Layout({ children }) {
   const [isSeachOpened, setIsSeachOpened] = useState(false);
   const [isCursor, setIsCursor] = useState(false);
   const [language, setLanguage] = useState(false);
+  const [renderLoad, setRenderLoad] = useState(true);
   const pathname = usePathname();
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 48em)");
@@ -38,6 +40,7 @@ export default function Layout({ children }) {
     }
     const lang = navigator.language?.split("-")[0];
     setLanguage(lang === "hi");
+    setRenderLoad(false);
 
     return () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
@@ -53,6 +56,14 @@ export default function Layout({ children }) {
       {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && !isCursor && (
         <Cursor />
       )}
+      {renderLoad && <div className={classes.loader}>
+        <Image
+          src="/logos/SatyaTatva_FI_NB.png"
+          alt="Logo"
+          width={200}
+          height={200}
+          priority={true}
+        /></div>}
       <main className={classes.main}>
         {!pathname?.includes("book/") && !pathname?.includes("shlok/") && (
           <Header
@@ -60,6 +71,7 @@ export default function Layout({ children }) {
             setIsCursor={setIsCursor}
             isCursor={isCursor}
             language={language}
+            renderLoad={renderLoad}
           />
         )}
         {children}

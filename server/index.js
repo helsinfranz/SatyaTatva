@@ -29,6 +29,7 @@ const allowedOrigins = [
   "http://localhost:3000", // Test website
   "http://localhost:5000", // Build Website
   "https://satyatatva.com", // Production Website
+  "https://www.satyatatva.com", // Production Website
 ];
 app.use(
   cors({
@@ -74,7 +75,7 @@ app.post("/pdf_proxy", async (req, res) => {
     return res.status(400).send("A valid PDF URL is required");
   }
 
-  // --> Do Not Change, As this is the implementation for localhost 👇 <-- //
+  /* --> Do Not Change, As this is the implementation for localhost 👇 <-- */
 
   // const filePath = path.join(__dirname, "Books_PDFs", pdfUrl);
   // Note: Above one is the real pdf file's path
@@ -86,7 +87,7 @@ app.post("/pdf_proxy", async (req, res) => {
     "Dummy/DummyTest-english.pdf"
   );
 
-  // --> Do Not Change, As this is the implementation for localhost 👆 <-- //
+  /* --> Do Not Change, As this is the implementation for localhost 👆 <-- */
 
   try {
     const pdfBuffer = await getFileBuffer(filePath);

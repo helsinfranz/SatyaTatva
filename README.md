@@ -2,7 +2,9 @@
 
 ![SatyaTatva Logo](public/logos/SatyaTatva_FI_NB.png)
 
-SatyaTatva is a platform that offers an engaging way to explore the timeless wisdom of **Sanatan Dharma**. Our website provides access to the **Vedas**, **Upanishads**, **Puranas**, and sacred **Shlokas** in a user-friendly format. In addition, SatyaTatva offers key **epic books** like **Ramayana**, **Mahabharata**, and more. 
+SatyaTatva is an **open source** and **non profit** organization.
+
+SatyaTatva is a platform that offers an engaging way to explore the timeless wisdom of **Sanatan Dharma**. Our website provides access to the **Vedas**, **Upanishads**, **Puranas**, and sacred **Shlokas** in a user-friendly format. In addition, SatyaTatva offers key **epic books** like **Ramayana**, **Mahabharata**, and more.
 
 With support for offline access (PWA) and page-flipping UI for books, SatyaTatva is optimized for **cross-device** usage, bringing you the sacred knowledge of ancient texts right at your fingertips.
 
@@ -23,6 +25,7 @@ With support for offline access (PWA) and page-flipping UI for books, SatyaTatva
 ---
 
 ## Table of Contents
+
 1. [Installation](#installation)
 2. [Usage](#usage)
 3. [Folder Structure](#folder-structure)
@@ -46,44 +49,44 @@ To get started with **SatyaTatva**, follow these steps to clone the repository a
 
 1. Clone the repository to your local machine:
 
-    ```bash
-    git clone https://github.com/helsinfranz/satyatatva.git
-    cd satyatatva
-    ```
+   ```bash
+   git clone https://github.com/helsinfranz/satyatatva.git
+   cd satyatatva
+   ```
 
 2. Install the necessary dependencies:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 3. For the **mock server** (to simulate the backend functionality):
 
-    - Navigate to the `server` folder:
+   - Navigate to the `server` folder:
 
-      ```bash
-      cd server
-      ```
+     ```bash
+     cd server
+     ```
 
-    - Install dependencies:
+   - Install dependencies:
 
-      ```bash
-      npm install
-      ```
+     ```bash
+     npm install
+     ```
 
-    - Start the server:
+   - Start the server:
 
-      ```bash
-      node index.js
-      ```
+     ```bash
+     node index.js
+     ```
 
 4. After setting up the server, you can run the **Next.js application**:
 
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
-    This will start the application on [http://localhost:3000](http://localhost:3000).
+   This will start the application on [http://localhost:3000](http://localhost:3000).
 
 ---
 
@@ -226,18 +229,23 @@ This section outlines the future goals and features we aim to implement for Saty
 ## FAQs
 
 ### 1. How can I access content offline?
+
 You can use our Progressive Web App (PWA) feature. Simply visit the website, and it will prompt you to add it to your home screen. Once added, you can access the content even when you're offline.
 
 ### 2. How do I contribute to the project?
+
 Check out the [Contributing Guidelines](https://github.com/helsinfranz/satyatatva/blob/main/CONTRIBUTING.md) to get started. Feel free to fork the repo, make changes, and submit a pull request!
 
 ### 3. How are books and content stored on the website?
+
 We store each book in **PDF** format within the `server/` directory. This ensures easy access and download for all users through API.
 
 ### 4. Can I contribute translations or interpretations?
+
 Yes! We encourage contributions of translations, interpretations, and additional commentary on any of the texts. Please follow our [contributing guidelines](https://github.com/helsinfranz/satyatatva/blob/main/CONTRIBUTING.md).
 
 ### 5. Do you offer any mobile apps?
+
 Currently, we offer **PWA support** for mobile devices, ensuring that users can access the content seamlessly on any device, with offline capabilities.
 
 ---
@@ -262,7 +270,7 @@ We would like to extend our gratitude to the following:
   - [React](https://reactjs.org)
   - [Express](https://expressjs.com/)
   - [Uiverse](https://uiverse.io/)
-    
+
 ---
 
 ## Support
@@ -293,6 +301,7 @@ We encourage open discussion and learning in our community. Join us on our offic
 ## Changelog
 
 ### [v0.1.0] - 2025-01-21
+
 - Initial release of SatyaTatva.
 - Published **Vedas**, **Puranas**, **Upanishads**, **Shlokas**, and **Books** in the book library.
 - Added **PWA support** for offline access.

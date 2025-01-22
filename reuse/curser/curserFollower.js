@@ -1,8 +1,8 @@
 import classes from "./curserFollower.module.css";
 
-export default function CurserFollower({ isCursor, setIsCursor }) {
+export default function CurserFollower({ isCursor, setIsCursor, renderLoad }) {
   return (
-    <div className={classes.toggleCont} title="Cursor Follower">
+    <div className={classes.toggleCont} title="Cursor Follower" style={renderLoad ? { display: "none" } : {}}>
       <input
         className={classes.toggleInput}
         id="toggle"
