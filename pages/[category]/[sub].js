@@ -24,6 +24,8 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
   useEffect(() => {
     setBannerLoad(true);
     setBannerError(false);
+    setImageLoad([]);
+    setImageError([]);
     document.getElementById("scrollContainer").scrollTop = 0;
     if (categoryProp === "veda" || categoryProp === "others") {
       setBannerLoad(false);
@@ -36,8 +38,6 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
       setContent(
         contentArray.slice((currentPage - 1) * 4, (currentPage - 1) * 4 + 4)
       );
-      setImageLoad([]);
-      setImageError([]);
     }
   }, [currentPage, contentArray]);
 
@@ -55,9 +55,8 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
       const scrollPosition = scrollContainer.scrollTop;
       const parallaxElement = document.getElementById("heroImage");
       if (parallaxElement) {
-        parallaxElement.style.transform = `translateY(calc(-50% - ${
-          scrollPosition * 0.25
-        }px))`;
+        parallaxElement.style.transform = `translateY(calc(-50% - ${scrollPosition * 0.25
+          }px))`;
       }
     }
     const scrollContainer = document.getElementById("scrollContainer");
@@ -75,22 +74,22 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
           {subProp === "rig"
             ? "Rigveda - The Oldest Veda | SatyaTatva"
             : subProp === "yajur"
-            ? "Yajurveda - The Ritual Veda | SatyaTatva"
-            : subProp === "sam"
-            ? "Samaveda - The Veda of Chants | SatyaTatva"
-            : subProp === "atharv"
-            ? "Atharvaveda - The Knowledge of Life | SatyaTatva"
-            : subProp === "english" && categoryProp === "purana"
-            ? "Puranas - Tales of Ancient Wisdom | SatyaTatva"
-            : subProp === "english" && categoryProp === "upanishad"
-            ? "Upanishads - Spiritual Knowledge | SatyaTatva"
-            : subProp === "hindi" && categoryProp === "purana"
-            ? "पुराण - प्राचीन ज्ञान | सत्यतत्व"
-            : subProp === "hindi" && categoryProp === "upanishad"
-            ? "उपनिषद - आध्यात्मिक ज्ञान | सत्यतत्व"
-            : subProp === "shloks"
-            ? "Sacred Shlokas - Hanuman Chalisa, Shiv Tandav & More | SatyaTatva"
-            : "Epics & Sanatan Books - Ramayana, Mahabharata, and More | SatyaTatva"}
+              ? "Yajurveda - The Ritual Veda | SatyaTatva"
+              : subProp === "sam"
+                ? "Samaveda - The Veda of Chants | SatyaTatva"
+                : subProp === "atharv"
+                  ? "Atharvaveda - The Knowledge of Life | SatyaTatva"
+                  : subProp === "english" && categoryProp === "purana"
+                    ? "Puranas - Tales of Ancient Wisdom | SatyaTatva"
+                    : subProp === "english" && categoryProp === "upanishad"
+                      ? "Upanishads - Spiritual Knowledge | SatyaTatva"
+                      : subProp === "hindi" && categoryProp === "purana"
+                        ? "पुराण - प्राचीन ज्ञान | सत्यतत्व"
+                        : subProp === "hindi" && categoryProp === "upanishad"
+                          ? "उपनिषद - आध्यात्मिक ज्ञान | सत्यतत्व"
+                          : subProp === "shloks"
+                            ? "Sacred Shlokas - Hanuman Chalisa, Shiv Tandav & More | SatyaTatva"
+                            : "Epics & Sanatan Books - Ramayana, Mahabharata, and More | SatyaTatva"}
         </title>
         <meta
           name="description"
@@ -98,22 +97,22 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
             subProp === "rig"
               ? "Discover Rigveda, the ancient collection of hymns dedicated to the deities, offering wisdom on rituals, nature, and life."
               : subProp === "yajur"
-              ? "Dive into Yajurveda, the guide to Vedic rituals and ceremonies, reflecting the ancient traditions of Sanatan Dharma."
-              : subProp === "sam"
-              ? "Explore Samaveda, the Veda of melodies and chants, emphasizing the beauty of music in spirituality."
-              : subProp === "atharv"
-              ? "Uncover Atharvaveda, offering insights into daily life, healing, and spiritual well-being."
-              : subProp === "english" && categoryProp === "purana"
-              ? "Read Puranas and explore the timeless stories of creation, gods, and dharmic principles in Sanatan Dharma."
-              : subProp === "english" && categoryProp === "upanishad"
-              ? "Delve into the profound teachings of the Upanishads, the spiritual essence of Vedic literature."
-              : subProp === "hindi" && categoryProp === "purana"
-              ? "पुराण पढ़ें और सनातन धर्म में सृष्टि, देवताओं और धार्मिक सिद्धांतों का पता लगाएं।"
-              : subProp === "hindi" && categoryProp === "upanishad"
-              ? "वैदिक साहित्य के आध्यात्मिक सार, उपनिषदों की गहन शिक्षाओं में गहराई।"
-              : subProp === "shloks"
-              ? "Chant and understand the meaning of powerful shlokas like Hanuman Chalisa, Shiv Tandav Stotram, and more."
-              : "Explore other Sanatan Dharma epics and sacred texts like the Ramayana, Mahabharata, and timeless spiritual works."
+                ? "Dive into Yajurveda, the guide to Vedic rituals and ceremonies, reflecting the ancient traditions of Sanatan Dharma."
+                : subProp === "sam"
+                  ? "Explore Samaveda, the Veda of melodies and chants, emphasizing the beauty of music in spirituality."
+                  : subProp === "atharv"
+                    ? "Uncover Atharvaveda, offering insights into daily life, healing, and spiritual well-being."
+                    : subProp === "english" && categoryProp === "purana"
+                      ? "Read Puranas and explore the timeless stories of creation, gods, and dharmic principles in Sanatan Dharma."
+                      : subProp === "english" && categoryProp === "upanishad"
+                        ? "Delve into the profound teachings of the Upanishads, the spiritual essence of Vedic literature."
+                        : subProp === "hindi" && categoryProp === "purana"
+                          ? "पुराण पढ़ें और सनातन धर्म में सृष्टि, देवताओं और धार्मिक सिद्धांतों का पता लगाएं।"
+                          : subProp === "hindi" && categoryProp === "upanishad"
+                            ? "वैदिक साहित्य के आध्यात्मिक सार, उपनिषदों की गहन शिक्षाओं में गहराई।"
+                            : subProp === "shloks"
+                              ? "Chant and understand the meaning of powerful shlokas like Hanuman Chalisa, Shiv Tandav Stotram, and more."
+                              : "Explore other Sanatan Dharma epics and sacred texts like the Ramayana, Mahabharata, and timeless spiritual works."
           }
         />
       </Head>
@@ -143,14 +142,15 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                   categoryProp === "purana"
                     ? "/banners/purana.jpg"
                     : categoryProp === "upanishad"
-                    ? "/banners/upanishad.jpg"
-                    : "/banners/veda.jpg"
+                      ? "/banners/upanishad.jpg"
+                      : "/banners/veda.jpg"
                 }
                 alt={`${categoryProp} banner`}
                 priority={true}
                 width={1200}
                 height={500}
                 style={bannerLoad ? { opacity: 0 } : {}}
+                draggable={false}
                 onLoad={() => setBannerLoad(false)}
                 onError={() => {
                   setBannerLoad(false);
@@ -174,7 +174,7 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
           {content.map((content, idx) => (
             <div className={classes.contentMain} key={idx}>
               <div className={`${classes.contentMainImg} hover`}>
-                {!imageLoad.includes(idx) && <MeteorLoader />}
+                {!imageLoad.includes(idx) && <MeteorLoader styles={{ borderRadius: "2rem" }} />}
                 {imageError.includes(idx) ? (
                   <div className={classes.contentMainSvg}>
                     <svg
@@ -198,16 +198,17 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                     style={
                       !imageLoad.includes(idx)
                         ? {
-                            opacity: 0,
-                            objectFit: "cover",
-                            objectPosition: "center",
-                          }
+                          opacity: 0,
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }
                         : {
-                            objectFit: "cover",
-                            objectPosition: "center",
-                          }
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }
                     }
                     priority={true}
+                    draggable={false}
                     onLoad={() => {
                       setImageLoad((prev) => [...prev, idx]);
                     }}
@@ -252,10 +253,10 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                     {sub === "shloks"
                       ? "पाठ करना प्रारंभ करें"
                       : sub === "hindi"
-                      ? "पढ़ना शुरू करें"
-                      : /^[a-zA-Z0-9- ]+$/.test(content.title)
-                      ? "Start Reading"
-                      : "पढ़ना शुरू करें"}
+                        ? "पढ़ना शुरू करें"
+                        : /^[a-zA-Z0-9- ]+$/.test(content.title)
+                          ? "Start Reading"
+                          : "पढ़ना शुरू करें"}
                     <MdKeyboardArrowRight />
                   </Link>
                 </div>
@@ -300,25 +301,25 @@ export default function Sub({ categoryProp, subProp, contentArray }) {
                   {(showFirstTwoPages ||
                     showCurrentAndNext ||
                     showLastPage) && (
-                    <>
-                      <Link
-                        className={
-                          page === currentPage
-                            ? `${classes.pagination} ${classes.selectedPagination}`
-                            : classes.pagination
-                        }
-                        href={{ pathname, query: { page } }}
-                        key={page}
-                        shallow={true}
-                      >
-                        {page}
-                      </Link>
-                      <div
-                        className={classes.dashPagination}
-                        key="pagination1"
-                      ></div>
-                    </>
-                  )}
+                      <>
+                        <Link
+                          className={
+                            page === currentPage
+                              ? `${classes.pagination} ${classes.selectedPagination}`
+                              : classes.pagination
+                          }
+                          href={{ pathname, query: { page } }}
+                          key={page}
+                          shallow={true}
+                        >
+                          {page}
+                        </Link>
+                        <div
+                          className={classes.dashPagination}
+                          key="pagination1"
+                        ></div>
+                      </>
+                    )}
 
                   {/* Ellipsis logic */}
                   {page === 2 && currentPage > 2 && !showLastPage && (
