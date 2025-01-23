@@ -486,10 +486,17 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
   justify-content: center;
   width: 30vw;
   height: 100%;
+}
+
+.progressMB {
+  width: max-content;
+  font-size: 1rem;
 }
 
 @media (max-height: 34.68em) {
@@ -608,9 +615,13 @@
   .planetTwo {
     display: none;
   }
-  
+
   .progressBar {
     width: 50vw;
+  }
+
+  .progressMB {
+    font-size: 0.8rem;
   }
 }
 
@@ -653,5 +664,9 @@
   .flip img,
   .flipL img {
     height: calc((100vw - 9rem) / 2 * 1.29);
+  }
+
+  .progressMB {
+    font-size: 0.65rem;
   }
 }
