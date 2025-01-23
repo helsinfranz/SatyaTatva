@@ -53,7 +53,7 @@ export default function Layout({ children }) {
   }, [isCursor]);
   return (
     <>
-      {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && !isCursor && (
+      {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && !renderLoad && !isCursor && (
         <Cursor />
       )}
       {renderLoad && <div className={classes.loader}>

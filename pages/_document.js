@@ -42,7 +42,7 @@ export default function Document() {
         <meta name="author" content="SatyaTatva" />
         <meta
           property="twitter:image"
-          content="/logos/SatyaTatva_FI_NB.png"
+          content="/logos/SatyaTatva_FI.png"
         ></meta>
         <meta property="twitter:domain" content="satyatatva.com"></meta>
         <meta name="twitter:url" content="https://www.satyatatva.com" />
@@ -62,7 +62,7 @@ export default function Document() {
           property="og:description"
           content="Explore the wisdom of Sanatan Dharma through Vedas, Upanishads, Puranas, and sacred shlokas in an engaging UI."
         />
-        <meta property="og:image" content="/logos/SatyaTatva_FI_NB.png"></meta>
+        <meta property="og:image" content="/logos/SatyaTatva_FI.png"></meta>
         <meta property="og:url" content="https://www.satyatatva.com"></meta>
       </Head>
       <body>

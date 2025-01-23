@@ -1,16 +1,16 @@
 const express = require("express");
-const fs = require("fs/promises");
+const fs = require("fs");
 const path = require("path");
 const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const NodeCache = require("node-cache");
 
 const app = express();
 const PORT = 3001;
 
+app.set("trust proxy", 1); // Trust proxy headers
 // Middleware
 app.use(helmet());
 app.use(express.json());
@@ -50,20 +50,33 @@ app.use(
   })
 );
 
-// Cache setup (NodeCache)
-const cache = new NodeCache({ stdTTL: 3600 }); // Cache TTL (time-to-live): 1 hour
+function streamPdfAsJson(filePath, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.write('{"buffer":{"type":"Buffer","data":['); // Start JSON structure
 
-// Helper function: Get file buffer with caching
-async function getFileBuffer(filePath) {
-  const cachedFile = cache.get(filePath);
-  if (cachedFile) {
-    console.log(`Cache hit for ${filePath}`);
-    return cachedFile;
-  }
-  console.log(`Cache miss for ${filePath}`);
-  const buffer = await fs.readFile(filePath);
-  cache.set(filePath, buffer); // Cache the file buffer
-  return buffer;
+  const readStream = fs.createReadStream(filePath);
+  let firstChunk = true;
+
+  readStream.on('data', (chunk) => {
+    const chunkArray = Array.from(chunk);
+
+    // Add commas between chunks but not before the first chunk
+    if (!firstChunk) {
+      res.write(',');
+    }
+    res.write(chunkArray.join(','));
+    firstChunk = false;
+  });
+
+  readStream.on('end', () => {
+    res.write(']}}'); // Close JSON structure
+    res.end();
+  });
+
+  readStream.on('error', (err) => {
+    console.error('Error reading file:', err);
+    res.status(500).json({ error: 'Failed to read the PDF file' });
+  });
 }
 
 // PDF Proxy API
@@ -90,8 +103,7 @@ app.post("/pdf_proxy", async (req, res) => {
   /* --> Do Not Change, As this is the implementation for localhost 👆 <-- */
 
   try {
-    const pdfBuffer = await getFileBuffer(filePath);
-    return res.status(200).send({ buffer: pdfBuffer });
+    streamPdfAsJson(filePath, res);
   } catch (error) {
     if (error.code === "ENOENT") {
       return res.status(404).send("File not found");
