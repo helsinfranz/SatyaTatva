@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/layout";
 import "@/styles/globals.css";
+import Script from "next/script";
 import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
@@ -68,8 +69,26 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Script
+        strategy="beforeInteractive"
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-3TTM3N7GPF"
+      />
+      <Script
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3TTM3N7GPF');
+        `,
+        }}
+      />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }

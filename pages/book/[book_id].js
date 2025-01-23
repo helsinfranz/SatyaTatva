@@ -1,5 +1,5 @@
 import { processPdf } from "@/lib/pdf_fetch";
-import { bookMap, getSingleBookData, titleMap } from "@/lib/storage";
+import { bookMap, fileSizes, getSingleBookData, titleMap } from "@/lib/storage";
 import languageDetect from "@/reuse/languageDetect";
 import BlackHole from "@/reuse/loader/blackHole";
 import ProgressBar from "@/reuse/loader/progressBar";
@@ -34,7 +34,6 @@ export default function BookMain() {
   const [firstPageNo, setFirstPageNo] = useState(0);
   const [secondPageNo, setSecondPageNo] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [smallLoading, setSmallLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState(0);
   const [bookmarked, setBookmarked] = useState(0);
@@ -155,7 +154,7 @@ export default function BookMain() {
           console.error("Error fetching data:", error);
           setError(true);
           setErrorType(1);
-          setSmallLoading(false);
+          setLoading(false);
         }
       }
     }
@@ -287,6 +286,19 @@ export default function BookMain() {
         return filteredData;
       }, {});
   }
+
+  function percentage() {
+    if (progress >= 100) {
+      return "Loading...";
+    }
+    const url = bookMap[book_id];
+    for (const [unit, size] of Object.entries(fileSizes)) {
+      if (url.includes(unit)) {
+        const fileSizeInMB = parseFloat(size.split("MB")[0]).toFixed(2);
+        return `${parseFloat(progress * fileSizeInMB / 100).toFixed(2)} MB / ${parseFloat(fileSizeInMB).toFixed(2)} MB`;
+      }
+    }
+  }
   return (
     <>
       <Head>
@@ -360,6 +372,7 @@ export default function BookMain() {
                   <BlackHole />
                 </div>
                 <div className={classes.progressBar}>
+                  <div className={classes.progressMB}>{percentage()}</div>
                   <ProgressBar progress={progress} />
                 </div>
               </>
@@ -411,7 +424,6 @@ export default function BookMain() {
                             }
                             alt={`Page ${pageNo}`}
                             draggable="false"
-                            style={smallLoading ? { display: "none" } : {}}
                             onClick={leftClick}
                           />
                           <img
@@ -422,7 +434,6 @@ export default function BookMain() {
                             }
                             alt={`Page ${pageNo + 1}`}
                             draggable="false"
-                            style={smallLoading ? { display: "none" } : {}}
                             onClick={rightClick}
                           />
                           <div
@@ -610,10 +621,12 @@ export default function BookMain() {
         >
           <input
             className={classes.fastForwardInput}
+            style={loading ? { cursor: "not-allowed" } : {}}
             type="number"
             ref={pageRef}
             min={1}
             max={totalPages - 1}
+            disabled={loading}
           />
           <button type="submit" className={classes.fastForwardButton}>
             <FaAngleDoubleRight />
