@@ -5,6 +5,7 @@ import Footer from "../footer/footer";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { Analytics } from "@vercel/analytics/react"
 
 export default function Layout({ children }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -53,6 +54,7 @@ export default function Layout({ children }) {
   }, [isCursor]);
   return (
     <>
+      <Analytics />
       {!isSmallScreen && !isMouseOffScreen && !isSeachOpened && !renderLoad && !isCursor && (
         <Cursor />
       )}

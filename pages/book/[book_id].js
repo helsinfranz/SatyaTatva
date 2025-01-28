@@ -37,9 +37,10 @@ export default function BookMain() {
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState(0);
   const [bookmarked, setBookmarked] = useState(0);
-  const [quality, setQuality] = useState(1);
+  const [quality, setQuality] = useState(1.5);
   const [zoom, setZoom] = useState(1);
   const [progress, setProgress] = useState(100);
+  const [notifications, setNotifications] = useState([]);
   const [flip, setFlip] = useState({
     start: false,
     src: "",
@@ -58,7 +59,7 @@ export default function BookMain() {
       try {
         setFirstPageNo(0);
         setSecondPageNo(1);
-        setQuality(1);
+        setQuality(1.5);
         setProgress(100);
         const slug = `data-${book_id}`;
         const stored = JSON.parse(localStorage.getItem(slug) || "{}");
@@ -67,7 +68,7 @@ export default function BookMain() {
             setBookmarked(stored.bookmarked);
           }
           if (stored.quality) {
-            setQuality(parseFloat(stored.quality) || 1);
+            setQuality(parseFloat(stored.quality) || 1.5);
           }
           setPageNo(stored.pageNo || 0);
           pageRef.current.value = stored.pageNo || 0;
@@ -115,7 +116,6 @@ export default function BookMain() {
         setLoading(false);
       }
     }
-
     if (book_id) {
       const path = bookMap[book_id];
       const title = titleMap[book_id] || "Granth";
@@ -299,6 +299,17 @@ export default function BookMain() {
       }
     }
   }
+
+  function addNotification(message) {
+    const id = Date.now();
+    setNotifications((prev) => [...prev, { id, message }]);
+
+    setTimeout(() => removeNotification(id), 3000);
+  };
+
+  function removeNotification(id) {
+    setNotifications((prev) => prev.filter((notif) => notif.id !== id));
+  };
   return (
     <>
       <Head>
@@ -547,6 +558,7 @@ export default function BookMain() {
                 })
               );
               setBookmarked(0);
+              addNotification("Bookmark Removed");
             } else {
               if (pageNo === 0 || pageNo === totalPages) return;
               localStorage.setItem(
@@ -558,6 +570,7 @@ export default function BookMain() {
                 })
               );
               setBookmarked(pageNo);
+              addNotification("Bookmark Added");
             }
           }}
         >
@@ -582,19 +595,21 @@ export default function BookMain() {
         <div
           className={`${classes.qualityButton} ${bookmarked > 0 ? classes.bookmarkActiveQuality : ""
             } hover`}
-          title={`${quality === 1 ? "Low" : quality === 1.5 ? "Medium" : "High"
+          title={`${quality === 1 ? "Low" : quality === 1.5 ? "Medium" : quality === 2 ? "High" : quality === 2.5 ? "Very High" : "Ultra High"
             } Quality`}
           onClick={() => {
             if (error) return;
             const slug = `data-${book_id}`;
             const stored = JSON.parse(localStorage.getItem(slug) || "{}");
-            const newQuality = quality === 1 ? 1.5 : quality === 1.5 ? 2 : 1;
+            const newQuality = quality === 1 ? 1.5 : quality === 1.5 ? 2 : quality === 2 ? 2.5 : quality === 2.5 ? 3 : 1;
             const newStore = {
               ...stored,
               quality: newQuality,
             };
             localStorage.setItem(slug, JSON.stringify(newStore));
             setQuality(newQuality);
+            addNotification(`Quality Changed to ${newQuality === 1 ? "Low" : newQuality === 1.5 ? "Medium" : newQuality === 2 ? "High" : newQuality === 2.5 ? "Very High" : "Ultra High"}`);
+            setTimeout(() => addNotification("Refresh to apply changes"), 1000);
           }}
         >
           {quality}x
@@ -648,6 +663,16 @@ export default function BookMain() {
             <BsZoomOut />
           </div>
         </div>
+      </div>
+      <div className={classes.snackbarContainer}>
+        {notifications.map((notif) => (
+          <div
+            key={notif.id}
+            className={classes.animateFadeInOut}
+          >
+            {notif.message}
+          </div>
+        ))}
       </div>
     </>
   );
