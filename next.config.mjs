@@ -8,7 +8,6 @@ const withPWA = nextPWA({
   skipWaiting: true,
   runtimeCaching: [
     {
-      // Cache previously visited pages
       urlPattern: /^https:\/\/(www\.)?satyatatva\.com\/.*$/,
       handler: "NetworkFirst",
       options: {
