@@ -14,7 +14,7 @@ const withPWA = nextPWA({
         cacheName: "pages-cache",
         expiration: {
           maxEntries: 50,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days (tweek it )
+          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days (tweek it according to the use )
         },
         cacheableResponse: {
           statuses: [200],
