@@ -11,6 +11,7 @@ const withPWA = nextPWA({
   disable: process.env.NEXTAUTH_URL === "http://localhost:3000",
   register: true,
   skipWaiting: true,
+  buildExcludes: [/dynamic-css-manifest\.json$/]
 })(nextConfig);
 
 export default withPWA;
