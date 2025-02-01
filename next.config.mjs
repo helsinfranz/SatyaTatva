@@ -15,7 +15,7 @@ const withPWA = nextPWA({
         cacheName: "pages-cache",
         expiration: {
           maxEntries: 50,
-          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days (tweek it )
         },
         cacheableResponse: {
           statuses: [200],
@@ -23,7 +23,6 @@ const withPWA = nextPWA({
       },
     },
     {
-      // Cache static assets (CSS, JS, images)
       urlPattern: /.*\.(?:css|js|png|jpg|jpeg|svg|webp|woff2|ttf)$/,
       handler: "CacheFirst",
       options: {
