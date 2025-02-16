@@ -26,8 +26,10 @@ app.use(limiter);
 
 // CORS to allow only specific domains
 const allowedOrigins = [
+  /* 👇 Note: These are only here for testing */
   "http://localhost:3000", // Test website
   "http://localhost:5000", // Build Website
+  /* 👆 Note: These are only here for testing */
   "https://satyatatva.com", // Production Website
   "https://www.satyatatva.com", // Production Website
 ];

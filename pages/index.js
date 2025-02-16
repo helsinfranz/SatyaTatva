@@ -13,29 +13,6 @@ export default function Home() {
   const [enable, setEnable] = useState(true);
   const containerRef = useRef(null);
 
-  function scollAround(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    setEnable(true);
-    const container = containerRef.current;
-    const startX = e.pageX;
-    const scrollLeft = container.scrollLeft;
-
-    const handleScrollMouseMove = (e) => {
-      setEnable(false);
-      const deltaX = e.pageX - startX;
-      container.scrollLeft = scrollLeft - deltaX;
-    };
-
-    const handleScrollMouseUp = () => {
-      window.removeEventListener("mousemove", handleScrollMouseMove);
-      window.removeEventListener("mouseup", handleScrollMouseUp);
-    };
-
-    window.addEventListener("mousemove", handleScrollMouseMove);
-    window.addEventListener("mouseup", handleScrollMouseUp);
-  }
-
   useEffect(() => {
     const mostRecent = JSON.parse(localStorage.getItem("mostRecent")) || [
       {
@@ -93,6 +70,29 @@ export default function Home() {
     setMostVisited(mostVisited);
   }, []);
 
+  function scollAround(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setEnable(true);
+    const container = containerRef.current;
+    const startX = e.pageX;
+    const scrollLeft = container.scrollLeft;
+
+    const handleScrollMouseMove = (e) => {
+      setEnable(false);
+      const deltaX = e.pageX - startX;
+      container.scrollLeft = scrollLeft - deltaX;
+    };
+
+    const handleScrollMouseUp = () => {
+      window.removeEventListener("mousemove", handleScrollMouseMove);
+      window.removeEventListener("mouseup", handleScrollMouseUp);
+    };
+
+    window.addEventListener("mousemove", handleScrollMouseMove);
+    window.addEventListener("mouseup", handleScrollMouseUp);
+  }
+
   return (
     <>
       <Head>
@@ -116,9 +116,8 @@ export default function Home() {
             <div className={classes.quoteBy}>
               - {getRandomShlok().source}
               <Link
-                href={`https://www.google.com/search?q=${
-                  getRandomShlok().quote
-                }`}
+                href={`https://www.google.com/search?q=${getRandomShlok().quote
+                  }`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
