@@ -1,6 +1,13 @@
 # SatyaTatva - Explore the Wisdom of Sanatan Dharma
 
-![SatyaTatva Logo](public/logos/SatyaTatva_FI_NB.png)
+<div align="center">
+  <a href="https://satyatatva.com">
+    <picture>
+      <img alt="SatyaTatva logo" src="https://satyatatva.com/logos/SatyaTatva_FI_NB.png" height="128">
+    </picture>
+  </a>
+  <h1>SatyaTatva</h1>
+</div>
 
 SatyaTatva is an **open source** and **non profit** organization.
 
@@ -152,20 +159,6 @@ This will build your application and optimize it for production. Once the build 
 npm run start
 ```
 
-### Linting and Formatting
-
-We use **ESLint** and **Prettier** for linting and code formatting. To run the linter:
-
-```bash
-npm run lint
-```
-
-To format the code:
-
-```bash
-npm run format
-```
-
 ---
 
 ## Contributing
@@ -201,7 +194,8 @@ You can also visit our website: [SatyaTatva](https://satyatatva.com).
 - [SatyaTatva GitHub Repository](https://github.com/helsinfranz/satyatatva)
 - [License Information](https://opensource.org/licenses/Apache-2.0)
 - [Contributing Guidelines](https://github.com/helsinfranz/satyatatva/blob/main/CONTRIBUTING.md)
-- [Community Discussions](https://discord.gg/4kqYu5UCEH)
+- [Community Discussions](https://github.com/helsinfranz/SatyaTatva/discussions)
+- [Discord Community](https://discord.gg/4kqYu5UCEH)
 
 ---
 
@@ -286,14 +280,14 @@ If you run into any issues or need support, you can:
 
 We encourage open discussion and learning in our community. Join us on our official forums and community channels:
 
-- **GitHub Discussions**: [SatyaTatva Discussions](https://discord.gg/4kqYu5UCEH)
+- **GitHub Discussions**: [SatyaTatva Discussions](https://github.com/helsinfranz/SatyaTatva/discussions)
 - **Discord Server**: Join our [Discord](https://discord.gg/4kqYu5UCEH) for live discussions, suggestions, and support.
 
 ---
 
 ## Additional Resources
 
-- [SatyaTatva Blog](https://satyatatva.com/blog) - Read insightful articles on the meanings and importance of the sacred texts.
+- [SatyaTatva Blog](https://satyatatva.com/blog) - Read insightful articles on the meanings and importance of the sacred texts (Coming Soon).
 - [License](https://opensource.org/licenses/Apache-2.0) - View the open-source license under which SatyaTatva is published.
 
 ---

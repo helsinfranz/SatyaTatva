@@ -6,6 +6,14 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Analytics } from "@vercel/analytics/react"
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  weight: ['100', '300', '400', '500', '700', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export default function Layout({ children }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -66,7 +74,7 @@ export default function Layout({ children }) {
           height={200}
           priority={true}
         /></div>}
-      <main className={classes.main}>
+      <main className={`${classes.main} ${roboto.className}`}>
         {!pathname?.includes("book/") && !pathname?.includes("shlok/") && (
           <Header
             setIsSeachOpened={setIsSeachOpened}

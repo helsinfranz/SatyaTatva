@@ -12,7 +12,7 @@ export default function Custom404() {
         <title>Page Not Found - SatyaTatva</title>
         <meta
           name="description"
-          content="The page you’re looking for does not exist. Explore the wisdom of Sanatan Dharma with SatyaTatva."
+          content="The page you’re looking for does not exist."
         />
       </Head>
       <div className="not-found">

@@ -55,7 +55,7 @@
 .searchMain {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +104,7 @@
   flex-direction: column;
   z-index: 999;
   cursor: default;
-  max-height: calc(50vh - 7.5rem);
+  max-height: calc(50dvh - 7.5rem);
   overflow-y: auto;
   transition: all 0.5s ease-in-out;
   padding-right: 0.5rem;
@@ -185,7 +185,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   transition: all 0.5s ease-in-out;
   pointer-events: none;
   z-index: 9999999;
@@ -201,7 +201,7 @@
 .optionsMain {
   position: fixed;
   width: 25vw;
-  height: 100vh;
+  height: 100dvh;
   top: 0;
   right: 0;
   transform: translateX(100%);
@@ -540,7 +540,7 @@
   top: 70px;
   left: 100%;
   /* right: 0; */
-  height: calc(100vh - 70px);
+  height: calc(100dvh - 70px);
   background-color: #000;
   transition: all 0.3s ease-in-out;
   z-index: 9999;
