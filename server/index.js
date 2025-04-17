@@ -1,19 +1,20 @@
-const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const compression = require("compression");
+const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const cors = require("cors");
 const morgan = require("morgan");
-const helmet = require("helmet");
+const express = require("express");
+const compression = require("compression");
 
+const TIMEOUT = 3 * 60 * 1000; // 3 minutes
 const app = express();
 const PORT = 3001;
 
 app.set("trust proxy", 1); // Trust proxy headers
 // Middleware
 app.use(helmet());
-app.use(express.json());
+app.use(express.json({ limit: "20kb" }));
 app.use(compression());
 
 // Rate limiter
@@ -60,6 +61,8 @@ function streamPdfAsJson(filePath, res) {
   let firstChunk = true;
 
   readStream.on('data', (chunk) => {
+    if (res.writableEnded) return; // Stop if response is already ended
+
     const chunkArray = Array.from(chunk);
 
     // Add commas between chunks but not before the first chunk
@@ -71,22 +74,53 @@ function streamPdfAsJson(filePath, res) {
   });
 
   readStream.on('end', () => {
-    res.write(']}}'); // Close JSON structure
-    res.end();
+    if (!res.writableEnded) {
+      res.write(']}}'); // Close JSON structure
+      res.end();
+    }
   });
 
   readStream.on('error', (err) => {
     console.error('Error reading file:', err);
-    res.status(500).json({ error: 'Failed to read the PDF file' });
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'Failed to read the PDF file' });
+    } else {
+      res.end();
+    }
+  });
+
+  // Handle manual abort/timeout
+  onAbort(() => {
+    readStream.destroy();
+    if (!res.writableEnded) {
+      res.destroy(); // Force close response
+    }
   });
 }
 
 // PDF Proxy API
 app.post("/pdf_proxy", async (req, res) => {
+  let abortFn = () => { };
+
+  const timeout = setTimeout(() => {
+    console.warn("Request timed out for /pdf_proxy");
+
+    // Trigger abort logic
+    abortFn();
+
+    // Nothing else to do – res will be destroyed from inside streamPdfAsJson
+  }, TIMEOUT); // 3 minutes
+
+  res.on('close', () => {
+    clearTimeout(timeout);
+    abortFn(); // Stop streaming if user disconnects
+  });
+
   const { pdfUrl } = req.body;
 
   // Validate input
   if (!pdfUrl || typeof pdfUrl !== "string") {
+    clearTimeout(timeout);
     return res.status(400).send("A valid PDF URL is required");
   }
 
@@ -105,8 +139,11 @@ app.post("/pdf_proxy", async (req, res) => {
   /* --> Do Not Change, As this is the implementation for localhost 👆 <-- */
 
   try {
-    streamPdfAsJson(filePath, res);
+    streamPdfAsJson(filePath, res, (fn) => {
+      abortFn = fn;
+    });
   } catch (error) {
+    clearTimeout(timeout);
     if (error.code === "ENOENT") {
       return res.status(404).send("File not found");
     }
